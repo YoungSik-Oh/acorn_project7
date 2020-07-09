@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> 와우 ㅋㅋㅋㅋㅋ </h1>
-	<h2> 진심 종나리 빡치네요 ㅋㅋ</h2>
+	<h1> zszszszszssz </h1>
+	<h2>whwhwhwhwhwhwhwhwhwhwh</h2>
 	<h3>조민석 테스트</h3>
 </body>
 </html>
