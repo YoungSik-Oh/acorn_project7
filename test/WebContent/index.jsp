@@ -1,15 +1,44 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
+<style>
+
+</style>
 </head>
 
 <body>
-	<h1> testestestestes </h1>
-	<h2>Á¶¹Î¼®Á¶¹Î¼®Á»´Ï¼®</h2>
-	<h3>Á¶¹Î¼® Å×½ºÆ®</h3>
+<header>
+	<div>
+		<div class="navbar navbar-expand-sm navbar-dark bg-primary">
+			<a class="navbar-brand" href="${pageContext.request.contextPath}">logo</a>
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="#">ë§›ì§‘</a></li> 
+				<li class="nav-item"><a class="nav-link" href="#">ì¶”ì²œ</a></li>
+			</ul>
+		</div>
+	</div>
+	<div >
+		container
+		<form action="">
+			<legend>ê²€ìƒ‰ì°½</legend>
+			<input type="text" name="search" placeholder="ê²€ìƒ‰í•  ë‚´ìš©ì„ ìž…ë ¥í•˜ì„¸ìš”."/>
+			<button type="submit">ê²€ìƒ‰</button>
+		</form>
+	</div>
+</header>
+
+<section> contents
+	<div>ì œëª©
+		<div>
+			ë‚´ìš©ë“¤
+			
+		</div>
+	</div>
+</section>
 </body>
 </html>
