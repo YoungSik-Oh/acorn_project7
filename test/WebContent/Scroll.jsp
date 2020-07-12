@@ -18,7 +18,7 @@
 
 body {
     margin: 0;
-    font-family: 'Helvetica', sans-serif;
+    font-family: Arial, 'Helvetica', sans-serif;
 }
 
 /* All the snapping stuff */
@@ -29,9 +29,30 @@ body {
     scroll-behavior: smooth;
 }
 
+#myBtn {
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	z-index: 1;
+	font-size: 18px;
+	border: none;
+	background-color: olive;
+	color: white;
+	cursor: pointer;
+	padding: 15px;
+	border-radius: 4px;
+}
+
+#myBtn:hover{
+	background-color: white;
+	color: olive;
+}
+
 section {
     height: 100vh;
     scroll-snap-align: start;
+    z-index: 99;
 }
 
 /* Other styles */
@@ -53,6 +74,9 @@ section:nth-child(3n) {
 </style>
 </head>
 <body>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top"> 맨 위로 </button>
+
 <div class="scroll-container">
   <section>
     <h2>Section 1</h2>
@@ -67,5 +91,24 @@ section:nth-child(3n) {
     <h2>Section 4</h2>
   </section>
 </div>
+
+<script>
+var mybutton = document.getElementById("myBtn");
+
+window.onscroll = function(){scrollFunction()};
+
+function scrollFunction(){
+	if (document.documentElement.scrollTop > 20){
+		mybutton.style.display = "block";
+	}else{
+		mybutton.style.display = "none";
+	}
+}
+
+function topFunction(){
+	document.documentElement.scrollTop = 0;
+}
+</script>
+
 </body>
 </html>
