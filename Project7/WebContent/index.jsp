@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 
 </head>
- <a href="admin/admin_login_form.jsp">관리자 로그인</a> 
+<a href="admin/admin_login_form.jsp">관리자 로그인</a> 
 <body>
 
 	
