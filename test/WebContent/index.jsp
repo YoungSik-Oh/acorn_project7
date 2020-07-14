@@ -19,6 +19,7 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="#">맛집</a></li> 
 				<li class="nav-item"><a class="nav-link" href="#">추천</a></li>
+				<li class="nav-item"><a class="nav-link" href="/user/login.jsp">로그인</a></li>
 			</ul>
 		</div>
 	</div>
