@@ -7,7 +7,11 @@
 <%
 	request.setCharacterEncoding("utf-8");
 %>
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/oh1
+=======
+>>>>>>> refs/heads/oh1
+>>>>>>> refs/remotes/origin/master
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +45,11 @@
   <section>
     <h2>Section 1</h2>
     <div class="search" >
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/oh1
+=======
+>>>>>>> refs/heads/oh1
+>>>>>>> refs/remotes/origin/master
 		<form action="">
 			<legend>검색창</legend>
 			<input type="text" name="search" placeholder="검색할 내용을 입력하세요."/>
@@ -74,6 +82,10 @@
     <h2>Section 4</h2>
   </section>
 </div>
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/oh1
+=======
+>>>>>>> refs/heads/oh1
+>>>>>>> refs/remotes/origin/master
 </body>
 </html>
