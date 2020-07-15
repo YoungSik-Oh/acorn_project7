@@ -1,9 +1,9 @@
 -- 글 게시판
 CREATE TABLE board(
-	num NUMBER PRIMARY KEY,
-	writer VARCHAR2(50),
-	title VARCHAR2(100),
-	content CLOB,
+	num NUMBER PRIMARY KEY ,
+	writer VARCHAR2(50)  NOT NULL,
+	title VARCHAR2(100)  NOT NULL,
+	content CLOB  NOT NULL,
 	regdate DATE
 );
 

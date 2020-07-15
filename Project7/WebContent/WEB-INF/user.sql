@@ -3,8 +3,8 @@ CREATE TABLE user_info(
 	userName VARCHAR2(10) NOT NULL,
 	userId VARCHAR2(20) PRIMARY KEY,
 	userPw VARCHAR2(20) NOT NULL,
-	userGender VARCHAR2(4),
-	userPhone VARCHAR2(15), 
+	userGender VARCHAR2(4)  NOT NULL,
+	userPhone VARCHAR2(15)  NOT NULL, 
 	userEmail VARCHAR2(20),
 	regdate Date
 );
