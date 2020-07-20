@@ -8,7 +8,7 @@
     String name=request.getParameter("name");
    	String id=request.getParameter("id");
    	String pwd=request.getParameter("pwd");
-   	String sex=request.getParameter("sex");
+   	String gender=request.getParameter("gender");
    	String phone=request.getParameter("phone");
    	String email=request.getParameter("email");
    	String regdate=request.getParameter("regdate");
@@ -18,7 +18,7 @@
    	dto.setUserName(name);
    	dto.setUserId(id);
    	dto.setUserPw(pwd);
-   	dto.setUserGender(sex);
+   	dto.setUserGender(gender);
    	dto.setUserPhone(phone);
    	dto.setUserEmail(email);
    	//UserDao 객체를 이용해서 DB에 저장한다

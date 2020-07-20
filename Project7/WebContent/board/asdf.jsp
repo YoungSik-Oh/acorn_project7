@@ -6,18 +6,68 @@
     <%
 //BoardDao 객체를 이용해서 글 목록 얻어오기
 	List<BoardDto> list=BoardDao.getInstance().getList();
-    String id=(String)session.getAttribute("id");    
+    String id=(String)session.getAttribute("id");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
+<style>
+	body{
+		
+	
+	}
+	.s_p{
+		width: 350px;
+		height: 350px;
+		padding: 10px;
+	}
+	#test ul li{
+		list-style:none;
+		float:left;
+		padding: 0,50px,0,0;
+	}
+	.test{
+	
+	}
+	
+	th{
+		width:150px;
+	}
+	tr, th, td{
+		padding:5px;
+	}
+	.right{
+		float:right;
+	}
+	
+	#profileImage{
+		width: 50px;
+		height: 50px;
+		border: 1px solid #cecece;
+		border-radius: 50%;
+		cusor: pointer;
+	}
+</style>
 </head>
 <body>
 
-<!-- 맛집 위치를 나타내는 지도   -->
-<div id="map" style="width:500px;height:350px;"></div>
+
+
+<div id="test">
+	<ul>
+	<li><img class="s_p" src="../images/1-1.jpg"/></li>
+	<li><img src="../images/1.jpg" class="s_p" /></li>
+	<li><img src="../images/1.jpg" class="s_p" /></li>
+	<li><img src="../images/1.jpg" class="s_p" /></li>
+	<!-- 맛집 위치를 나타내는 지도   -->
+	<li><div class="s_p" id="map" style="width:350px;height:350px;"></div></li>
+	</ul>
+</div>
+
+
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=43578d6ca94ca121ac810f9ca817dd36&libraries=services"></script>
 <script>
@@ -37,7 +87,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var ps = new kakao.maps.services.Places(); 
 
 // 키워드로 장소를 검색합니다
-ps.keywordSearch('지노스뉴욕피자', placesSearchCB); 
+ps.keywordSearch('대전광역시 서구 청사서로 14', placesSearchCB); 
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
@@ -74,77 +124,78 @@ function displayMarker(place) {
     });
 }
 </script>
-<div>
-<ul>
-<li><a href="review.jsp">리뷰쓰러가기</a></li>
-</ul>
-</div>
+
 <div class="container">
+<div class="title_wrap">
 <span>
-	<h1>토미야</h1>
+<button class="right"><a href="review.jsp">리뷰쓰러가기</a></button>
+	<h3>
+		토미야
 	<strong><span>4.6</span></strong>
+	</h3>
+	 <figcaption class="figure-caption">조회수</figcaption>
 </span>
-	<table>
+</div>
+	<table class="table table-borderless">
 		<tbody>
 			<tr>
 				<th>주소</th>
-				<td>대전광역시 서구 청사서로 14</td>
+				<td>대전광역시 서구 청사서로 14 /가게.addr() </td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td>010-1234-5678</td>
+				<td>010-1234-5678 가게.phone()</td>
 			</tr>
 			<tr>
 				<th>음식 종류</th>
-				<td>라멘, 소바</td>
+				<td>라멘, 소바 /가게.t_menu()</td>
 			</tr>
 			<tr>
 				<th>가격대</th>
-				<td>만원 미만</td>
+				<td>만원 미만 /가게.price()</td>
 			</tr>
 			<tr>
 				<th>영업시간</th>
-				<td>11:00~20:00</td>
+				<td>11:00~20:00 / 가게.time()</td>
 			</tr>
 			<tr>
 				<th>쉬는시간</th>
-				<td>15:00~17:00</td>
+				<td>15:00~17:00 / 가게.r_time()</td>
 			</tr>
 			<tr>
 				<th>마지막 주문</th>
-				<td>19:30</td>
+				<td>19:30 / 가게.l_order()</td>
 			</tr>
 			<tr>
 				<th>휴일</th>
-				<td>일</td>
+				<td>일 / 가게.r_day()</td>
 			</tr>
 			<tr>
 				<th>메뉴</th>
-				<td></td>
+				<td>가게.menu()</td>
 			</tr>
 		</tbody>
 	</table>
-	<h3>리뷰</h3>
+	<figcaption class="figure-caption text-right">업데이트 날짜</figcaption>
+	<h4>리뷰(<%=list.size() %>)</h4>
 		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>글번호</th>
-					<th>작성자</th>
-					<th>제목</th>
-					<th>등록일</th>
-				</tr>
-			</thead>
 			<tbody>
 			<%for(BoardDto tmp:list){ %>
 				<tr>
-					<td><%=tmp.getNum() %></td>
-					<td><%=tmp.getWriter()%></td>
-					<td><a href="detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getTitle() %></a></td>
-					<td><%=tmp.getRegdate() %></td>
+					<td>
+					 <img src="../images/2.jpg" id="profileImage" />
+					<%=tmp.getWriter()%>
+					</td>
+					<td>
+						<%=tmp.getRegdate() %>
+				 		<p>리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
+					</td>
+					<td>별점</td>
 				</tr>
 			<%} %>
 			</tbody>
 		</table>
 </div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </body>
 </html>

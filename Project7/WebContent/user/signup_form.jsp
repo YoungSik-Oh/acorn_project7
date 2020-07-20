@@ -4,60 +4,83 @@
     request.setCharacterEncoding("utf-8");
     %>
 <!DOCTYPE html>
+<style>
+ 	.h_logo {
+    display: block;
+    overflow: hidden;
+    width: 240px;
+    height: 44px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    -webkit-background-size: 240px auto;
+    background-size: 240px auto;
+}
+	.body-center {
+	 	
+	 
+	}
+</style>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>/user/signup_form.jsp</title>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
+<div class="body-center">
+	<div class="container">
+	
+  	 	<h2 class="h_logo">로고 넣을 곳</h2>
 
-<div class="container">
-   <h1>회원가입 폼 입니다.</h1>
    <form action="${pageContext.request.contextPath}/user/signup.jsp" method="post" id="regForm">
-      <div class="form-group">
-         <h3><label for="name">이름(필수)</label></h3>
-         <input type="text" name="name" id="name" required/>
+  
+      <div class="form-group col-md-4">
+         <h5><label for="name">이름(필수)</label></h5>
+         <input type="text" class="form-control" name="name" id="name" required/>
       
-         <h3><label for="id">아이디(필수)</label></h3>
-         <input type="text" name="id" id="id" required />
+         <h5><label for="id">아이디(필수)</label></h5>
+         <input type="text" class="form-control" name="id" id="id" required />
          <button id="checkBtn">중복확인</button><br />
          <span id="checkResult"></span>
-
+	</div>
+	
+      <div class="form-group col-md-4">
+         <h5><label for="pwd">비밀번호</label></h5>
+         <input type="password" class="form-control" name="pwd" id="pwd"/>
       </div>
-      <div class="form-group">
-         <h3><label for="pwd">비밀번호</label></h3>
-         <input type="password" class="pw" name="pwd" id="pwd"/>
-      </div>
-      <div class="form-group">
-         <h3><label for="pwd2">비밀번호 확인</label></h3>
-         <input type="password" class="pw" name="pwd2" id="pwd2"/><br />
+      <div class="form-group col-md-4">
+         <h5><label for="pwd2">비밀번호 확인</label></h5>
+         <input type="password" class="form-control" name="pwd2" id="pwd2"/><br />
          <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
-          <span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
+         <span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
       </div>
-      <div class="form-group">
-         <h3><label for="phone">전화번호(필수)</label></h3>
-         <input type="text" name="phone" id="phone" required/>
+      <div class="form-group col-md-4">
+         <h5><label for="phone">전화번호(필수)</label></h5>
+         <input type="text" class="form-control" name="phone" id="phone" required/>
 
       </div>
-      <div class="form-group">
-         <h3><label for="gender">성별</label></h3>
-         <select name="gender" id="gender" >
+      <div class="form-group col-md-4">
+         <h5><label for="gender">성별</label></h5>
+         <select class="custom-select" name="gender" id="gender" >
          <option value selected>성별</option>      
          <option value="M">남</option>
          <option value="W">여</option>
          </select>
       </div>
-      <div class="form-group">
-         <h3><label for="email">본인 확인 이메일<span>(선택)</span></label></h3>
-         <input type="text" id="email" name="email" placeholder="선택입력"/>
+      <div class="form-group col-md-4">
+         <h5><label for="email">본인 확인 이메일<span>(선택)</span></label></h5>
+         <input type="text" class="form-control" id="email" name="email" placeholder="선택입력"/>
       </div>
-      <button type="submit">가입</button>
-      <button type="reset">취소</button>
+      <div class="form-group col-md-4">
+      <button type="submit" class="btn btn-primary btn-lg">가입</button>
+      <button type="reset" class="btn btn-secondary btn-lg">취소</button>
+      </div>
    </form>
 <script>
    //비밀번호 확인에서 벗어나면 실행되는 함수
-    $('.pw').focusout(function () {
+    $('#pwd2').focusout(function () {
         var pwd1 = $("#pwd").val();
         var pwd2 = $("#pwd2").val();
  
@@ -116,6 +139,7 @@
       }
    });
 </script>
+	</div>
 </div>
 </body>
 </html>

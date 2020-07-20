@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>/userz/signup_form.jsp</title>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
 
@@ -17,7 +18,7 @@
 	<form action="${pageContext.request.contextPath}/userz/signup.jsp" method="post" name="regForm">
 		<div class="form-group">
 			<h3><label for="name">이름(필수)</label></h3>
-			<input type="text" name="name" id="name" required/>
+			<input type="text" name="name" id="name" maxlength="20" required/>
 		
 			<h3><label for="id">아이디(필수)</label></h3>
 			<input type="text" name="id" id="id" required />
