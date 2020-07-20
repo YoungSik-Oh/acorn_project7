@@ -15,8 +15,7 @@
 <%if(adminName !=null) {%>
 	<p><%=adminName %>님 안녕하세요.</p>
 	<a href="admin_logout.jsp">로그아웃</a>
-	<a href="${pageContext.request.contextPath}/user/userList.jsp">회원 목록보기</a>
-	
+	<a href="${pageContext.request.contextPath}/admin/admin_userList.jsp">회원 목록보기</a>
 <%} %>	
 
 

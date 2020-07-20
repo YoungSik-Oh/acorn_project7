@@ -69,8 +69,8 @@ public class UserDao {
 					dto.setUserPw(rs.getString("userPw"));
 					dto.setUserGender(rs.getString("userGender"));
 					dto.setUserPhone(rs.getString("userPhone"));
-					dto.setUserEmail(rs.getString("userEmamil"));
-					dto.setUserRegdate(rs.getString("userRegdate"));
+					dto.setUserEmail(rs.getString("userEmail"));
+					dto.setUserRegdate(rs.getString("Regdate"));
 					list.add(dto);
 				}
 			} catch (Exception e) {
@@ -281,4 +281,37 @@ public class UserDao {
              }
              return isExist; //아이디 존재 여부를 리턴한다.
           }
+  //회원정보 수정
+  	public boolean admin_userInfo_update(UserDto dto) {
+  		Connection conn = null;
+  		PreparedStatement pstmt = null;
+  		int flag = 0;
+  		try {
+  			conn = new DbcpBean().getConn();
+  			String sql = "UPDATE user_info"
+  					+ " SET username=?, userpw=?, userphone=?, useremail=?"
+  					+ " WHERE userid=?";
+  			pstmt = conn.prepareStatement(sql);
+  			pstmt.setString(1, dto.getUserName());
+  			pstmt.setString(2, dto.getUserPw());
+  			pstmt.setString(3, dto.getUserPhone());
+  			pstmt.setString(4, dto.getUserEmail());
+  			pstmt.setString(5, dto.getUserId());
+  			
+  			//sql  문 수행하고 update or insert or delete 된 row 의 갯수 리턴받기 
+  			flag = pstmt.executeUpdate();
+  			} catch (Exception e) {
+  				e.printStackTrace();
+  			} finally {
+  				try {
+  					if (pstmt != null)pstmt.close();
+  					if (conn != null)conn.close();
+  				} catch (Exception e) {}
+  			}
+  			if (flag > 0) {
+  				return true;
+  			} else {
+  				return false;
+  			}
+  	}
 }

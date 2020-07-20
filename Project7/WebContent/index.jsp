@@ -6,10 +6,14 @@
 <meta charset="UTF-8">
 <title>index.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common/navbar.css" />
 </head>
 <body>
-<a href="admin/admin_login_form.jsp">관리자 로그인</a> 
+<a href="admin/admin_login_form.jsp">관리자 로그인</a>
+
+<%-- jsp:include page="../include/navbar.jsp">
+	<jsp:param value="index" name="thisPage"/>
+</jsp:include>  --%>
 <%
 	//id라는 키값으로 세션에 저장된 문자열이 있는지 읽어와 본다.
 	String id=(String)session.getAttribute("id");

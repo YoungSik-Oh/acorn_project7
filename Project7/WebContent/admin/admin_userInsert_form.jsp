@@ -13,8 +13,8 @@
 <body>
 
 <div class="container">
-   <h1>회원가입 폼 입니다.</h1>
-   <form action="${pageContext.request.contextPath}/user/signup.jsp" method="post" id="regForm">
+   <h1>admin_userInsert_form.jsp</h1>
+   <form action="${pageContext.request.contextPath}/admin/admin_userInsert.jsp" method="post" id="regForm">
       <div class="form-group">
          <h3><label for="username">이름(필수)</label></h3>
          <input type="text" name="username" id="username" required/>
@@ -27,11 +27,11 @@
       </div>
       <div class="form-group">
          <h3><label for="userpw">비밀번호</label></h3>
-         <input type="password" class="pw" name="userpw" id="userpw"/>
+         <input type="password" class="userpw" name="userpw" id="userpw"/>
       </div>
       <div class="form-group">
-         <h3><label for="pwd2">비밀번호 확인</label></h3>
-         <input type="password" class="pw" name="pwd2" id="pwd2"/><br />
+         <h3><label for="userpw2">비밀번호 확인</label></h3>
+         <input type="password" class="pw" name="userpw2" id="userpw2"/><br />
          <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
           <span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
       </div>
@@ -52,14 +52,14 @@
          <h3><label for="useremail">본인 확인 이메일<span>(선택)</span></label></h3>
          <input type="text" id="useremail" name="useremail" placeholder="선택입력"/>
       </div>
-      <button type="submit">가입</button>
+      <button type="submit">회원 추가 </button>
       <button type="reset">취소</button>
    </form>
 <script>
    //비밀번호 확인에서 벗어나면 실행되는 함수
     $('.pw').focusout(function () {
         var pwd1 = $("#userpw").val();
-        var pwd2 = $("#pwd2").val();
+        var pwd2 = $("#userpw2").val();
  
         if ( pwd1 != '' && pwd2 == '' ) {
             null;

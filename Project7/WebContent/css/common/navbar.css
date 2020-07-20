@@ -1,0 +1,10 @@
+/* .nav-right{
+	list-style:none;
+	float:left;
+} */
+ul{
+	list-style:none;
+}
+li{
+	float:left;
+}

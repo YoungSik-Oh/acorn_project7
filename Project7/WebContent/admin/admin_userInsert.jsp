@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    request.setCharacterEncoding("utf-8");
+    
     //폼 전송되는 가입할 회원의 정보를 읽어온다
     String username=request.getParameter("username");
    	String userid=request.getParameter("userid");
@@ -11,9 +11,9 @@
    	String usergender=request.getParameter("usergender");
    	String userphone=request.getParameter("userphone");
    	String useremail=request.getParameter("useremail");
-   	String regdate=request.getParameter("regdate");
    	
-   	//UserzDto객체에 회원정보를 담고
+   	
+   	//UserDto객체에 회원정보를 담고
    	UserDto dto=new UserDto();
    	dto.setUserName(username);
    	dto.setUserId(userid);
@@ -33,9 +33,9 @@
 <body>
 	<%if(isSuccess){ %>
 		<p><strong><%=userid %></strong>회원님 가입되었습니다.</p><br />	
-		<a href="loginform.jsp">로그인하러 가기</a>
+		<a href="admin_userList.jsp">회원 목록 보기</a>
 	<%}else{ %>
-		<p>가입이 실패했습니다.</p><a href="signup_form.jsp">다시 시도하기</a>
+		<p>가입이 실패했습니다.</p><a href="admin_userInsert_form.jsp">다시 시도하기</a>
 	<%} %>
 </body>
 </html>
