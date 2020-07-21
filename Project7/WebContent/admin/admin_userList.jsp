@@ -16,14 +16,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
+<style>
+	.userAdd{
+		float:right;
+		padding: 0px 20px 20px 0px;
+	}
+</style>
 </head>
 <body>
 <div class="container">
 	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="../index.jsp">Home</a></li>
+		<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/admin_index.jsp">Home</a></li>
 		<li class="breadcrumb-item active">회원목록</li>
 	</ol>
 	<h1>회원 목록입니다.</h1>
+	<div class="userAdd"><a href="admin_userInsert_form.jsp">회원 추가</a></div>
 	<table class="table table-sm">
 		<thead class="thead-dark">
 			<tr>
@@ -55,7 +62,7 @@
 		<%} %>	
 		</tbody>
 	</table>
-	<a href="admin_userInsert_form.jsp">회원 추가 하러 가기</a>
+	
 </div>
 
 </body>

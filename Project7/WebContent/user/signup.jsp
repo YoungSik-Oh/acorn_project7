@@ -5,22 +5,25 @@
     <%
     request.setCharacterEncoding("utf-8");
     //폼 전송되는 가입할 회원의 정보를 읽어온다
+
     String username=request.getParameter("username");
    	String userid=request.getParameter("userid");
    	String userpw=request.getParameter("userpw");
    	String usergender=request.getParameter("usergender");
    	String userphone=request.getParameter("userphone");
    	String useremail=request.getParameter("useremail");
-   	String regdate=request.getParameter("regdate");
+
    	
    	//UserzDto객체에 회원정보를 담고
    	UserDto dto=new UserDto();
+
    	dto.setUserName(username);
    	dto.setUserId(userid);
    	dto.setUserPw(userpw);
    	dto.setUserGender(usergender);
    	dto.setUserPhone(userphone);
    	dto.setUserEmail(useremail);
+
    	//UserDao 객체를 이용해서 DB에 저장한다
    	boolean isSuccess=UserDao.getInstance().insert(dto);
     %>

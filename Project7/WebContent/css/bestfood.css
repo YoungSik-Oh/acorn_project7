@@ -1,14 +1,14 @@
 .contents-list{
 	background-color: yellow;
 }
-li{
+.login_info < li{
+	float:left;
 	list-style:none;
 }
 #img{
 	max-width:300px;
 	overflow:auto
 }
-
 .img-size{
 	margin: 0;
 	width:50%;

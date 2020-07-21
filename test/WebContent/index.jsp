@@ -8,12 +8,19 @@
 <%
 	request.setCharacterEncoding("utf-8");
 %>
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/oh1
+=======
 >>>>>>> refs/heads/oh1
+<<<<<<< HEAD
 =======
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 
 >>>>>>> refs/remotes/origin/cho
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/project/T1
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,6 +49,7 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="#">맛집</a></li> 
 				<li class="nav-item"><a class="nav-link" href="#">추천</a></li>
+				<li class="nav-item"><a class="nav-link" href="/user/login.jsp">로그인</a></li>
 			</ul>
 		</div>
 	</div>
@@ -54,7 +62,11 @@
   <section>
     <h2>Section 1</h2>
     <div class="search" >
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/oh1
+=======
 >>>>>>> refs/heads/oh1
+>>>>>>> refs/remotes/origin/master
 		<form action="">
 			<legend>검색창</legend>
 			<input type="text" name="search" placeholder="검색할 내용을 입력하세요."/>
@@ -87,7 +99,11 @@
     <h2>Section 4</h2>
   </section>
 </div>
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/oh1
+=======
 >>>>>>> refs/heads/oh1
+>>>>>>> refs/remotes/origin/master
 </body>
 =======
 	<h1 class="head">프로젝트 테스트를 시작합니다.</h1>
