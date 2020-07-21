@@ -1,7 +1,7 @@
 .contents-list{
 	background-color: yellow;
 }
-.login_info < li{
+.login_info > li{
 	float:left;
 	list-style:none;
 }
