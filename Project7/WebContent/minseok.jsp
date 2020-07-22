@@ -58,7 +58,6 @@
   </section>
 
   <h1 class="Head">내 맘대로 정하는 메뉴</h1>
-
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
@@ -72,7 +71,7 @@
         </div>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-          	<img style="height : 225px;" src="${pageContext.request.contextPath}/image/chinese.jpg"/>
+          	<a href="#s"><img style="height : 225px;" src="${pageContext.request.contextPath}/image/chinese.jpg"/></a>
           	<div class="info">
           		<h2>중식</h2>
           	</div>
