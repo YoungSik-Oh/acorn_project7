@@ -1,3 +1,9 @@
+<%@page import="project.review.dao.ReviewDao"%>
+<%@page import="project.review.dto.ReviewDto"%>
+<%@page import="project.user.dao.UserDao"%>
+<%@page import="project.user.dto.UserDto"%>
+<%@page import="project7.store.dto.StoreDto"%>
+<%@page import="project7.store.dao.StoreDao"%>
 <%@page import="project.board.dao.BoardDao"%>
 <%@page import="project.board.dto.BoardDto"%>
 <%@page import="java.util.List"%>
@@ -7,6 +13,16 @@
 //BoardDao 객체를 이용해서 글 목록 얻어오기
 	List<BoardDto> list=BoardDao.getInstance().getList();
     String id=(String)session.getAttribute("id");
+    
+    String name="토미야";
+    StoreDto dto=StoreDao.getInstance().getData(name);
+  	
+    UserDao dao=UserDao.getInstance();
+    
+    //review 테이블 테스트
+    List<ReviewDto> list2=ReviewDao.getInstance().getList();
+    ReviewDto dto2=new ReviewDto();
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -15,6 +31,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 <style>
+	#rcaption{
+		font-size: 2px;
+	}
+	
+	.iconn{
+		float: right;
+	}
 	body{
 		
 	
@@ -24,10 +47,8 @@
 		height: 350px;
 		padding: 10px;
 	}
-	#test ul li{
-		list-style:none;
-		float:left;
-		padding: 0,50px,0,0;
+	#test {
+		width: 100%;
 	}
 	.test{
 	
@@ -53,22 +74,26 @@
 </style>
 </head>
 <body>
-
-
-
-<div id="test">
-	<ul>
-	<li><img class="s_p" src="../images/1-1.jpg"/></li>
-	<li><img src="../images/1.jpg" class="s_p" /></li>
-	<li><img src="../images/1.jpg" class="s_p" /></li>
-	<li><img src="../images/1.jpg" class="s_p" /></li>
-	<!-- 맛집 위치를 나타내는 지도   -->
-	<li><div class="s_p" id="map" style="width:350px;height:350px;"></div></li>
-	</ul>
+<div class="container-fluid" id="test">
+	<div class="row">
+		<div class="col">
+			<img class="s_p" src="../images/1-1.jpg"/>
+		</div>
+		<div class="col">
+			<img src="../images/1.jpg" class="s_p" />
+		</div>
+		<div class="col">
+			<img src="../images/1.jpg" class="s_p" />
+		</div>
+		<div class="col">
+			<img src="../images/1.jpg" class="s_p" />
+		</div>
+		<div class="col">
+			<!-- 맛집 위치를 나타내는 지도   -->
+			<div class="s_p" id="map"></div>
+		</div>
+	</div>
 </div>
-
-
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=43578d6ca94ca121ac810f9ca817dd36&libraries=services"></script>
 <script>
 // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
@@ -126,73 +151,126 @@ function displayMarker(place) {
 </script>
 
 <div class="container">
-<div class="title_wrap">
-<span>
-<button class="right"><a href="review.jsp">리뷰쓰러가기</a></button>
-	<h3>
-		토미야
-	<strong><span>4.6</span></strong>
-	</h3>
-	 <figcaption class="figure-caption">조회수</figcaption>
-</span>
-</div>
-	<table class="table table-borderless">
+	<div class="title_wrap">
+		<span>
+		 <a class="iconn" href="review.jsp">
+				<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	 		 		<path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+	  				<path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+				</svg>
+			<figcaption id="rcaption" class="figure-caption">리뷰쓰기</figcaption>
+			</a>
+				<h3>
+				토미야<strong><span>4.6</span></strong>
+				</h3>
+		 <figcaption class="figure-caption">조회수</figcaption>
+		
+		</span>
+		<hr style="clear:left" />
+	</div>
+	<table style="width: 50%" class="table table-borderless">
 		<tbody>
 			<tr>
 				<th>주소</th>
-				<td>대전광역시 서구 청사서로 14 /가게.addr() </td>
+				<td><%=dto.getAddr() %> </td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td>010-1234-5678 가게.phone()</td>
+				<td><%=dto.getPhone() %></td>
 			</tr>
 			<tr>
 				<th>음식 종류</th>
-				<td>라멘, 소바 /가게.t_menu()</td>
+				<td><%=dto.getSmenu() %></td>
 			</tr>
 			<tr>
 				<th>가격대</th>
-				<td>만원 미만 /가게.price()</td>
+				<td><%=dto.getSprice() %>)</td>
 			</tr>
 			<tr>
 				<th>영업시간</th>
-				<td>11:00~20:00 / 가게.time()</td>
+				<td><%=dto.getTime() %></td>
 			</tr>
 			<tr>
 				<th>쉬는시간</th>
-				<td>15:00~17:00 / 가게.r_time()</td>
+				<td><%=dto.getRtime() %></td>
 			</tr>
 			<tr>
 				<th>마지막 주문</th>
-				<td>19:30 / 가게.l_order()</td>
+				<td><%=dto.getLorder() %></td>
 			</tr>
 			<tr>
 				<th>휴일</th>
-				<td>일 / 가게.r_day()</td>
+				<td><%=dto.getRday() %></td>
 			</tr>
 			<tr>
 				<th>메뉴</th>
-				<td>가게.menu()</td>
+				<td>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Cras justo odio</li>
+						  <li class="list-group-item">Dapibus ac facilisis in</li>
+						  <li class="list-group-item">Morbi leo risus</li>
+						  <li class="list-group-item">Porta ac consectetur ac</li>
+						  <li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<figcaption class="figure-caption text-right">업데이트 날짜</figcaption>
+	<figcaption class="figure-caption text-right">업데이트 날짜 :<%=dto.getUdate() %></figcaption>
+	<hr style="clear:left" />
+	<h6><figcaption class="figure-caption">식당 소개</figcaption></h6>
+	<p>어쩌구 저쩌구저쩌구저쩌구</p>
+	<hr style="clear:left" />
 	<h4>리뷰(<%=list.size() %>)</h4>
 		<table class="table table-hover">
 			<tbody>
 			<%for(BoardDto tmp:list){ %>
 				<tr>
-					<td>
-					 <img src="../images/2.jpg" id="profileImage" />
-					<%=tmp.getWriter()%>
-					</td>
+					 <%-- 보드테이블에 이미지사진을 담아야함
+					 <%if(dto1.getUserProfile()==null){ %>
+						<td>
+							<img id="profileImage" src="${pageContext.request.contextPath}/images/yellowbird.png"/><br />
+							<%=tmp.getWriter()%>
+						</td>
+					<%} else { %>
+						<td>
+							<img id="profileImage" src="${pageContext.request.contextPath}<%=dto1.getUserProfile() %>"/>
+							<%=tmp.getWriter()%>
+						</td> 
+						<%} %>
+						--%>
+						<td>
+							
+							<%=tmp.getWriter() %>
+						</td>
+						
 					<td>
 						<%=tmp.getRegdate() %>
-				 		<p>리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</p>
+				 		<p><%=tmp.getContent() %></p>
 					</td>
 					<td>별점</td>
 				</tr>
 			<%} %>
+			<tr>
+			<%--여기가 찐 리뷰임 위에거는 자리채우기용 연습 --%>
+				<td>
+					<%for(ReviewDto tmp2:list2){%>
+						<td>
+						<%if(dao.getData(tmp2.getR_writer()).getUserProfile()==null){ %>
+							<img id="profileImage" src="${pageContext.request.contextPath}/images/yellowbird.png"/>
+						<%}else{ %>
+							<%=dao.getData(tmp2.getR_writer()).getUserProfile() %>
+						<%} %>
+							<%=tmp2.getR_writer() %>
+						</td>
+						<td>
+							<%=tmp2.getR_regdate() %>
+							<%=tmp2.getR_content() %>
+							<img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>" />
+						</td>
+					<%} %>
+				</td>
+			</tr>
 			</tbody>
 		</table>
 </div>

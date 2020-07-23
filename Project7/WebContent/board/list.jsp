@@ -70,7 +70,7 @@
                 </div>
                 <figcaption>
                   <div class="info">
-                    <span class="title">지노스뉴욕피자</span>
+                    <span class="title">지노스뉴욕피자3</span>
                     <strong class="point search_point ">4.3</strong>
                     <p class="etc">
                       신사/압구정 -

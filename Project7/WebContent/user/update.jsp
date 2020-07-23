@@ -9,11 +9,16 @@
 	String id=(String)session.getAttribute("id");
 	String phone=request.getParameter("phone");
 	String email=request.getParameter("email");
+	String profile=request.getParameter("profile");
+	if(profile.equals("null")){
+		profile=null;
+	}
 	//수정할 정보를 UsersDto객체에 담고
 	UserDto dto=new UserDto();
 	dto.setUserId(id);
 	dto.setUserPhone(phone);
 	dto.setUserEmail(email);
+	dto.setUserProfile(profile);
 	//UsersDao객체를 이용해서 수정반영한다.
 	UserDao.getInstance().update(dto);
 %>        
