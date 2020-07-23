@@ -1,5 +1,12 @@
+<%@page import="java.util.List"%>
+<%@page import="project7.store.dao.StoreDao"%>
+<%@page import="project7.store.dto.StoreDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    List<StoreDto> list= StoreDao.getInstance().getList();
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,53 +72,23 @@
 </div><!-- 슬라이드쇼 종료 -->
 
 <div class="container">
+	<%for(StoreDto tmp:list){ %>
 	<div class="card mb-3" style="max-width: 100%;">
 	  <div class="row no-gutters">
-	    <div class="col-md-4">
-	      <img src="${pageContext.request.contextPath}/image/chinese.jpg" class="card-img" alt="...">
+	    <div class="col-md-4">	     <img src="${pageContext.request.contextPath}/image/chinese.jpg" class="card-img" alt="...">
 	    </div>
 	    <div class="col-md-8">
 	      <div class="card-body">
-	        <h5 class="card-title">Card title</h5>
-	        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+	        <h5 class="card-title"><%=tmp.getSname() %>Card title</h5>
+	        <p class="card-text"><%=tmp.getContents() %>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 	        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 	<hr />
+	<%} %>
 
-	<div class="card mb-3" style="max-width: 100%;">
-	  <div class="row no-gutters">
-	    <div class="col-md-4">
-	      <img src="${pageContext.request.contextPath}/image/chinese.jpg" class="card-img" alt="...">
-	    </div>
-	    <div class="col-md-8">
-	      <div class="card-body">
-	        <h5 class="card-title">Card title</h5>
-	        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-	        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<hr />
-
-	<div class="card mb-3" style="max-width: 100%;">
-	  <div class="row no-gutters">
-	    <div class="col-md-4">
-	      <img src="${pageContext.request.contextPath}/image/chinese.jpg" class="card-img" alt="...">
-	    </div>
-	    <div class="col-md-8">
-	      <div class="card-body">
-	        <h5 class="card-title">Card title</h5>
-	        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-	        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<hr />
 </div>
 <!-- Footer -->
 <footer class="page-footer font-small unique-color-dark">

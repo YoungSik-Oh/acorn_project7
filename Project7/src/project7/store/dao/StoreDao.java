@@ -29,8 +29,8 @@ public class StoreDao {
 		try {
 			conn= new DbcpBean().getConn();
 			String sql ="insert into store"
-					+ "	(s_num, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, udate)"
-					+ "	values(store_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,sysdate)";
+					+ "	(s_num, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, contents,udate)"
+					+ "	values(store_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getSname());
 				pstmt.setString(2, dto.getSaddr());
@@ -42,6 +42,7 @@ public class StoreDao {
 				pstmt.setString(8, dto.getSlorder());
 				pstmt.setString(9, dto.getSrday());
 				pstmt.setString(10, dto.getSmenu());
+				pstmt.setString(11, dto.getContents());
 				
 				flag=pstmt.executeUpdate();
 			} catch (Exception e) {
@@ -66,7 +67,7 @@ public class StoreDao {
 		ResultSet rs=null;
 		try {
 			conn=new DbcpBean().getConn();
-			String sql="SELECT s_num, sname, smenu, udate"
+			String sql="SELECT s_num, sname, smenu, contents,udate"
 					+ " FROM store"
 					+ " ORDER BY s_num DESC";
 			pstmt=conn.prepareStatement(sql);
@@ -77,6 +78,7 @@ public class StoreDao {
 				dto.setSnum(rs.getInt("s_num"));
 				dto.setSname(rs.getString("sname"));
 				dto.setSmenu(rs.getString("smenu"));
+				dto.setContents(rs.getString("contents"));
 				dto.setUdate(rs.getString("udate"));
 				//생성된 BoardDto객체의 참조값을 ArrayList객체에 누적시킨다.
 				list.add(dto);
@@ -119,6 +121,7 @@ public class StoreDao {
 				dto.setSlorder(rs.getString("slorder"));
 				dto.setSrday(rs.getString("srday"));
 				dto.setSmenu(rs.getString("smenu"));
+				dto.setContents(rs.getString("contents"));
 				dto.setUdate(rs.getString("udate"));
 			}
 		} catch (Exception e) {

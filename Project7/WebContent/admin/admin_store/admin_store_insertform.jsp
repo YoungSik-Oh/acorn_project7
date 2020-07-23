@@ -51,6 +51,10 @@
 	    <label for="smenu">음식 메뉴</label>
 	    <input type="text" class="form-control" id="smenu" name="smenu">
 	  </div>
+	   <div class="form-group">
+	    <label for="contents">가게 소개</label>
+	    <input type="text" class="form-control" id="contents" name="contents">`
+	  </div>
 	  <button type="submit" class="btn btn-primary">입력 완료</button>
 	  <button type="reset" class="btn btn-danger" >입력 취소</button>
 	</form>

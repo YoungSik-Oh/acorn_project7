@@ -13,11 +13,12 @@ public class StoreDto {
 	private String srday;
 	private String smenu;
 	private String udate;
+	private String contents;
 
 	public StoreDto() {}
 
 	public StoreDto(int snum, String sname, String saddr, String sphone, String stmenu, String sprice, String stime,
-			String sbtime, String slorder, String srday, String smenu, String udate) {
+			String sbtime, String slorder, String srday, String smenu, String udate, String contents) {
 		super();
 		this.snum = snum;
 		this.sname = sname;
@@ -31,6 +32,7 @@ public class StoreDto {
 		this.srday = srday;
 		this.smenu = smenu;
 		this.udate = udate;
+		this.contents = contents;
 	}
 
 	public int getSnum() {
@@ -127,6 +129,14 @@ public class StoreDto {
 
 	public void setUdate(String udate) {
 		this.udate = udate;
+	}
+
+	public String getContents() {
+		return contents;
+	}
+
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 
 	

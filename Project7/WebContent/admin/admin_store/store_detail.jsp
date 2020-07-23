@@ -55,11 +55,12 @@
 				<th>메뉴</th>
 				<td><%=dto.getSmenu() %></td>
 			</tr>
+			<tr>
+				<th>가게 소개</th>
+				<td><%=dto.getContents() %></td>
+			</tr>
 		</tbody>
 	</table>
-
-
-
 </div>
 </body>
 </html>

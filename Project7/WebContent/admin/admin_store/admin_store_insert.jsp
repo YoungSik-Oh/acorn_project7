@@ -12,6 +12,7 @@
 	String sbtime=request.getParameter("sbtime");
 	String slorder=request.getParameter("slorder");
 	String srday=request.getParameter("srday");
+	String contents=request.getParameter("contents");
 	String smenu=request.getParameter("smenu");
 	
 	StoreDto dto=new StoreDto();
@@ -24,6 +25,7 @@
 	dto.setSbtime(sbtime);
 	dto.setSlorder(slorder);
 	dto.setSrday(srday);
+	dto.setContents(contents);
 	dto.setSmenu(smenu);
 	
 	boolean isSuccess=StoreDao.getInstance().insert(dto);

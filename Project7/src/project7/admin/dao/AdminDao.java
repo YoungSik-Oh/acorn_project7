@@ -30,7 +30,7 @@ public class AdminDao {
 			pstmt.setString(1, dto.getAdminName());
 			pstmt.setString(2, dto.getAdminPw());
 			rs=pstmt.executeQuery();
-			while(rs.next()) {
+			if(rs.next()) {
 				isValid=true;
 			}
 		}catch (Exception e) {

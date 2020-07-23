@@ -24,14 +24,14 @@
 			<p ><%=adminName %>님 안녕하세요.</p>
 			<a href="admin_logout.jsp">로그아웃</a>
 		</div>
-	<%} %>	
+	<%} %>
 	
 <p> <!-- logo 들어갈 자리 -->
 	<a href="${pageContext.request.contextPath}/index.jsp">홈페이지</a>
 </p>
 <ul>
 	<li><a href="${pageContext.request.contextPath}/admin/admin_userList.jsp">회원 목록</a></li>
-	<li><a href="">게시글</a></li>
+
 </ul>
 <%
 	List<StoreDto> list=StoreDao.getInstance().getList();
@@ -44,6 +44,7 @@
 			<th>글번호</th>
 			<th>가게 이름 </th>
 			<th>대표 메뉴</th>
+			<th>contents(가게설명)</th>
 			<th>가게 등록일</th>
 		</tr>
 	</thead>
@@ -54,16 +55,12 @@
 				<td><%=tmp.getSnum() %></td>
 				<td><a href="admin_store/store_detail.jsp?snum=<%=tmp.getSnum() %>"><%=tmp.getSname() %></a></td>
 				<td><%=tmp.getSmenu() %></td>
+				<td><%=tmp.getContents() %></td>
 				<td><%=tmp.getUdate() %></td>
 			</tr>
 		<%}%>
 	</tbody>
 </table>
-
-
-
-
-
 </div>	
 </body>
 </html>
