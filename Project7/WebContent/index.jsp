@@ -41,7 +41,7 @@
 	String id=(String)session.getAttribute("id");
 %>
 <body>
-  <header>
+ <header>
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
@@ -49,36 +49,36 @@
         <strong>우리 로고 넣기!!</strong>
       </a>
       
-      <nav class="navbar navbar-expand-lg navbar-light">
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-   		 <span class="navbar-toggler-icon"></span>
-  		</button>
-  	  <div class="collapse navbar-collapse" id="navbarNav">
-    	<ul class="navbar-nav">
-      		<li class="nav-item active">
-        		<a class="nav-link" href="#">관리자 로그인 <span class="sr-only">(current)</span></a>
-      		</li>
-      		<li class="nav-item">
-       			 <a class="nav-link" href="#">로그인</a>
-      		</li>
-      		<li class="nav-item">
-        		<a class="nav-link" href="#">회원가입</a>
-      		</li>
-    	</ul>
-  	</div>
-	</nav>
-<!--       <ul> -->
-<%--       <%if(id!=null){ %> <!-- 오른쪽으로 가면 좋을듯  --> --%>
-<!-- 		<p class="login_check"> -->
-<%-- 			<a href="user/info.jsp"><%=id %></a>님 환영합니다. --%>
-<!-- 			<a href="user/logout.jsp">로그아웃</a> -->
-<!-- 		</p> -->
-<%-- 		<%}else{ %> --%>
-<!--     	  <li><a href="user/loginform.jsp">로그인</a></li> -->
-<!-- 		  <li><a href="user/signup_form.jsp">회원가입</a></li> -->
-<%-- 		<%} %> --%>
-<!-- 		<li><a href="admin/admin_login_form.jsp">관리자 로그인</a></li> -->
-<!--       </ul> -->
+      <div class="row">
+      	<nav class="navbar navbar-expand-lg navbar-light">
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+   			 <span class="navbar-toggler-icon"></span>
+  			</button>
+  			
+  	  		<div class="collapse navbar-collapse" id="navbarNav">
+	    		<ul class="navbar-nav">
+		      		<%if(id == null){ %>
+		      			<li class="nav-item">
+		        			<a class="nav-link" href="admin/admin_login_form.jsp">관리자 로그인 <span class="sr-only">(current)</span></a>
+		      			</li>
+		      			<li class="nav-item">
+		       			    <a class="nav-link" href="user/loginform.jsp">로그인</a>
+		      			</li>
+		      			<li class="nav-item">
+		        			<a class="nav-link" href="user/signup_form.jsp">회원가입</a>
+		      			</li>
+		      		<%}else{ %>
+		      			<li class="nav-item">s
+		      				<a href="user/info.jsp"><%=id %></a>님 환영합니다.
+		      			</li>
+		      			<li class="nav-item">
+		      				<a href="user/logout.jsp">로그아웃</a>
+		      			</li>
+		      		<%} %>
+	    		</ul>
+  			</div>
+	     </nav>
+	  </div>
     </div>
   </div>
 </header>
@@ -148,8 +148,17 @@
        </div>
       </div>
      </div>
-        <h1 class="Head">관리자가 추천해주는 믿고 보는 맛집!</h1>
-           
+      <h1 class="Head">관리자가 추천해주는 믿고 보는 맛집!</h1>
+	  <div style="background-color : #f8f9fa;" class="container">
+	  	<button class="btn btn-outline-info"><a href="#">추가하기</a></button>
+	  </div>
+	  <!-- 1.DB에 정보를 추가하고, class를 만들어서 정보를 전체 조회하는 로직을 짠다.
+	       2.for문을 돌면서 정보가 있는만큼 <div class="col-md-4">를 추가시킨다.
+	       List<testDto> list = testDao.getInstance().getList();
+	       for(testDto tmp : list){
+	       	 <div class="col-md-4">
+	       }  
+	       	   -->
       <div class="album py-5 bg-light">
       <div class="container">
       <div class="row">
@@ -177,6 +186,7 @@
             </div>
           </div>
         </div>
+     
       </div>
     </div>
    </div>
@@ -191,6 +201,7 @@
     <p>갑자기 팀원이 세명이 되었다 ???????</p>
   </div>
 </footer>
+
 <script>
  $('.bgBlack').hover(function() {
 	    var img = $(this).children().first();
