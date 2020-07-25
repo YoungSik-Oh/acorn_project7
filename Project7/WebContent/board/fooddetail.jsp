@@ -172,35 +172,35 @@ function displayMarker(place) {
 		<tbody>
 			<tr>
 				<th>주소</th>
-				<td>주소 앞에거 없애면 댐<%--<%=dto.getAddr()%> --%> </td>
+				<td><%=dto.getSaddr()%></td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td>이하동문<%--<%=dto.getPhone() --%></td>
+				<td><%=dto.getSphone()%></td>
 			</tr>
 			<tr>
 				<th>음식 종류</th>
-				<td>이하동문<%--<%=dto.getSmenu() %>--%>--%></td>
+				<td><%=dto.getSmenu() %></td>
 			</tr>
 			<tr>
 				<th>가격대</th>
-				<td>이하동문<%--<%=dto.getSprice() %>)--%></td>
+				<td><%=dto.getSprice() %></td>
 			</tr>
 			<tr>
 				<th>영업시간</th>
-				<td>이하동문<%--<%=dto.getTime() %>--%></td>
+				<td><%=dto.getStime() %></td>
 			</tr>
 			<tr>
 				<th>쉬는시간</th>
-				<td>이하동문<%--<%=dto.getRtime() --%>--%></td>
+				<td><%=dto.getSbtime() %></td>
 			</tr>
 			<tr>
 				<th>마지막 주문</th>
-				<td>이하동문<%--<%=dto.getLorder() %>--%></td>
+				<td><%=dto.getSlorder() %></td>
 			</tr>
 			<tr>
 				<th>휴일</th>
-				<td>이하동문<%--<%=dto.getRday()%> --%></td>
+				<td><%=dto.getSrday()%></td>
 			</tr>
 			<tr>
 				<th>메뉴</th>

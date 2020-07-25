@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     <%
     	String adminName=request.getParameter("adminName");
-    	
     %> 
 <!DOCTYPE html>
 <html>
@@ -13,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-	<h1>Admin Login form</h1>
+	<h1>관리자 페이지</h1>
 	
 	<form action="admin_login.jsp" method="post">
 		<div class="form-gorup">
@@ -26,6 +25,7 @@
 		</div>		
 		<button class="btn" type="submit">로그인</button>
 		<a href="${pageContext.request.contextPath}/index.jsp">취소</a>
+		
 	</form>
 </div>
 </body>

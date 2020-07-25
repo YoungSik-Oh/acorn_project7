@@ -8,7 +8,7 @@
 		String url=request.getParameter("url");
 		//목적지 정보도 미리 인코딩 해놓는다.
 		String encodedUrl=URLEncoder.encode(url);
-	
+		
 		//1. 폼 전송되는 로그인 아이디와 비밀번호를 읽어온다.
 		String id=request.getParameter("id");
 		String pwd=request.getParameter("pwd");

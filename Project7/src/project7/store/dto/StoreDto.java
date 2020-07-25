@@ -1,113 +1,144 @@
 package project7.store.dto;
 
 public class StoreDto {
-	private	String name;
-	private String addr;
-	private String phone;
-	private String smenu;
-	private String sprice;
-	private String time;
-	private String rtime;
-	private String lorder;
-	private String rday;
-	private String udate;
-	private String mmenu;
-	private String mprice;
-	
-	public StoreDto() {}
+   private int snum; // sequence
+   private String sname;
+   private String saddr;
+   private String sphone;
+   private String stmenu;
+   private String sprice;
+   private String stime;
+   private String sbtime;
+   private String slorder;
+   private String srday;
+   private String smenu;
+   private String udate;
+   private String contents;
 
-	public StoreDto(String name, String addr, String phone, String smenu, String sprice, String time, String rtime,
-			String lorder, String rday, String udate) {
-		super();
-		this.name = name;
-		this.addr = addr;
-		this.phone = phone;
-		this.smenu = smenu;
-		this.sprice = sprice;
-		this.time = time;
-		this.rtime = rtime;
-		this.lorder = lorder;
-		this.rday = rday;
-		this.udate = udate;
-	}
+   public StoreDto() {}
 
-	public String getName() {
-		return name;
-	}
+   public StoreDto(int snum, String sname, String saddr, String sphone, String stmenu, String sprice, String stime,
+         String sbtime, String slorder, String srday, String smenu, String udate, String contents) {
+      super();
+      this.snum = snum;
+      this.sname = sname;
+      this.saddr = saddr;
+      this.sphone = sphone;
+      this.stmenu = stmenu;
+      this.sprice = sprice;
+      this.stime = stime;
+      this.sbtime = sbtime;
+      this.slorder = slorder;
+      this.srday = srday;
+      this.smenu = smenu;
+      this.udate = udate;
+      this.contents = contents;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public int getSnum() {
+      return snum;
+   }
 
-	public String getAddr() {
-		return addr;
-	}
+   public void setSnum(int snum) {
+      this.snum = snum;
+   }
 
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
+   public String getSname() {
+      return sname;
+   }
 
-	public String getPhone() {
-		return phone;
-	}
+   public void setSname(String sname) {
+      this.sname = sname;
+   }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+   public String getSaddr() {
+      return saddr;
+   }
 
-	public String getSmenu() {
-		return smenu;
-	}
+   public void setSaddr(String saddr) {
+      this.saddr = saddr;
+   }
 
-	public void setSmenu(String smenu) {
-		this.smenu = smenu;
-	}
+   public String getSphone() {
+      return sphone;
+   }
 
-	public String getSprice() {
-		return sprice;
-	}
+   public void setSphone(String sphone) {
+      this.sphone = sphone;
+   }
 
-	public void setSprice(String sprice) {
-		this.sprice = sprice;
-	}
+   public String getStmenu() {
+      return stmenu;
+   }
 
-	public String getTime() {
-		return time;
-	}
+   public void setStmenu(String stmenu) {
+      this.stmenu = stmenu;
+   }
 
-	public void setTime(String time) {
-		this.time = time;
-	}
+   public String getSprice() {
+      return sprice;
+   }
 
-	public String getRtime() {
-		return rtime;
-	}
+   public void setSprice(String sprice) {
+      this.sprice = sprice;
+   }
 
-	public void setRtime(String rtime) {
-		this.rtime = rtime;
-	}
+   public String getStime() {
+      return stime;
+   }
 
-	public String getLorder() {
-		return lorder;
-	}
+   public void setStime(String stime) {
+      this.stime = stime;
+   }
 
-	public void setLorder(String lorder) {
-		this.lorder = lorder;
-	}
+   public String getSbtime() {
+      return sbtime;
+   }
 
-	public String getRday() {
-		return rday;
-	}
+   public void setSbtime(String sbtime) {
+      this.sbtime = sbtime;
+   }
 
-	public void setRday(String rday) {
-		this.rday = rday;
-	}
+   public String getSlorder() {
+      return slorder;
+   }
 
-	public String getUdate() {
-		return udate;
-	}
+   public void setSlorder(String slorder) {
+      this.slorder = slorder;
+   }
 
-	public void setUdate(String udate) {
-		this.udate = udate;
-	}
+   public String getSrday() {
+      return srday;
+   }
+
+   public void setSrday(String srday) {
+      this.srday = srday;
+   }
+
+   public String getSmenu() {
+      return smenu;
+   }
+
+   public void setSmenu(String smenu) {
+      this.smenu = smenu;
+   }
+
+   public String getUdate() {
+      return udate;
+   }
+
+   public void setUdate(String udate) {
+      this.udate = udate;
+   }
+
+   public String getContents() {
+      return contents;
+   }
+
+   public void setContents(String contents) {
+      this.contents = contents;
+   }
+
+   
+   
 }
