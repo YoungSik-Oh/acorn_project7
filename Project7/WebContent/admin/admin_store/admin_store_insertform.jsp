@@ -20,7 +20,7 @@
 	    <input type="text" class="form-control" id="saddr" name="saddr">
 	  </div>
 	  <div class="form-group">
-	    <label for="sphone">가게 전화번호</label>
+	    <label for="sphone">전화번호</label>
 	    <input type="text" class="form-control" id="sphone" name="sphone">
 	  </div>
 	  <div class="form-group">
@@ -48,7 +48,7 @@
 	    <input type="text" class="form-control" id="srday" name="srday">
 	  </div>
 	   <div class="form-group">
-	    <label for="smenu">음식 메뉴</label>
+	    <label for="smenu">메뉴</label>
 	    <input type="text" class="form-control" id="smenu" name="smenu">
 	  </div>
 	   <div class="form-group">

@@ -94,6 +94,38 @@ public class StoreDao {
 		}
 		return list;
 	}
+	public boolean update(StoreDto dto) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		int flag=0;
+		try {
+		conn=new DbcpBean().getConn();
+		String sql="UPDATE store"
+			     +" SET writer=?, title=?, content=?"
+			     +" WHERE s_num =?";
+		pstmt=conn.prepareStatement(sql);
+		
+		flag=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if(flag>0) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 	// 1개 정보 가져오는 메소드
 	public StoreDto getData(int snum) {
 		StoreDto dto=null;
@@ -102,7 +134,7 @@ public class StoreDao {
 		ResultSet rs=null;
 		try {
 			conn=new DbcpBean().getConn();
-		String sql="select sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, udate "
+		String sql="select sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, contents,udate "
 				+ "from store"
 				+ "	where s_num=?";
 			pstmt=conn.prepareStatement(sql);

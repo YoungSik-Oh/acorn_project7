@@ -36,7 +36,7 @@
 <%
 	List<StoreDto> list=StoreDao.getInstance().getList();
  %>
-<h2>회원들이 추가한 게시글 </h2>
+<h2>게시글 List </h2>
 <a href="admin_store/admin_store_insertform.jsp"><span style="float:right; padding-bottom:5px;">글작성하기</span></a>
 <table class="table">
 	<thead class="thead-dark">
@@ -46,10 +46,13 @@
 			<th>대표 메뉴</th>
 			<th>contents(가게설명)</th>
 			<th>가게 등록일</th>
+			<th>글 수정</th>
+			<th>글 삭제</th>
 		</tr>
 	</thead>
 	<tbody>
 	<!-- store 로 바꿔야함 -->
+		<form action="">
 		<%for(StoreDto tmp:list){%>
 			<tr>
 				<td><%=tmp.getSnum() %></td>
@@ -57,8 +60,10 @@
 				<td><%=tmp.getSmenu() %></td>
 				<td><%=tmp.getContents() %></td>
 				<td><%=tmp.getUdate() %></td>
+				<td><a href="admin_store/store_detail_modifyform.jsp?snum=<%=tmp.getSnum()%>">수정</a></td>
 			</tr>
 		<%}%>
+		</form>
 	</tbody>
 </table>
 </div>	
