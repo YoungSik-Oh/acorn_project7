@@ -21,6 +21,39 @@ public class StoreDao {
 		}
 		return dao;
 	}
+	// 페이징 처리 
+	public int getCount() {
+		int rowCount=0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "SELECT MAX(ROWNUM) AS count"
+					+ " FROM store";
+			pstmt = conn.prepareStatement(sql);
+			// ? 에 값 바인딩 
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				rowCount=rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				//connection pool 에 반납하기 
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return rowCount;
+	}
+	
 	// 글 추가 하는 메소드
 	public boolean insert(StoreDto dto) {
 		Connection conn=null;
@@ -59,7 +92,36 @@ public class StoreDao {
 				return false;
 			}
 		}
-	public List<StoreDto> getList(){
+	//글 하나의 정보를 삭제하는 메소드
+		public boolean delete(int snum) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			int flag = 0;
+			try {
+				conn = new DbcpBean().getConn();
+				String sql = "DELETE FROM store"
+						+ " WHERE s_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, snum);
+				flag = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (Exception e) {
+				}
+			}
+			if (flag > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	public List<StoreDto> getList(StoreDto dto){
 		//글 목록을 저장할 ArrayList생성
 		List<StoreDto> list=new ArrayList<>();
 		Connection conn=null;
@@ -67,21 +129,28 @@ public class StoreDao {
 		ResultSet rs=null;
 		try {
 			conn=new DbcpBean().getConn();
-			String sql="SELECT s_num, sname, smenu, contents,udate"
+			String sql="SELECT *"
+					+ "	FROM"
+					+ " (SELECT result1.*, ROWNUM AS rnum"
+					+ "	FROM"
+					+ " (SELECT s_num, sname, smenu, contents, udate"
 					+ " FROM store"
-					+ " ORDER BY s_num DESC";
+					+ " ORDER BY s_num DESC) result1)"
+					+ "	where rnum BETWEEN ? AND ?";
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				//현재 커서가 위치한 곳의 글 정보를 읽어서 BoardDto객체에 담은 다음
-				StoreDto dto=new StoreDto();
-				dto.setSnum(rs.getInt("s_num"));
-				dto.setSname(rs.getString("sname"));
-				dto.setSmenu(rs.getString("smenu"));
-				dto.setContents(rs.getString("contents"));
-				dto.setUdate(rs.getString("udate"));
+				StoreDto tdo=new StoreDto();
+				tdo.setSnum(rs.getInt("s_num"));
+				tdo.setSname(rs.getString("sname"));
+				tdo.setSmenu(rs.getString("smenu"));
+				tdo.setContents(rs.getString("contents"));
+				tdo.setUdate(rs.getString("udate"));
 				//생성된 BoardDto객체의 참조값을 ArrayList객체에 누적시킨다.
-				list.add(dto);
+				list.add(tdo);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -101,13 +170,23 @@ public class StoreDao {
 		try {
 		conn=new DbcpBean().getConn();
 		String sql="UPDATE store"
-			     +" SET writer=?, title=?, content=?"
-			     +" WHERE s_num =?";
+			     +" SET sname=?, saddr=?, sphone=?, stmenu=?, sprice=?, stime=?, sbtime=?, slorder=?, srday=?, smenu=?, contents=?"
+			     +" WHERE s_num=?";
 		pstmt=conn.prepareStatement(sql);
-		
+		pstmt.setString(1, dto.getSname());
+		pstmt.setString(2, dto.getSaddr());
+		pstmt.setString(3, dto.getSphone());
+		pstmt.setString(4, dto.getStmenu());
+		pstmt.setString(5, dto.getSprice());
+		pstmt.setString(6, dto.getStime());
+		pstmt.setString(7, dto.getSbtime());
+		pstmt.setString(8, dto.getSlorder());
+		pstmt.setString(9, dto.getSrday());
+		pstmt.setString(10, dto.getSmenu());
+		pstmt.setString(11, dto.getContents());
+		pstmt.setInt(12, dto.getSnum());
 		flag=pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			try {
@@ -161,7 +240,7 @@ public class StoreDao {
 		}finally {
 			try {
 				if(rs!=null)rs.close();
-				if(pstmt!=null)pstmt.close();
+				if(pstmt!=null)pstmt.close(); 	
 				if(conn!=null)conn.close();
 			}catch(Exception e) {}
 		}

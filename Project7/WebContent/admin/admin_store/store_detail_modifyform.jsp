@@ -21,7 +21,8 @@
 	<form action="store_modify.jsp" method="post">
 	  <div class="form-group">
 	    <label for="sname">상호명</label>
-	    <input type="text" class="form-control" id="sname" value=<%=dto.getSname() %> name="sname" value= aria-describedby="emailHelp">
+	    <input type="hidden" name="snum" value=<%=dto.getSnum() %>> 
+	    <input type="text" class="form-control" id="sname" value=<%=dto.getSname() %> name="sname" >
 	  </div>
 	  <div class="form-group">
 	    <label for="saddr">가게 주소</label>

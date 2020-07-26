@@ -14,11 +14,16 @@ public class StoreDto {
 	private String smenu;
 	private String udate;
 	private String contents;
+	private int StartRowNum;
+	private int EndRowNum;
+	private int prevNum;
+	private int nextNum;
 
 	public StoreDto() {}
 
 	public StoreDto(int snum, String sname, String saddr, String sphone, String stmenu, String sprice, String stime,
-			String sbtime, String slorder, String srday, String smenu, String udate, String contents) {
+			String sbtime, String slorder, String srday, String smenu, String udate, String contents, int startRowNum,
+			int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.snum = snum;
 		this.sname = sname;
@@ -33,6 +38,10 @@ public class StoreDto {
 		this.smenu = smenu;
 		this.udate = udate;
 		this.contents = contents;
+		this.StartRowNum = startRowNum;
+		this.EndRowNum = endRowNum;
+		this.prevNum = prevNum;
+		this.nextNum = nextNum;
 	}
 
 	public int getSnum() {
@@ -139,6 +148,39 @@ public class StoreDto {
 		this.contents = contents;
 	}
 
+	public int getStartRowNum() {
+		return StartRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		StartRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return EndRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		EndRowNum = endRowNum;
+	}
+
+	public int getPrevNum() {
+		return prevNum;
+	}
+
+	public void setPrevNum(int prevNum) {
+		this.prevNum = prevNum;
+	}
+
+	public int getNextNum() {
+		return nextNum;
+	}
+
+	public void setNextNum(int nextNum) {
+		this.nextNum = nextNum;
+	}
+
 	
+
 	
 }
