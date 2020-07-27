@@ -153,7 +153,7 @@ function displayMarker(place) {
 <div class="container">
 	<div class="title_wrap">
 		<span>
-		 <a class="iconn" href="review.jsp">
+		 <a class="iconn" href="private/review.jsp">
 				<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 	 		 		<path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
 	  				<path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
@@ -161,7 +161,7 @@ function displayMarker(place) {
 			<figcaption id="rcaption" class="figure-caption">리뷰쓰기</figcaption>
 			</a>
 				<h3>
-				토미야<strong><span>4.6</span></strong>
+				<%=dto.getSname()%><strong><span>4.6</span></strong>
 				</h3>
 		 <figcaption class="figure-caption">조회수</figcaption>
 		
@@ -184,11 +184,11 @@ function displayMarker(place) {
 			</tr>
 			<tr>
 				<th>가격대</th>
-				<td><%=dto.getSprice() %></td>
+				<td><%=dto.getSprice()%></td>
 			</tr>
 			<tr>
 				<th>영업시간</th>
-				<td><%=dto.getStime() %></td>
+				<td><%=dto.getStime()%></td>
 			</tr>
 			<tr>
 				<th>쉬는시간</th>
@@ -216,7 +216,7 @@ function displayMarker(place) {
 			</tr>
 		</tbody>
 	</table>
-	<figcaption class="figure-caption text-right">업데이트 날짜 :이하동문<%--<%=dto.getUdate()%> --%></figcaption>
+	<figcaption class="figure-caption text-right">업데이트 날짜 :<%=dto.getUdate()%></figcaption>
 	<hr style="clear:left" />
 	<h6><figcaption class="figure-caption">식당 소개</figcaption></h6>
 	<p>어쩌구 저쩌구저쩌구저쩌구</p>
@@ -244,11 +244,25 @@ function displayMarker(place) {
 								<img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>" />
 							<%} %>
 						</td>
+						<%if(tmp2.getR_writer().equals(id)){ %>
+						<td>
+						<a href="javascript:deleteConfirm(<%=tmp2.getR_num()%>)">삭제</a>
+						</td>
+						<%} %>
 					</tr>
 					<%} %>
 			</tbody>
 		</table>
 </div>
+<script>
+	function deleteConfirm(r_num){
+		var isDelete=confirm("작성하신 리뷰를 삭제 하시겠습니까?");
+		if(isDelete){
+			<input type="hidden" name="snum"  value="<%=tmp.getSnum()%>"/>
+			location.href="private/delete.jsp?r_num="+r_num;
+		}
+	}
+</script>
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </body>
 </html>

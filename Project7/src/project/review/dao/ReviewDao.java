@@ -60,7 +60,7 @@ public class ReviewDao {
 		}
 		
 		//글 하나의 정보를 삭제하는 메소드
-		public boolean delete(int num) {
+		public boolean delete(int r_num) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			int flag = 0;
@@ -69,10 +69,10 @@ public class ReviewDao {
 				conn = new DbcpBean().getConn();
 				//실행할 sql 문 준비하기 
 				String sql = "DELETE FROM review"
-						+ " WHERE num=?";
+						+ " WHERE r_num=?";
 				pstmt = conn.prepareStatement(sql);
 				//? 에 바인딩 할 값이 있으면 바인딩한다.
-				pstmt.setInt(1, num);
+				pstmt.setInt(1, r_num);
 				//sql  문 수행하고 update or insert or delete 된 row 의 갯수 리턴받기 
 				flag = pstmt.executeUpdate();
 			} catch (Exception e) {

@@ -1,5 +1,5 @@
 CREATE TABLE store(
-   s_num NUMBER PRIMARY KEY,
+   snum NUMBER PRIMARY KEY,
    --titlepic VARCHAR2(100) NOT NULL,  --임시 생각중 (가게 썸네일용)
    sname VARCHAR2(20) NOT NULL,    --가게이름
    saddr VARCHAR2(100) NOT NULL,    --가게주소

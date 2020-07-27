@@ -29,7 +29,7 @@ public class StoreDao {
       try {
          conn= new DbcpBean().getConn();
          String sql ="insert into store"
-               + "   (s_num, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, contents,udate)"
+               + "   (snum, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, contents,udate)"
                + "   values(store_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
             pstmt=conn.prepareStatement(sql);
             pstmt.setString(1, dto.getSname());
@@ -67,15 +67,15 @@ public class StoreDao {
       ResultSet rs=null;
       try {
          conn=new DbcpBean().getConn();
-         String sql="SELECT s_num, sname, smenu, contents,udate"
+         String sql="SELECT snum, sname, smenu, contents,udate"
                + " FROM store"
-               + " ORDER BY s_num DESC";
+               + " ORDER BY snum DESC";
          pstmt=conn.prepareStatement(sql);
          rs=pstmt.executeQuery();
          while(rs.next()) {
             //현재 커서가 위치한 곳의 글 정보를 읽어서 BoardDto객체에 담은 다음
             StoreDto dto=new StoreDto();
-            dto.setSnum(rs.getInt("s_num"));
+            dto.setSnum(rs.getInt("snum"));
             dto.setSname(rs.getString("sname"));
             dto.setSmenu(rs.getString("smenu"));
             dto.setContents(rs.getString("contents"));
@@ -102,7 +102,7 @@ public class StoreDao {
       conn=new DbcpBean().getConn();
       String sql="UPDATE store"
               +" SET sname=?, saddr=?, sphone=?, stmenu=?, sprice=?, stime=?, sbtime=?, slorder=? , srday=?, smenu=?, content=?"
-              +" WHERE s_num =?";
+              +" WHERE snum =?";
       pstmt=conn.prepareStatement(sql);
       pstmt.setString(2, dto.getSaddr());
       pstmt.setString(3, dto.getSphone());
@@ -145,8 +145,8 @@ public class StoreDao {
       try {
          conn=new DbcpBean().getConn();
       String sql="select sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, contents,udate "
-            + "from store"
-            + "   where s_num=?";
+            + " from store"
+            + " where snum=?";
          pstmt=conn.prepareStatement(sql);
          pstmt.setInt(1, snum);
          rs=pstmt.executeQuery();
