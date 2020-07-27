@@ -1,6 +1,7 @@
 package project7.store.dto;
 
 public class StoreDto {
+
 	private int snum; // sequence
 	private String sname;
 	private String saddr;
@@ -19,7 +20,8 @@ public class StoreDto {
 	private int prevNum;
 	private int nextNum;
 
-	public StoreDto() {}
+   public StoreDto() {}
+
 
 	public StoreDto(int snum, String sname, String saddr, String sphone, String stmenu, String sprice, String stime,
 			String sbtime, String slorder, String srday, String smenu, String udate, String contents, int startRowNum,
@@ -44,143 +46,174 @@ public class StoreDto {
 		this.nextNum = nextNum;
 	}
 
+
 	public int getSnum() {
 		return snum;
 	}
+
 
 	public void setSnum(int snum) {
 		this.snum = snum;
 	}
 
+
 	public String getSname() {
 		return sname;
 	}
+
 
 	public void setSname(String sname) {
 		this.sname = sname;
 	}
 
+
 	public String getSaddr() {
 		return saddr;
 	}
+
 
 	public void setSaddr(String saddr) {
 		this.saddr = saddr;
 	}
 
+
 	public String getSphone() {
 		return sphone;
 	}
+
 
 	public void setSphone(String sphone) {
 		this.sphone = sphone;
 	}
 
+
 	public String getStmenu() {
 		return stmenu;
 	}
+
 
 	public void setStmenu(String stmenu) {
 		this.stmenu = stmenu;
 	}
 
+
 	public String getSprice() {
 		return sprice;
 	}
+
 
 	public void setSprice(String sprice) {
 		this.sprice = sprice;
 	}
 
+
 	public String getStime() {
 		return stime;
 	}
+
 
 	public void setStime(String stime) {
 		this.stime = stime;
 	}
 
+
 	public String getSbtime() {
 		return sbtime;
 	}
+
 
 	public void setSbtime(String sbtime) {
 		this.sbtime = sbtime;
 	}
 
+
 	public String getSlorder() {
 		return slorder;
 	}
+
 
 	public void setSlorder(String slorder) {
 		this.slorder = slorder;
 	}
 
+
 	public String getSrday() {
 		return srday;
 	}
+
 
 	public void setSrday(String srday) {
 		this.srday = srday;
 	}
 
+
 	public String getSmenu() {
 		return smenu;
 	}
+
 
 	public void setSmenu(String smenu) {
 		this.smenu = smenu;
 	}
 
+
 	public String getUdate() {
 		return udate;
 	}
+
 
 	public void setUdate(String udate) {
 		this.udate = udate;
 	}
 
+
 	public String getContents() {
 		return contents;
 	}
+
 
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
 
+
 	public int getStartRowNum() {
 		return StartRowNum;
 	}
+
 
 	public void setStartRowNum(int startRowNum) {
 		StartRowNum = startRowNum;
 	}
 
+
 	public int getEndRowNum() {
 		return EndRowNum;
 	}
+
 
 	public void setEndRowNum(int endRowNum) {
 		EndRowNum = endRowNum;
 	}
 
+
 	public int getPrevNum() {
 		return prevNum;
 	}
+
 
 	public void setPrevNum(int prevNum) {
 		this.prevNum = prevNum;
 	}
 
+
 	public int getNextNum() {
 		return nextNum;
 	}
 
+
 	public void setNextNum(int nextNum) {
 		this.nextNum = nextNum;
 	}
-
-	
-
-	
 }
+

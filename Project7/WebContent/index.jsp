@@ -55,30 +55,27 @@
   		</button>
   	  <div class="collapse navbar-collapse" id="navbarNav">
     	<ul class="navbar-nav">
-      		<li class="nav-item active">
-        		<a class="nav-link" href="${pageContext.request.contextPath}/admin/admin_login_form.jsp">관리자 로그인 <span class="sr-only">(current)</span></a>
-      		</li>
-      		<li class="nav-item">
-       			 <a class="nav-link" href="user/loginform.jsp">로그인</a>
-      		</li>
-      		<li class="nav-item">
-        		<a class="nav-link" href="#">회원가입</a>
-      		</li>
-    	</ul>
+                  <%if(id == null){ %>
+                     <li class="nav-item">
+                       <a class="nav-link" href="admin/admin_login_form.jsp">관리자 로그인 <span class="sr-only">(current)</span></a>
+                     </li>
+                     <li class="nav-item">
+                          <a class="nav-link" href="user/loginform.jsp">로그인</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" href="user/signup_form.jsp">회원가입</a>
+                     </li>
+                  <%}else{ %>
+                     <li class="nav-item">
+                        <a href="user/info.jsp"><%=id %></a>님 환영합니다.
+                     </li>
+                     <li class="nav-item">
+                        <a href="user/logout.jsp">로그아웃</a>
+                     </li>
+                  <%} %>
+             </ul>
   	</div>
 	</nav>
-<!--       <ul> -->
-<%--       <%if(id!=null){ %> <!-- 오른쪽으로 가면 좋을듯  --> --%>
-<!-- 		<p class="login_check"> -->
-<%-- 			<a href="user/info.jsp"><%=id %></a>님 환영합니다. --%>
-<!-- 			<a href="user/logout.jsp">로그아웃</a> -->
-<!-- 		</p> -->
-<%-- 		<%}else{ %> --%>
-<!--     	  <li><a href="user/loginform.jsp">로그인</a></li> -->
-<!-- 		  <li><a href="user/signup_form.jsp">회원가입</a></li> -->
-<%-- 		<%} %> --%>
-<!-- 		<li><a href="admin/admin_login_form.jsp">관리자 로그인</a></li> -->
-<!--       </ul> -->
 
     </div>
   </div>
@@ -99,7 +96,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-          	<img class="foodMenu" style="height : 225px;" src="${pageContext.request.contextPath}/image/korean.gif"/>
+          	<img class="foodMenu" style="height : 225px;" src="${pageContext.request.contextPath}/images/korean.gif"/>
           	<div class="info">
           		<h2>한식</h2>
           	</div>
@@ -107,7 +104,7 @@
         </div>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-          <img style="height : 225px;" src="${pageContext.request.contextPath}/image/chinese.jpg"/>
+          <img style="height : 225px;" src="${pageContext.request.contextPath}/images/chinese.jpg"/>
           	<div class="info">
           		<h2>중식</h2>
           	</div>
@@ -115,7 +112,7 @@
         </div>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-          	<img style="height : 225px;" src="${pageContext.request.contextPath}/image/japanese.jpg">
+          	<img style="height : 225px;" src="${pageContext.request.contextPath}/images/japanese.jpg">
          	<div class="info">
           		<a href="bestfood.jsp"><h2>일식</h2></a>
           	</div>
@@ -124,7 +121,7 @@
 
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-         	<img style="height : 225px;" src="${pageContext.request.contextPath}/image/fastfood.jpg">
+         	<img style="height : 225px;" src="${pageContext.request.contextPath}/images/fastfood.jpg">
           	<div class="info">
           		<h2>분식</h2>
           	</div>
@@ -132,7 +129,7 @@
         </div>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-          	<img style="height : 225px;" src="${pageContext.request.contextPath}/image/snack.jpg">
+          	<img style="height : 225px;" src="${pageContext.request.contextPath}/images/snack.jpg">
           	<div class="info">
           		<h2>패스트 푸드</h2>
           	</div>
@@ -140,7 +137,7 @@
         </div>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-          	<img style="height : 225px;" src="${pageContext.request.contextPath}/image/coffee.jpg">
+          	<img style="height : 225px;" src="${pageContext.request.contextPath}/images/coffee.jpg">
          	<div class="info">
           		<h2>카페</h2>
           	</div>

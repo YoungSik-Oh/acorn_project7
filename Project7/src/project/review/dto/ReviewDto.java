@@ -58,4 +58,5 @@ public class ReviewDto {
 		this.r_regdate = r_regdate;
 	}
 	
+
 }

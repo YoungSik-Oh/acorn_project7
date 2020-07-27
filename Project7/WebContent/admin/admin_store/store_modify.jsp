@@ -20,7 +20,7 @@
 	String smenu=request.getParameter("smenu");
 	
 	StoreDto dto=new StoreDto();
-	
+	dto.setSnum(snum);
 	dto.setSname(sname);
 	dto.setSaddr(saddr);
 	dto.setSphone(sphone);

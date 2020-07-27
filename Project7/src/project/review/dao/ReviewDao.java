@@ -92,7 +92,10 @@ public class ReviewDao {
 				return false;
 			}
 		}
-		
+		public int getSequence() {
+			String sql="select review_seq.NEXTVAL AS snum FROM DUAL";
+			return 0;
+		}
 		//글 하나의 정보를 저장하는 메소드
 		public boolean insert(ReviewDto dto) {
 			Connection conn = null;
@@ -104,12 +107,13 @@ public class ReviewDao {
 				//실행할 sql 문 준비하기 
 				String sql = "INSERT INTO review"
 						+ " (r_num, r_writer, r_content, r_imagePath, r_regdate)"
-						+ " VALUES(review_seq.NEXTVAL, ?, ?, ?, sysdate)";
+						+ " VALUES(?, ?, ?, ?, sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				//? 에 바인딩 할 값이 있으면 바인딩한다.
-				pstmt.setString(1, dto.getR_writer());
-				pstmt.setString(2, dto.getR_content());
-				pstmt.setString(3, dto.getR_imagePath());
+				pstmt.setInt(1, dto.getR_num());
+				pstmt.setString(2, dto.getR_writer());
+				pstmt.setString(3, dto.getR_content());
+				pstmt.setString(4, dto.getR_imagePath());
 				//sql  문 수행하고 update or insert or delete 된 row 의 갯수 리턴받기 
 				flag = pstmt.executeUpdate();
 			} catch (Exception e) {
@@ -129,4 +133,6 @@ public class ReviewDao {
 				return false;
 			}
 		}	
+
+
 }
