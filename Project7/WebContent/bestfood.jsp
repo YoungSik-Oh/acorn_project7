@@ -112,7 +112,10 @@
 	  </div>
 	</div>
 	<hr />
+	
 </div>
+
+
 <!-- Footer -->
 <footer class="page-footer font-small unique-color-dark">
   <div class="container text-center text-md-left mt-5">

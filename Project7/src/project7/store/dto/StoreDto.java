@@ -13,11 +13,12 @@ public class StoreDto {
 	private String srday;
 	private String smenu;
 	private String udate;
+	private String s_imgpath;
 
 	public StoreDto() {}
 
 	public StoreDto(int snum, String sname, String saddr, String sphone, String stmenu, String sprice, String stime,
-			String sbtime, String slorder, String srday, String smenu, String udate) {
+			String sbtime, String slorder, String srday, String smenu, String udate, String s_imgpath) {
 		super();
 		this.snum = snum;
 		this.sname = sname;
@@ -31,6 +32,7 @@ public class StoreDto {
 		this.srday = srday;
 		this.smenu = smenu;
 		this.udate = udate;
+		this.s_imgpath = s_imgpath;
 	}
 
 	public int getSnum() {
@@ -127,6 +129,23 @@ public class StoreDto {
 
 	public void setUdate(String udate) {
 		this.udate = udate;
+	}
+	
+	
+	
+	public String getS_imgpath() {
+		return s_imgpath;
+	}
+
+	public void setS_imgpath(String s_imgpath) {
+		this.s_imgpath = s_imgpath;
+	}
+
+	@Override
+	public String toString() {
+		return "StoreDto [snum=" + snum + ", sname=" + sname + ", saddr=" + saddr + ", sphone=" + sphone + ", stmenu="
+				+ stmenu + ", sprice=" + sprice + ", stime=" + stime + ", sbtime=" + sbtime + ", slorder=" + slorder
+				+ ", srday=" + srday + ", smenu=" + smenu + ", udate=" + udate + "]";
 	}
 
 	

@@ -10,7 +10,7 @@
 <body>
 <div class="container">
 <h1 style="text-align:center;">가게 올리기</h1>
-	<form action="admin_store_insert.jsp" method="post">
+	<form action="admin_store_insert.jsp" method="post" enctype="multipart/form-data">
 	  <div class="form-group">
 	    <label for="sname">상호명</label>
 	    <input type="text" class="form-control" id="sname" name="sname" aria-describedby="emailHelp">
@@ -50,6 +50,10 @@
 	   <div class="form-group">
 	    <label for="smenu">음식 메뉴</label>
 	    <input type="text" class="form-control" id="smenu" name="smenu">
+	  </div>
+	  <div class="form-group">
+		<label for="image">가게 이미지</label>
+		<input class="form-control-file" type="file" id="image" name="image"/>
 	  </div>
 	  <button type="submit" class="btn btn-primary">입력 완료</button>
 	  <button type="reset" class="btn btn-danger" >입력 취소</button>

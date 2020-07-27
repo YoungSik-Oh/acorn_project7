@@ -29,8 +29,8 @@ public class StoreDao {
 		try {
 			conn= new DbcpBean().getConn();
 			String sql ="insert into store"
-					+ "	(s_num, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, udate)"
-					+ "	values(store_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,sysdate)";
+					+ "	(s_num, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, udate, s_imgpath)"
+					+ "	values(store_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,sysdate,?)";
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getSname());
 				pstmt.setString(2, dto.getSaddr());
@@ -42,7 +42,7 @@ public class StoreDao {
 				pstmt.setString(8, dto.getSlorder());
 				pstmt.setString(9, dto.getSrday());
 				pstmt.setString(10, dto.getSmenu());
-				
+				pstmt.setString(11, dto.getS_imgpath());
 				flag=pstmt.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -58,6 +58,8 @@ public class StoreDao {
 				return false;
 			}
 		}
+	
+	
 	public List<StoreDto> getList(){
 		//글 목록을 저장할 ArrayList생성
 		List<StoreDto> list=new ArrayList<>();
@@ -66,7 +68,7 @@ public class StoreDao {
 		ResultSet rs=null;
 		try {
 			conn=new DbcpBean().getConn();
-			String sql="SELECT s_num, sname, smenu, udate"
+			String sql="SELECT s_num, sname, saddr, smenu, udate, s_imgpath"
 					+ " FROM store"
 					+ " ORDER BY s_num DESC";
 			pstmt=conn.prepareStatement(sql);
@@ -76,8 +78,10 @@ public class StoreDao {
 				StoreDto dto=new StoreDto();
 				dto.setSnum(rs.getInt("s_num"));
 				dto.setSname(rs.getString("sname"));
+				dto.setSaddr(rs.getString("saddr"));
 				dto.setSmenu(rs.getString("smenu"));
 				dto.setUdate(rs.getString("udate"));
+				dto.setS_imgpath(rs.getString("s_imgpath"));
 				//생성된 BoardDto객체의 참조값을 ArrayList객체에 누적시킨다.
 				list.add(dto);
 			}
@@ -92,6 +96,7 @@ public class StoreDao {
 		}
 		return list;
 	}
+	
 	// 1개 정보 가져오는 메소드
 	public StoreDto getData(int snum) {
 		StoreDto dto=null;
@@ -100,7 +105,7 @@ public class StoreDao {
 		ResultSet rs=null;
 		try {
 			conn=new DbcpBean().getConn();
-		String sql="select sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, udate "
+		String sql="select sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, udate, s_imgpath "
 				+ "from store"
 				+ "	where s_num=?";
 			pstmt=conn.prepareStatement(sql);
@@ -120,6 +125,7 @@ public class StoreDao {
 				dto.setSrday(rs.getString("srday"));
 				dto.setSmenu(rs.getString("smenu"));
 				dto.setUdate(rs.getString("udate"));
+				dto.setS_imgpath(rs.getString("s_imgpath"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
