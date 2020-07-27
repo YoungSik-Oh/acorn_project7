@@ -62,8 +62,8 @@ public class StoreDao {
 		try {
 			conn= new DbcpBean().getConn();
 			String sql ="insert into store"
-					+ "	(s_num, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, contents,udate)"
-					+ "	values(store_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
+					+ "	(s_num, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, udate, s_imgpath, contents)"
+					+ "	values(store_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,sysdate,?,?)";
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getSname());
 				pstmt.setString(2, dto.getSaddr());
@@ -75,8 +75,8 @@ public class StoreDao {
 				pstmt.setString(8, dto.getSlorder());
 				pstmt.setString(9, dto.getSrday());
 				pstmt.setString(10, dto.getSmenu());
-				pstmt.setString(11, dto.getContents());
-				
+				pstmt.setString(11, dto.getS_imgpath());
+				pstmt.setString(12, dto.getContents());
 				flag=pstmt.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -92,6 +92,7 @@ public class StoreDao {
 				return false;
 			}
 		}
+
 	//글 하나의 정보를 삭제하는 메소드
 		public boolean delete(int snum) {
 			Connection conn = null;
@@ -121,6 +122,7 @@ public class StoreDao {
 				return false;
 			}
 		}
+		
 	public List<StoreDto> getList(StoreDto dto){
 		//글 목록을 저장할 ArrayList생성
 		List<StoreDto> list=new ArrayList<>();
@@ -129,11 +131,12 @@ public class StoreDao {
 		ResultSet rs=null;
 		try {
 			conn=new DbcpBean().getConn();
+
 			String sql="SELECT *"
 					+ "	FROM"
 					+ " (SELECT result1.*, ROWNUM AS rnum"
 					+ "	FROM"
-					+ " (SELECT s_num, sname, smenu, contents, udate"
+					+ " (SELECT s_num, sname, smenu, contents, udate, s_imgpath "
 					+ " FROM store"
 					+ " ORDER BY s_num DESC) result1)"
 					+ "	where rnum BETWEEN ? AND ?";
@@ -143,12 +146,14 @@ public class StoreDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				//현재 커서가 위치한 곳의 글 정보를 읽어서 BoardDto객체에 담은 다음
+				
 				StoreDto tdo=new StoreDto();
 				tdo.setSnum(rs.getInt("s_num"));
 				tdo.setSname(rs.getString("sname"));
 				tdo.setSmenu(rs.getString("smenu"));
 				tdo.setContents(rs.getString("contents"));
 				tdo.setUdate(rs.getString("udate"));
+				tdo.setS_imgpath(rs.getString("s_imgpath"));
 				//생성된 BoardDto객체의 참조값을 ArrayList객체에 누적시킨다.
 				list.add(tdo);
 			}
@@ -163,6 +168,44 @@ public class StoreDao {
 		}
 		return list;
 	}
+
+//	public List<StoreDto> getList(){
+//		//글 목록을 저장할 ArrayList생성
+//		List<StoreDto> list=new ArrayList<>();
+//		Connection conn=null;
+//		PreparedStatement pstmt=null;
+//		ResultSet rs=null;
+//		try {
+//			conn=new DbcpBean().getConn();
+//			String sql="SELECT s_num, sname, saddr, smenu, udate, s_imgpath"
+//					+ " FROM store"
+//					+ " ORDER BY s_num DESC";
+//			pstmt=conn.prepareStatement(sql);
+//			rs=pstmt.executeQuery();
+//			while(rs.next()) {
+//				//현재 커서가 위치한 곳의 글 정보를 읽어서 BoardDto객체에 담은 다음
+//				StoreDto dto=new StoreDto();
+//				dto.setSnum(rs.getInt("s_num"));
+//				dto.setSname(rs.getString("sname"));
+//				dto.setSaddr(rs.getString("saddr"));
+//				dto.setSmenu(rs.getString("smenu"));
+//				dto.setUdate(rs.getString("udate"));
+//				dto.setS_imgpath(rs.getString("s_imgpath"));
+//				//생성된 BoardDto객체의 참조값을 ArrayList객체에 누적시킨다.
+//				list.add(dto);
+//			}
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			try {
+//				if(rs!=null)rs.close();
+//				if(pstmt!=null)pstmt.close();
+//				if(conn!=null)conn.close();
+//			}catch(Exception e) {}
+//		}
+//		return list;
+//	}
+	
 	public boolean update(StoreDto dto) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -205,6 +248,8 @@ public class StoreDao {
 		}
 		
 	}
+	
+
 	// 1개 정보 가져오는 메소드
 	public StoreDto getData(int snum) {
 		StoreDto dto=null;
@@ -213,7 +258,7 @@ public class StoreDao {
 		ResultSet rs=null;
 		try {
 			conn=new DbcpBean().getConn();
-		String sql="select sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, contents,udate "
+		String sql="select sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, contents,udate,s_imgpath "
 				+ "from store"
 				+ "	where s_num=?";
 			pstmt=conn.prepareStatement(sql);
@@ -234,6 +279,7 @@ public class StoreDao {
 				dto.setSmenu(rs.getString("smenu"));
 				dto.setContents(rs.getString("contents"));
 				dto.setUdate(rs.getString("udate"));
+				dto.setS_imgpath(rs.getString("s_imgpath"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

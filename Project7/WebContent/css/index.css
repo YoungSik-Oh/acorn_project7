@@ -15,7 +15,7 @@
    }
    
    .jumbotron {
-	 	  background-image : url("/images/index_mainC.jpg");
+	 	  background-image : url("../images/index_mainC.jpg");
 		  background-size : cover; 
 		  background-repeat : no-repeat;
  		  background-position : center center; 
@@ -65,6 +65,11 @@
 	    text-align : center;
 	}
 	
+	.info a{
+		text-decoration: none;
+		color : white;
+	}
+	
 	.bgBlack{
 		background-color : black;
 	}
@@ -74,4 +79,12 @@
 		color : red;
 		background-color : #f8f9fa;
 		margin-bottom : 0;
+	}
+	
+	.card-img{
+		height : 300px;
+	}
+	
+	.space{
+		margin-right : 15px;
 	}

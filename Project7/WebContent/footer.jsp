@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 <!-- Footer -->
 <footer class="page-footer font-small unique-color-dark">
   <div class="container text-center text-md-left mt-5">
@@ -49,5 +43,3 @@
 
 </footer>
 <!-- Footer -->
-</body>
-</html>
