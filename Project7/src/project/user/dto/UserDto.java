@@ -8,7 +8,7 @@ public class UserDto {
 	private String userPhone;
 	private String userEmail;
 	private String userRegdate;
-	
+	private String userProfile;
 	public UserDto() {}
 
 	public UserDto(String userName, String userId, String userPw, String userGender, String userPhone, String userEmail,
@@ -21,6 +21,7 @@ public class UserDto {
 		this.userPhone = userPhone;
 		this.userEmail = userEmail;
 		this.userRegdate = userRegdate;
+		this.userProfile = userProfile;
 	}
 
 	public String getUserName() {
@@ -78,7 +79,12 @@ public class UserDto {
 	public void setUserRegdate(String userRegdate) {
 		this.userRegdate = userRegdate;
 	}
-	
+	public String getUserProfile() {
+		return userProfile;
+	}
+	public void setUserProfile(String userProfile) {
+		this.userProfile = userProfile;
+	}
 	
 	
 }

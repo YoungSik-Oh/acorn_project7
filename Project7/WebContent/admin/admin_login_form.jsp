@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     <%
     	String adminName=request.getParameter("adminName");
-    	
     %> 
 <!DOCTYPE html>
 <html>
