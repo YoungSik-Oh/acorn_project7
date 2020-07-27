@@ -15,11 +15,28 @@
 <head>
 <meta charset="UTF-8">
 <title>/user/info.jsp</title>
+<style>
+/* 이미지를 작은 원형으로 만든다 */
+	#profileImage{
+		width: 50px;
+		height: 50px;
+		border: 1px solid #cecece;
+		border-radius: 50%;
+	}
+</style>
 </head>
 <body>
 <div class="container">
 	<h1>개인정보 페이지</h1>
 	<table>
+		<tr>
+			<th>프로필 이미지</th>
+			<%if(dto.getUserProfile()==null){ %>
+				<td><img id="profileImage" src="${pageContext.request.contextPath}/images/yellowbird.png"/></td>
+			<%} else { %>
+				<td><img id="profileImage" src="${pageContext.request.contextPath}<%=dto.getUserProfile() %>"/></td>
+			<%} %>	
+		</tr>
 		<tr>
 			<th>이름</th>
 			<td><%=dto.getUserName() %></td>

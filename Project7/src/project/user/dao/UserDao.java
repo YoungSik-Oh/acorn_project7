@@ -27,7 +27,8 @@ public class UserDao {
 		try {
 			conn= new DbcpBean().getConn();
 			String sql ="insert into user_info"
-					+ "	values(?,?,?,?,?,?,sysdate) ";
+					+ " (userName, userId, userPw, userGender, userPhone, userEmail, regdate)"
+					+ "	values(?,?,?,?,?,?,sysdate)";
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getUserName());
 				pstmt.setString(2, dto.getUserId());
@@ -92,12 +93,13 @@ public class UserDao {
 		try {
 			conn = new DbcpBean().getConn();
 			String sql = "UPDATE user_info"
-					+ " SET userphone=?, useremail=?"
+					+ " SET userprofile=?, userphone=?, useremail=?"
 					+ " WHERE userid=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getUserPhone());
-			pstmt.setString(2, dto.getUserEmail());
-			pstmt.setString(3, dto.getUserId());
+			pstmt.setString(1, dto.getUserProfile());
+			pstmt.setString(2, dto.getUserPhone());
+			pstmt.setString(3, dto.getUserEmail());
+			pstmt.setString(4, dto.getUserId());
 			//sql  문 수행하고 update or insert or delete 된 row 의 갯수 리턴받기 
 			flag = pstmt.executeUpdate();
 			} catch (Exception e) {
@@ -201,9 +203,10 @@ public class UserDao {
 				}//try end 
 		return cnt;
 		}//duplecateID end
+	
 	//인자로 전달된 id에 해당하는 정보를 리턴하는 메소드
 	public UserDto getData(String userid) {
-		//UserzDto객체의 참조값을 담을 지역변수 만들기
+		//UserDto객체의 참조값을 담을 지역변수 만들기
 		UserDto dto=null;
 		//필요한 객체의 참조값을 담을 지역변수 만들기
 		Connection conn = null;
@@ -212,7 +215,7 @@ public class UserDao {
 		try {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기 
-			String sql = "SELECT username ,userpw, usergender, userphone, useremail, regdate"
+			String sql = "SELECT username ,userpw, usergender, userphone, useremail, regdate, userprofile"
 					+ " FROM user_info"
 					+ " WHERE userid=?";
 			pstmt = conn.prepareStatement(sql);
@@ -222,7 +225,7 @@ public class UserDao {
 			rs=pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기
 			if(rs.next()) {
-				//UserzDto 객체를 생성하고
+				//UserDto 객체를 생성하고
 				dto=new UserDto();
 				//select된 결과를 BoardDto객체에 담는다.
 				dto.setUserName(rs.getString("userName"));
@@ -232,6 +235,7 @@ public class UserDao {
 				dto.setUserPhone(rs.getString("userPhone"));
 				dto.setUserEmail(rs.getString("userEmail"));
 				dto.setUserRegdate(rs.getString("Regdate"));
+				dto.setUserProfile(rs.getString("userProfile"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

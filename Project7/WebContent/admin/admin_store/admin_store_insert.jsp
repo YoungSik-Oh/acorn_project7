@@ -9,9 +9,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	
-	
-	
 	//업로드 설정
 		final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
 		//최대 업로드 사이즈 설정 
@@ -56,8 +53,10 @@
 	    String slorder = "";
 	    String srday = "";
 	    String smenu = "";
+	    String contents = "";
 	   	//WebContetn 안에서 이미지 파일이 저장된 경로
 	    String imagePath = "";
+
 	    boolean isSuccess = false;
 	    try {
 	        //폼전송된 아이템 목록 얻어오기 
@@ -128,6 +127,10 @@
 	                		//제목 읽어오기
 	                		smenu=item.getString("utf-8");
 	                	}
+	                	if(item.getFieldName().equals("contents")){
+	                		//제목 읽어오기
+	                		contents=item.getString("utf-8");
+	                	}
 	                }//if
 	            }//for
 
@@ -145,6 +148,7 @@
 	    	dto.setSrday(srday);
 	    	dto.setSmenu(smenu);
 			dto.setS_imgpath(imagePath);
+			dto.setContents(contents);
 			   
 	        //db에 저장하기
 	        isSuccess = StoreDao.getInstance().insert(dto);

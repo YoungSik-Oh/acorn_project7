@@ -10,6 +10,7 @@ CREATE TABLE store(
    sbtime VARCHAR2(50) NOT NULL,   -- 휴식 시간
    slorder VARCHAR2(50) NOT NULL,   --마지막 오더시간
    srday VARCHAR2(10) NOT NULL,   --휴일
+   contents CLOB NOT NULL,
    smenu VARCHAR2(20) NOT NULL, -- 가게 음식 메뉴
    udate DATE      --업데이트 날짜
 );

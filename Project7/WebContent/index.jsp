@@ -34,9 +34,46 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
 <link href="album.css" rel="stylesheet">
-
 <!-- nav script 입니다. -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+ <%
+   //한 페이지에 나타낼 row 의 갯수
+   final int PAGE_ROW_COUNT=5;
+   //하단 디스플레이 페이지 갯수
+   final int PAGE_DISPLAY_COUNT=5;
+   
+   //보여줄 페이지의 번호
+   int pageNum=1;
+   //보여줄 페이지의 번호가 파라미터로 전달되는지 읽어와 본다.   
+   String strPageNum=request.getParameter("pageNum");
+   if(strPageNum != null){//페이지 번호가 파라미터로 넘어온다면
+      //페이지 번호를 설정한다<div class=""></div>
+      pageNum=Integer.parseInt(strPageNum);
+   }
+   //보여줄 페이지 데이터의 시작 ResultSet row 번호
+   int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
+   //보여줄 페이지 데이터의 끝 ResultSet row 번호
+   int endRowNum=pageNum*PAGE_ROW_COUNT;
+   
+   //전체 row 의 갯수를 읽어온다.
+   int totalRow=StoreDao.getInstance().getCount();
+   //전체 페이지의 갯수 구하기
+   int totalPageCount=
+         (int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+   //시작 페이지 번호
+   int startPageNum=
+      1+((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
+   //끝 페이지 번호
+   int endPageNum=startPageNum+PAGE_DISPLAY_COUNT-1;
+   //끝 페이지 번호가 잘못된 값이라면 
+   if(totalPageCount < endPageNum){
+      endPageNum=totalPageCount; //보정해준다. 
+   }      
+   // CafeDto 객체에 위에서 계산된 startRowNum 과 endRowNum 을 담는다.
+   StoreDto dto=new StoreDto();
+   dto.setStartRowNum(startRowNum);
+   dto.setEndRowNum(endRowNum);  
+    %>
  
 </head>
 <%
@@ -62,20 +99,20 @@
 	    		<ul class="navbar-nav">
 		      		<%if(id == null){ %>
 		      			<li class="nav-item">
-		        			<a class="nav-link" href="admin/admin_login_form.jsp">관리자 로그인 <span class="sr-only">(current)</span></a>
+		        			<a class="space" class="nav-link" href="admin/admin_login_form.jsp">관리자 로그인 <span class="sr-only"></span></a>
 		      			</li>
 		      			<li class="nav-item">
-		       			    <a class="nav-link" href="user/loginform.jsp">로그인</a>
+		       			    <a class="space" class="nav-link" href="user/loginform.jsp">로그인</a>
 		      			</li>
 		      			<li class="nav-item">
-		        			<a class="nav-link" href="user/signup_form.jsp">회원가입</a>
+		        			<a class="space" class="nav-link" href="user/signup_form.jsp">회원가입</a>
 		      			</li>
 		      		<%}else{ %>
-		      			<li class="nav-item">s
-		      				<a href="user/info.jsp"><%=id %></a>님 환영합니다.
+		      			<li class="nav-item">
+		      				<a class="space" href="user/info.jsp"><%=id %>님 환영합니다.</a>
 		      			</li>
 		      			<li class="nav-item">
-		      				<a href="user/logout.jsp">로그아웃</a>
+		      				<a class="space" href="user/logout.jsp">로그아웃</a>
 		      			</li>
 		      		<%} %>
 	    		</ul>
@@ -101,23 +138,23 @@
       <div class="row">
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-          	<img class="foodMenu" style="height : 225px;" src="${pageContext.request.contextPath}/image/korean.gif"/>
+          	<img class="foodMenu" style="height : 225px;" src="${pageContext.request.contextPath}/images/korean.gif"/>
           	<div class="info">
-          		<h2>한식</h2>
+          		<a href="bestfood.jsp"><h2>한식</h2></a>
           	</div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-          <img style="height : 225px;" src="${pageContext.request.contextPath}/image/chinese.jpg"/>
+          <img style="height : 225px;" src="${pageContext.request.contextPath}/images/chinese.jpg"/>
           	<div class="info">
-          		<h2>중식</h2>
+          		<a href="bestfood.jsp"><h2>중식</h2></a>
           	</div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-          	<img style="height : 225px;" src="${pageContext.request.contextPath}/image/japanese.jpg">
+          	<img style="height : 225px;" src="${pageContext.request.contextPath}/images/japanese.jpg">
          	<div class="info">
           		<a href="bestfood.jsp"><h2>일식</h2></a>
           	</div>
@@ -126,25 +163,25 @@
 
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-         	<img style="height : 225px;" src="${pageContext.request.contextPath}/image/fastfood.jpg">
+         	<img style="height : 225px;" src="${pageContext.request.contextPath}/images/fastfood.jpg">
           	<div class="info">
-          		<h2>분식</h2>
+          		<a href="bestfood.jsp"><h2>분식</h2></a>
           	</div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-          	<img style="height : 225px;" src="${pageContext.request.contextPath}/image/snack.jpg">
+          	<img style="height : 225px;" src="${pageContext.request.contextPath}/images/snack.jpg">
           	<div class="info">
-          		<h2>패스트 푸드</h2>
+          		<a href="bestfood.jsp"><h2>패스트 푸드</h2></a>
           	</div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm bgBlack">
-          	<img style="height : 225px;" src="${pageContext.request.contextPath}/image/coffee.jpg">
+          	<img style="height : 225px;" src="${pageContext.request.contextPath}/images/coffee.jpg">
          	<div class="info">
-          		<h2>카페</h2>
+          		<a href="bestfood.jsp"><h2>카페</h2></a>
           	</div>
           </div>
         </div>
@@ -157,13 +194,14 @@
       <div class="container">
       <div class="row">
       	<%
-      		List<StoreDto> list = StoreDao.getInstance().getList();
+      		 
+      		List<StoreDto> list = StoreDao.getInstance().getList(dto);
       		
       		for(StoreDto tmp : list){
       	%>
       		<div class="col-md-4">
           		<div class="card mb-4 shadow-sm">	
-            		<img class="bd-placeholder-img card-img-top" height="225" src="${pageContext.request.contextPath}<%=tmp.getS_imgpath() %>" />
+            		<a href="${pageContext.request.contextPath}/board/fooddetail.jsp?snum=<%=tmp.getSnum()%>"><img class="bd-placeholder-img card-img-top" height="225" src="${pageContext.request.contextPath}<%=tmp.getS_imgpath() %>" /></a>
             		<div class="card-body">			
              	   		<p class="card-text"><%=tmp.getSname() %></p>
             		</div>
