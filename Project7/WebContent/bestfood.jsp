@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-	String adminName=(String)session.getAttribute("adminName");
+	
 	//한 페이지에 나타낼 row 의 갯수
 	final int PAGE_ROW_COUNT=5;
 	//하단 디스플레이 페이지 갯수
@@ -121,7 +121,7 @@
 	      <div class="card-body">
 	        <h5 class="card-title"> <%=tmp.getSname() %> <a href="${pageContext.request.contextPath}/board/fooddetail.jsp?snum=<%=tmp.getSnum()%>">Card title</a></h5>
 	        <p class="card-text"><%=tmp.getContents() %>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-	        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	        <p class="card-text"><small class="text-muted"><%=tmp.getUdate() %></small></p>
 	      </div>
 	    </div>
 	  </div>
@@ -161,7 +161,6 @@
 			<%} %>
 		</ul>
 	</div>
-
 
 
 </div>
