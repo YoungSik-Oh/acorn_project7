@@ -3,7 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
+    
 	int snum=Integer.parseInt(request.getParameter("snum"));
+    	   
     
     String sname=request.getParameter("sname");
 	String saddr=request.getParameter("saddr");

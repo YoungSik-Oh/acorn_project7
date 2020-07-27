@@ -1,5 +1,5 @@
 <%-- <%@page import="project.review.dao.ReviewDao"%>
-<%@page import="project.review.dto.ReviewDto"%> --%>
+<%@page import="project.review.dto.ReviewDto"%>
 <%@page import="project.user.dao.UserDao"%>
 <%@page import="project.user.dto.UserDto"%>
 <%@page import="project7.store.dto.StoreDto"%>
@@ -21,8 +21,8 @@
     UserDao dao=UserDao.getInstance();
     
     //review 테이블에서 쓸 것
-  /*   List<ReviewDto> list2=ReviewDao.getInstance().getList();
-    ReviewDto dto2=new ReviewDto(); */
+    List<ReviewDto> list2=ReviewDao.getInstance().getList();
+    ReviewDto dto2=new ReviewDto(); 
     
 %>
 <!DOCTYPE html>
@@ -176,17 +176,17 @@ function displayMarker(place) {
          </tr>
       </tbody>
    </table>
-   <figcaption class="figure-caption text-right">업데이트 날짜 :이하동문<%--<%=dto.getUdate()%> --%></figcaption>
+   <figcaption class="figure-caption text-right">업데이트 날짜 :이하동문<%=dto.getUdate()%></figcaption>
    <hr style="clear:left" />
    <h6><figcaption class="figure-caption">식당 소개</figcaption></h6>
    <p>어쩌구 저쩌구저쩌구저쩌구</p>
    <hr style="clear:left" />
-  <%--  <h4>리뷰(<%=list.size() %>)</h4> --%>
+	<h4>리뷰(<%=list.size() %>)</h4>
       <table class="table table-hover">
          <tbody>
-         <%--여기가 찐 리뷰임 위에거는 자리채우기용 연습 --%>
+         여기가 찐 리뷰임 위에거는 자리채우기용 연습
             
-               <%-- <%for(ReviewDto tmp2:list2){%>
+               <%for(ReviewDto tmp2:list2){%>
                <tr>
                   <td>
                   <%if(dao.getData(tmp2.getR_writer()).getUserProfile()==null){ %>
@@ -205,10 +205,10 @@ function displayMarker(place) {
                      <%} %>
                   </td>
                </tr>
-               <%} %> --%>
+               <%} %>
          </tbody>
       </table>
 </div>
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </body>
-</html>
+</html> --%>

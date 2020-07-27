@@ -119,7 +119,7 @@
 	    </div>
 	    <div class="col-md-8">
 	      <div class="card-body">
-	        <h5 class="card-title"> <%=tmp.getSname() %> <a href="${pageContext.request.contextPath}/board/fooddetail.jsp?snum=<%=tmp.getSnum()%>">Card title</a></h5>
+	        <h5 class="card-title"> <%=tmp.getSname() %> <a href="${pageContext.request.contextPath}/review/fooddetail.jsp?snum=<%=tmp.getSnum()%>">Card title</a></h5>
 	        <p class="card-text"><%=tmp.getContents() %>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 	        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 	      </div>

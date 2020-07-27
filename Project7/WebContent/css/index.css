@@ -15,7 +15,7 @@
    }
    
    .jumbotron {
-	 	  background-image : url("https://www.kfoodtimes.com/news/photo/201811/6217_9608_1026.PNG");
+	 	  background-image : url("/images/index_mainC.jpg");
 		  background-size : cover; 
 		  background-repeat : no-repeat;
  		  background-position : center center; 
