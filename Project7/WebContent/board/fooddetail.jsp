@@ -10,15 +10,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%
     //StoreDao 객체를 이용해서 글 목록 얻어오기
+    int snum=Integer.parseInt(request.getParameter("snum"));
+	StoreDto dto=StoreDao.getInstance().getData(snum);
+	application.setAttribute("snum",snum);
+	
     String id=(String)session.getAttribute("id");
     
-    int snum=Integer.parseInt(request.getParameter("snum"));
-    
-   StoreDto dto=StoreDao.getInstance().getData(snum);
-
-   application.setAttribute("snum",snum);
-
-     
     UserDao dao=UserDao.getInstance();   
     
     //review 테이블에서 쓸 것
@@ -33,18 +30,52 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 <style>
-   #profileImage{
-   width:50px;
-   height:50px;
-   border: 1px solid #cecece;
-   border-radius: 50%;
-   }
+	#rcaption{
+		font-size: 2px;
+	}
+	
+	.iconn{
+		float: right;
+	}
+	body{
+		
+	
+	}
+	.s_p{
+		width: 350px;
+		height: 350px;
+		padding: 10px;
+	}
+	#test {
+		width: 100%;
+	}
+	.test{
+	
+	}
+	
+	th{
+		width:150px;
+	}
+	tr, th, td{
+		padding:5px;
+	}
+	.right{
+		float:right;
+	}
+	
+	 #profileImage{
+	 width:50px;
+	 height:50px;
+	 border: 1px solid #cecece;
+	 border-radius: 50%;
+	 cusor: pointer;
+	 }
 </style>
 </head>
 <body>
 <div class="container">
   <div class="row">
-    <div class="col-sm-8 col-md-6" > <img style="height:300px; width:500px;" class="s_p"  %> </div>
+    <div class="col-sm-8 col-md-6" > <img style="height:300px; width:500px;" class="s_p" > </div>
     <div class="col-sm-4 col-md-6 ">
          <div class="s_p" id="map" style="height:300px; width:500px;"></div>
      </div>
@@ -187,12 +218,13 @@ function displayMarker(place) {
                      <%=tmp2.getR_regdate() %><br/>
                         <%=tmp2.getR_content() %><br/>
                      <%if(tmp2.getR_imagePath() != null) { %>
-                        <img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>" />
+                        <img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>"  onError="this.style.display='none'" />
+							
                      <%} %>
                   </td>
                   <%if(tmp2.getR_writer().equals(id)){ %>
                   <td>
-                  <input type="hidden" name="snum"  value="<%=dto.getSnum()%>"/>
+                  <input type="hidden" id="snum" name="snum"  value="<%=dto.getSnum()%>"/>
                   <a href="javascript:deleteConfirm(<%=tmp2.getR_num()%>)">삭제</a>
                   </td>
                   <%} %>

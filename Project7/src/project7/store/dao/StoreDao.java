@@ -62,8 +62,8 @@ public class StoreDao {
 		try {
 			conn= new DbcpBean().getConn();
 			String sql ="insert into store"
-					+ "	(s_num, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, udate, s_imgpath, contents)"
-					+ "	values(store_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,sysdate,?,?)";
+					+ "	 (s_num, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, udate, s_imgpath, contents)"
+					+ "	 values(store_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,sysdate,?,?)";
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getSname());
 				pstmt.setString(2, dto.getSaddr());
@@ -135,11 +135,11 @@ public class StoreDao {
 			String sql="SELECT *"
 					+ "	FROM"
 					+ " (SELECT result1.*, ROWNUM AS rnum"
-					+ "	FROM"
+					+ "	 FROM"
 					+ " (SELECT s_num, sname, smenu, contents, udate, s_imgpath "
-					+ " FROM store"
-					+ " ORDER BY s_num DESC) result1)"
-					+ "	where rnum BETWEEN ? AND ?";
+					+ "  FROM store"
+					+ "  ORDER BY s_num DESC) result1)"
+					+ "	 where rnum BETWEEN ? AND ?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getStartRowNum());
 			pstmt.setInt(2, dto.getEndRowNum());
@@ -256,10 +256,10 @@ public class StoreDao {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		try {
+		try {	
 			conn=new DbcpBean().getConn();
 		String sql="select sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, contents,udate,s_imgpath "
-				+ "from store"
+				+ " from store"
 				+ "	where s_num=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, snum);
