@@ -8,7 +8,7 @@
 <% 
 	String adminName=(String)session.getAttribute("adminName");
 	//한 페이지에 나타낼 row 의 갯수
-	final int PAGE_ROW_COUNT=5;
+	final int PAGE_ROW_COUNT=10;
 	//하단 디스플레이 페이지 갯수
 	final int PAGE_DISPLAY_COUNT=5;
 	
@@ -69,12 +69,13 @@
 	<%} %>
 	
 <p> <!-- logo 들어갈 자리 -->
-	<a href="${pageContext.request.contextPath}/index.jsp">홈페이지</a>
+	<a href="${pageContext.request.contextPath}/index.jsp">홈페이지(logo)</a>
 </p>
-<ul>
-	<li><a href="${pageContext.request.contextPath}/admin/admin_userList.jsp">회원 목록</a></li>
 
-</ul>
+	
+	  	<a style="text-align:center;" href="${pageContext.request.contextPath}/admin/admin_userList.jsp">회원 목록</a>
+ 
+
 
 <h2>게시글 List </h2>
 <a href="admin_store/admin_store_insertform.jsp"><span style="float:right; padding-bottom:5px;">글작성하기</span></a>
@@ -136,9 +137,10 @@
 			<%} %>
 		</ul>
 	</div>
+<hr />
 </div>	
 
-
+<%@include file="footer.jsp" %>
 </body>
 <script>
 function deleteConfirm(snum){

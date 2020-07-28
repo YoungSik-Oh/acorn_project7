@@ -54,7 +54,9 @@
 	.foodMenu{
 /* 		opacity : 0.3 */
 	}
-	
+	.nav-item{
+		padding-left: 10px;
+	}
 	.info{
 		position : absolute;
 		top : 95px;

@@ -92,34 +92,7 @@ public class ReviewDao {
 				return false;
 			}
 		}
-		public int getSequence() {
-			ReviewDto dto=null;
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			try {
-				//Connection 객체의 참조값 얻어오기 
-				conn = new DbcpBean().getConn();
-				//실행할 sql 문 준비하기
-				String sql="select review_seq.NEXTVAL AS snum FROM DUAL";
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				//반복문 돌면서 결과 값 추출하기 
-				if(rs.next()) {
-					dto=new ReviewDto();
-					dto.setR_num(rs.getInt("snum"));
-				}
-				}catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					if (rs != null)rs.close();
-					if (pstmt != null)pstmt.close();
-					if (conn != null)conn.close();
-				} catch (Exception e) {	}
-			}
-			return 0;
-		}
+		
 		//글 하나의 정보를 저장하는 메소드
 		public boolean insert(ReviewDto dto) {
 			Connection conn = null;
@@ -131,7 +104,7 @@ public class ReviewDao {
 				//실행할 sql 문 준비하기 
 				String sql = "INSERT INTO review"
 						+ " (r_num, r_writer, r_content, r_imagePath, r_regdate)"
-						+ " VALUES(?, ?, ?, ?, sysdate)";
+						+ " VALUES(r_num_seq.NEXTVAL, ?, ?, ?, sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				//? 에 바인딩 할 값이 있으면 바인딩한다.
 				pstmt.setInt(1, dto.getR_num());
