@@ -27,8 +27,8 @@ public class UserDao {
 		try {
 			conn= new DbcpBean().getConn();
 			String sql ="insert into user_info"
-					+ " (userName, userId, userPw, userGender, userPhone, userEmail, regdate)"
-					+ "	values(?,?,?,?,?,?,sysdate)";
+					+ " (userName, userId, userPw, userGender, userPhone, userEmail, regdate, userprofile)"
+					+ "	values(?,?,?,?,?,?,sysdate,?)";
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getUserName());
 				pstmt.setString(2, dto.getUserId());
@@ -36,6 +36,7 @@ public class UserDao {
 				pstmt.setString(4, dto.getUserGender());
 				pstmt.setString(5, dto.getUserPhone());
 				pstmt.setString(6, dto.getUserEmail());
+				pstmt.setString(7, dto.getUserProfile());
 				flag=pstmt.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -206,7 +207,7 @@ public class UserDao {
 	
 	//인자로 전달된 id에 해당하는 정보를 리턴하는 메소드
 	public UserDto getData(String userid) {
-		//UserzDto객체의 참조값을 담을 지역변수 만들기
+		//UserDto객체의 참조값을 담을 지역변수 만들기
 		UserDto dto=null;
 		//필요한 객체의 참조값을 담을 지역변수 만들기
 		Connection conn = null;

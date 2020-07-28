@@ -15,7 +15,7 @@
    }
    
    .jumbotron {
-	 	  background-image : url("https://www.kfoodtimes.com/news/photo/201811/6217_9608_1026.PNG");
+	 	  background-image : url("../images/index_mainC.jpg");
 		  background-size : cover; 
 		  background-repeat : no-repeat;
  		  background-position : center center; 
@@ -54,7 +54,9 @@
 	.foodMenu{
 /* 		opacity : 0.3 */
 	}
-	
+	.nav-item{
+		padding-left: 10px;
+	}
 	.info{
 		position : absolute;
 		top : 95px;
@@ -63,6 +65,11 @@
   		display : none;  
 	    color : white;
 	    text-align : center;
+	}
+	
+	.info a{
+		text-decoration: none;
+		color : white;
 	}
 	
 	.bgBlack{
@@ -74,4 +81,12 @@
 		color : red;
 		background-color : #f8f9fa;
 		margin-bottom : 0;
+	}
+	
+	.card-img{
+		height : 225px;
+	}
+	
+	.space{
+		margin-right : 15px;
 	}

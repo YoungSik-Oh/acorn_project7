@@ -1,6 +1,6 @@
 CREATE TABLE store(
-   snum NUMBER PRIMARY KEY,
-   --titlepic VARCHAR2(100) NOT NULL,  --임시 생각중 (가게 썸네일용)
+   s_num NUMBER PRIMARY KEY,
+   s_imgpath VARCHAR2(300), -- 글 등록 이미지
    sname VARCHAR2(20) NOT NULL,    --가게이름
    saddr VARCHAR2(100) NOT NULL,    --가게주소
    sphone VARCHAR2(50) NOT NULL,    --가게번호

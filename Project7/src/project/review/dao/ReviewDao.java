@@ -104,7 +104,7 @@ public class ReviewDao {
 				//실행할 sql 문 준비하기 
 				String sql = "INSERT INTO review"
 						+ " (r_num, r_writer, r_content, r_imagePath, r_regdate)"
-						+ " VALUES(review_seq.NEXTVAL, ?, ?, ?, sysdate)";
+						+ " VALUES(r_num_seq.NEXTVAL, ?, ?, ?, sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				//? 에 바인딩 할 값이 있으면 바인딩한다.
 				pstmt.setString(1, dto.getR_writer());
@@ -129,5 +129,6 @@ public class ReviewDao {
 				return false;
 			}
 		}	
-	
+
+
 }

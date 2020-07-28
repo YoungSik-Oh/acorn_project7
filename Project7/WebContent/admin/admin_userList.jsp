@@ -4,7 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    	
+    
+	String adminName=(String)session.getAttribute("adminName");
+
 	  //MemberDao 객체의 참조값 얻어오기 
 	  	UserDao dao=UserDao.getInstance();
 	  	//회원 목록 얻어오기
@@ -24,13 +26,20 @@
 </style>
 </head>
 <body>
+	
 <div class="container">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/admin_index.jsp">Home</a></li>
 		<li class="breadcrumb-item active">회원목록</li>
+	
 	</ol>
-	<h1>회원 목록입니다.</h1>
+	<h1>회원 목록</h1>		
+		<%if(adminName !=null) {%>
+		<p style="float:right;"><strong><%=adminName %>님</strong> 안녕하세요. 
+			<a href="admin_logout.jsp">로그아웃</a></p>
+		<%} %>
 	<div class="userAdd"><a href="admin_userInsert_form.jsp">회원 추가</a></div>
+		
 	<table class="table table-sm">
 		<thead class="thead-dark">
 			<tr>

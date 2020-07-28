@@ -8,4 +8,3 @@
 	String cPath=request.getContextPath();
 	response.sendRedirect(cPath+"/bestfood.jsp");
 %>
-	

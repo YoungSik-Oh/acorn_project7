@@ -13,6 +13,7 @@
     <%
     //요청 인코딩 설정(한글 깨지지않게)
     request.setCharacterEncoding("utf-8");
+    
     String r_writer=(String)session.getAttribute("id");
     
     //업로드 설정
@@ -55,6 +56,8 @@
     String r_imagePath="";
     //작업의 성공 여부
     boolean isSuccess=false;
+    //글번호를 저장할 지역번수
+    int seq=0;
     try {
         //폼전송된 아이템 목록 얻어오기 
         List<FileItem> formItems = upload.parseRequest(request);
@@ -85,7 +88,6 @@
                 	//input type="file" 인것 이외의 전송된 input요소를 추출하는 위치
                 	
                 	if(item.getFieldName().equals("r_content")){
-
                 		r_content=item.getString("utf-8");
                 	}
                 	if(item.getFieldName().equals("r_writer")){
@@ -126,7 +128,7 @@
 	<%}else { %>
 	<p>
 		글 저장이 실패되었습니다.
-		<a href="private/review.jsp">다시 작성하기</a>
+		<a href="private/review_form.jsp">다시 작성하기</a>
 	</p>
 	<%} %>
 

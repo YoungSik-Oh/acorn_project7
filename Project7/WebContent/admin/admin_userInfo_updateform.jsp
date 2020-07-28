@@ -22,7 +22,7 @@
 </head>
 <body>
 <div class="container">
-	<h1>Admin 전용 회원 정보 수정 form</h1>
+	<h1> 회원 정보 수정 </h1>
 	<form action="admin_userInfo_update.jsp" method="post">
 	 <input type="hidden" name="userid" value="<%=dto.getUserId() %>"/>
 	  <div class="form-group">
