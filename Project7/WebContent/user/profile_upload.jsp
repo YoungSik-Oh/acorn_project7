@@ -44,9 +44,7 @@
     System.out.println(uploadPath);
     //전송된 파라미터의 한글 인코딩 설정 
     upload.setHeaderEncoding("utf-8");
-    
-    //폼 전송된 title
-    String title="";
+
     //WebContent안에서 이미지 파일이 저장된 경로
     String imageSrc="";
     
@@ -87,6 +85,5 @@
      	//예외가 발생했을 때 상황에 맞게 응답 - 에러메세지가 뜨게할 수도 있고 등등
         System.out.println(ex.getMessage());
     }
-   
 %>
 {"imageSrc":"<%=imageSrc %>"}
