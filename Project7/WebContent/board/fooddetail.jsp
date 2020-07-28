@@ -16,6 +16,7 @@
     
     int snum=Integer.parseInt(request.getParameter("snum"));
 	StoreDto dto=StoreDao.getInstance().getData(snum);
+	application.setAttribute("snum",snum);
   	
     UserDao dao=UserDao.getInstance();
     
@@ -74,25 +75,13 @@
 </style>
 </head>
 <body>
-<div class="container-fluid" id="test">
-	<div class="row">
-		<div class="col">
-			<img class="s_p" src="../images/1-1.jpg"/>
-		</div>
-		<div class="col">
-			<img src="../images/1.jpg" class="s_p" />
-		</div>
-		<div class="col">
-			<img src="../images/1.jpg" class="s_p" />
-		</div>
-		<div class="col">
-			<img src="../images/1.jpg" class="s_p" />
-		</div>
-		<div class="col">
-			<!-- 맛집 위치를 나타내는 지도   -->
-			<div class="s_p" id="map"></div>
-		</div>
-	</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-md-6" > <img style="height:300px; width:500px;" class="s_p"  %> </div>
+    <div class="col-sm-4 col-md-6 ">
+         <div class="s_p" id="map" style="height:300px; width:500px;"></div>
+     </div>
+  </div>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=43578d6ca94ca121ac810f9ca817dd36&libraries=services"></script>
 <script>
@@ -158,6 +147,7 @@ function displayMarker(place) {
 	 		 		<path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
 	  				<path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
 				</svg>
+			<input type="hidden" name="snum"  value="<%=dto.getSnum()%>"/>
 			<figcaption id="rcaption" class="figure-caption">리뷰쓰기</figcaption>
 			</a>
 				<h3>
@@ -246,6 +236,7 @@ function displayMarker(place) {
 						</td>
 						<%if(tmp2.getR_writer().equals(id)){ %>
 						<td>
+						<input type="hidden" name="snum"  value="<%=dto.getSnum()%>"/>
 						<a href="javascript:deleteConfirm(<%=tmp2.getR_num()%>)">삭제</a>
 						</td>
 						<%} %>
@@ -258,11 +249,11 @@ function displayMarker(place) {
 	function deleteConfirm(r_num){
 		var isDelete=confirm("작성하신 리뷰를 삭제 하시겠습니까?");
 		if(isDelete){
-			<input type="hidden" name="snum"  value="<%=tmp.getSnum()%>"/>
 			location.href="private/delete.jsp?r_num="+r_num;
 		}
 	}
 </script>
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<%@include file="../footer.jsp" %>
 </body>
 </html>

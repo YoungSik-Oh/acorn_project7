@@ -5,7 +5,6 @@
     pageEncoding="UTF-8"%>
     <%
     List<StoreDto> list= StoreDao.getInstance().getList();
-    
     %>
 <!DOCTYPE html>
 <html>

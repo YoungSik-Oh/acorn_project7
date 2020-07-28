@@ -1,3 +1,4 @@
+<%@page import="project7.store.dto.StoreDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
@@ -15,6 +16,7 @@
 <div class="container">
 <h1>리뷰 작성하는 곳.</h1>
 	<form action="../insert_test.jsp" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="snum"  value="${snum}"/>
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for="r_writer">아이디</label>
 		<input class="form-control" type="text" name="r_writer" id="r_writer" value=<%=id %> disabled /><br />
