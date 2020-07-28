@@ -12,12 +12,10 @@
     <%
     //StoreDao 객체를 이용해서 글 목록 얻어오기
     String id=(String)session.getAttribute("id");
-    
     int snum=Integer.parseInt(request.getParameter("snum"));
-    
 	StoreDto dto=StoreDao.getInstance().getData(snum);
-	List<StoreDto> list=StoreDao.getInstance().getList(dto);
-    UserDao dao=UserDao.getInstance();	
+	application.setAttribute("snum",snum);
+    UserDao dao=UserDao.getInstance();   
     //review 테이블에서 쓸 것
     List<ReviewDto> list2=ReviewDao.getInstance().getList();
     ReviewDto dto2=new ReviewDto();
@@ -29,177 +27,144 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
+<style>
+   #profileImage{
+   width:50px;
+   height:50px;
+   border: 1px solid #cecece;
+   border-radius: 50%;
+   }
+</style>
 </head>
 <body>
-<header>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container d-flex justify-content-between">
-      <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>우리 로고 넣기!!</strong>
-      </a>
-      
-      <div class="row">
-      	<nav class="navbar navbar-expand-lg navbar-light">
-  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-   			 <span class="navbar-toggler-icon"></span>
-  			</button>
-  			
-  	  		<div class="collapse navbar-collapse" id="navbarNav">
-	    		<ul class="navbar-nav">
-		      		<%if(id == null){ %>
-		      			<li class="nav-item">
-		        			<a class="space" class="nav-link" href="admin/admin_login_form.jsp">관리자 로그인 <span class="sr-only"></span></a>
-		      			</li>
-		      			<li class="nav-item">
-		       			    <a class="space" class="nav-link" href="user/loginform.jsp">로그인</a>
-		      			</li>
-		      			<li class="nav-item">
-		        			<a class="space" class="nav-link" href="user/signup_form.jsp">회원가입</a>
-		      			</li>
-		      		<%}else{ %>
-		      			<li class="nav-item">
-		      				<a class="space" href="${pageContext.request.contextPath}/user/info.jsp"><%=id %>님 환영합니다.</a>
-		      			</li>
-		      			<li class="nav-item">
-		      				<a class="space" href="${pageContext.request.contextPath}/user/logout.jsp">로그아웃</a>
-		      			</li>
-		      		<%} %>
-	    		</ul>
-  			</div>
-	     </nav>
-	  </div>
-    </div>
-  </div>
-</header>
 <div class="container">
   <div class="row">
-    <div class="col-sm-8 col-md-6" > <img style="height:300px; width:500px;" class="s_p" src="${pageContext.request.contextPath}<%=dto.getS_imgpath() %>"/> </div>
+    <div class="col-sm-8 col-md-6" > <img style="height:300px; width:500px;" class="s_p"  %> </div>
     <div class="col-sm-4 col-md-6 ">
-	  	 <div class="s_p" id="map" style="height:300px; width:500px;"></div>
+         <div class="s_p" id="map" style="height:300px; width:500px;"></div>
      </div>
   </div>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=43578d6ca94ca121ac810f9ca817dd36&libraries=services"></script>
-
-
 <script>
-// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
-var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
-// 장소 검색 객체를 생성합니다
-var ps = new kakao.maps.services.Places(); 
-// 키워드로 장소를 검색합니다
-ps.keywordSearch('대전광역시 서구 청사서로 14', placesSearchCB); 
-// 키워드 검색 완료 시 호출되는 콜백함수 입니다
-function placesSearchCB (data, status, pagination) {
-    if (status === kakao.maps.services.Status.OK) {
-        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-        // LatLngBounds 객체에 좌표를 추가합니다
-        var bounds = new kakao.maps.LatLngBounds();
-        for (var i=0; i<data.length; i++) {
-            displayMarker(data[i]);    
-            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-        }       
-        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-        map.setBounds(bounds);
-    } 
-}
-//지도에 마커를 표시하는 함수입니다
+   // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+   var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+   
+   var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+       mapOption = {
+           center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+           level: 3 // 지도의 확대 레벨
+       };  
+   // 지도를 생성합니다    
+   var map = new kakao.maps.Map(mapContainer, mapOption); 
+   // 장소 검색 객체를 생성합니다
+   var ps = new kakao.maps.services.Places(); 
+   // 키워드로 장소를 검색합니다
+   ps.keywordSearch('대전광역시 서구 청사서로 14', placesSearchCB); 
+   // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+   function placesSearchCB (data, status, pagination) {
+       if (status === kakao.maps.services.Status.OK) {
+           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+           // LatLngBounds 객체에 좌표를 추가합니다
+           var bounds = new kakao.maps.LatLngBounds();
+           for (var i=0; i<data.length; i++) {
+               displayMarker(data[i]);    
+               bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+           }       
+           // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+           map.setBounds(bounds);
+       } 
+   }
+// 지도에 마커를 표시하는 함수입니다
 function displayMarker(place) {
-// 마커를 생성하고 지도에 표시합니다
-var marker = new kakao.maps.Marker({
-    map: map,
-    position: new kakao.maps.LatLng(place.y, place.x) 
-});
-// 마커에 클릭이벤트를 등록합니다
-kakao.maps.event.addListener(marker, 'click', function() {
-    // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-    infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-    infowindow.open(map, marker);
-});
+    // 마커를 생성하고 지도에 표시합니다
+    var marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(place.y, place.x) 
+    });
+    // 마커에 클릭이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'click', function() {
+        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        infowindow.open(map, marker);
+    });
 }
 </script>
 
 <div class="container">
-	<div class="title_wrap">
-		<span>
-		 <a class="iconn" href="private/review_form.jsp?snum=<%=snum%>">
-			<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
- 		 		<path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
-  				<path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
-			</svg>
-			<figcaption id="rcaption" class="figure-caption">리뷰쓰기</figcaption>
-		</a>
-				<h3><%=dto.getSname()%> <strong><span>4.6</span></strong></h3>
-		 <figcaption class="figure-caption">조회수</figcaption>
-		</span>
-		<hr style="clear:left" />
-	</div>
-	<table style="width: 50%" class="table table-borderless">
-		<tbody>
-			<tr>
-				<th>주소</th>
-				<td><%=dto.getSaddr()%></td>
-			</tr>
-			<tr>
-				<th>전화번호</th>
-				<td><%=dto.getSphone()%></td>
-			</tr>
-			<tr>
-				<th>음식 종류</th>
-				<td><%=dto.getSmenu() %></td>
-			</tr>
-			<tr>
-				<th>가격대</th>
-				<td><%=dto.getSprice()%></td>
-			</tr>
-			<tr>
-				<th>영업시간</th>
-				<td><%=dto.getStime()%></td>
-			</tr>
-			<tr>
-				<th>쉬는시간</th>
-				<td><%=dto.getSbtime() %></td>
-			</tr>
-			<tr>
-				<th>마지막 주문</th>
-				<td><%=dto.getSlorder() %></td>
-			</tr>
-			<tr>
-				<th>휴일</th>
-				<td><%=dto.getSrday()%></td>
-			</tr>
-			<tr>
-				<th>메뉴</th>
-				<td>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Cras justo odio</li>
-						  <li class="list-group-item">Dapibus ac facilisis in</li>
-						  <li class="list-group-item">Morbi leo risus</li>
-						  <li class="list-group-item">Porta ac consectetur ac</li>
-						  <li class="list-group-item">Vestibulum at eros</li>
-					</ul>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<figcaption class="figure-caption text-right">업데이트 날짜 :<%=dto.getUdate()%></figcaption>
-	<hr style="clear:left" />
-	<h6><figcaption class="figure-caption">식당 소개</figcaption></h6>
-	<p>어쩌구 저쩌구저쩌구저쩌구</p>
-	<hr style="clear:left" />
-	<h4>리뷰(<%=list.size() %>)</h4>
+   <div class="title_wrap">
+      <span>
+
+       <a class="iconn" href="private/review.jsp">
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                 <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                 <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+            </svg>
+         <input type="hidden" name="snum"  value="<%=dto.getSnum()%>"/>
+
+         <figcaption id="rcaption" class="figure-caption">리뷰쓰기</figcaption>
+      </a>
+            <h3><%=dto.getSname()%> <strong><span>4.6</span></strong></h3>
+       <figcaption class="figure-caption">조회수</figcaption>
+      </span>
+      <hr style="clear:left" />
+   </div>
+   <table style="width: 50%" class="table table-borderless">
+      <tbody>
+         <tr>
+            <th>주소</th>
+            <td><%=dto.getSaddr()%></td>
+         </tr>
+         <tr>
+            <th>전화번호</th>
+            <td><%=dto.getSphone()%></td>
+         </tr>
+         <tr>
+            <th>음식 종류</th>
+            <td><%=dto.getSmenu() %></td>
+         </tr>
+         <tr>
+            <th>가격대</th>
+            <td><%=dto.getSprice()%></td>
+         </tr>
+         <tr>
+            <th>영업시간</th>
+            <td><%=dto.getStime()%></td>
+         </tr>
+         <tr>
+            <th>쉬는시간</th>
+            <td><%=dto.getSbtime() %></td>
+         </tr>
+         <tr>
+            <th>마지막 주문</th>
+            <td><%=dto.getSlorder() %></td>
+         </tr>
+         <tr>
+            <th>휴일</th>
+            <td><%=dto.getSrday()%></td>
+         </tr>
+         <tr>
+            <th>메뉴</th>
+            <td>
+               <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+               </ul>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+   <figcaption class="figure-caption text-right">업데이트 날짜 :<%=dto.getUdate()%></figcaption>
+   <hr style="clear:left" />
+   <h6><figcaption class="figure-caption">식당 소개</figcaption></h6>
+   <p>어쩌구 저쩌구저쩌구저쩌구</p>
+   <hr style="clear:left" />
+   <h4>리뷰(<%=list2.size() %>)</h4>
       <table class="table table-hover">
          <tbody>
-         <%--여기가 찐 리뷰임 위에거는 자리채우기용 연습 --%>
             
                <%for(ReviewDto tmp2:list2){%>
                <tr>
@@ -207,7 +172,7 @@ kakao.maps.event.addListener(marker, 'click', function() {
                   <%if(dao.getData(tmp2.getR_writer()).getUserProfile()==null){ %>
                      <img id="profileImage" src="${pageContext.request.contextPath}/images/yellowbird.png"/>
                   <%}else{ %>
-                     <%=dao.getData(tmp2.getR_writer()).getUserProfile() %>
+                     <img id="profileImage" src="${pageContext.request.contextPath}<%=dao.getData(tmp2.getR_writer()).getUserProfile() %>"/>
                   <%} %>
                   <br/>
                      <%=tmp2.getR_writer() %>
@@ -215,9 +180,7 @@ kakao.maps.event.addListener(marker, 'click', function() {
                   <td>
                      <%=tmp2.getR_regdate() %><br/>
                         <%=tmp2.getR_content() %><br/>
-                     <%if(tmp2.getR_imagePath() != null) { %>
-                        <img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>" />
-                     <%} %>
+                        <img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>" onError="this.style.display='none'"/>
                   </td>
                   <%if(tmp2.getR_writer().equals(id)){ %>
                   <td>

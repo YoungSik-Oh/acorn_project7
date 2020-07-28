@@ -96,10 +96,8 @@
                 }//if
             }//for
         }//if
-        seq=ReviewDao.getInstance().getSequence();
         //업로드된 사진 정보를 dto에 담고
         ReviewDto dto=new ReviewDto();
-        dto.setR_num(seq);
         dto.setR_writer(r_writer);
         dto.setR_content(r_content);
         dto.setR_imagePath(r_imagePath);
@@ -123,8 +121,8 @@
 <h1>알림</h1>
 	<%if(isSuccess) { %>
 	<p>
-		<strong><%=r_writer %></strong>님이 작성한 리뷰가 저장되었습니다. 여기서도 snum받아와야함
-		<a href="fooddetail.jsp">확인</a>
+		<strong><%=r_writer %></strong>님이 작성한 리뷰가 저장되었습니다.
+		<a href="fooddetail.jsp?snum=${snum }">확인</a>
 	</p>
 	<%}else { %>
 	<p>
