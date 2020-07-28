@@ -82,11 +82,10 @@
 %>
 <body>
  <header>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
+  <div class="navbar navbar-dark shadow-sm">
     <div class="container d-flex justify-content-between">
-      <a href="index.jsp" class="navbar-brand d-flex align-items-center">
-        
-      <a href="${pageContext.request.contextPath}/index.jsp"><img src="${pageContext.request.contextPath}/images/logo.png"/></a>
+      <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand d-flex align-items-center">
+      <img src="${pageContext.request.contextPath}/images/logo.png"/>
       </a>
       
       <div class="row">
@@ -208,7 +207,7 @@
          	    </div>
             </div>
       	
-      	<%} %>
+      	<%} %> 
       
       </div>
     </div>

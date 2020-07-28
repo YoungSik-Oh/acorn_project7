@@ -7,15 +7,20 @@
 <%@page import="project.board.dao.BoardDao"%>
 <%@page import="project.board.dto.BoardDto"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%
     //StoreDao 객체를 이용해서 글 목록 얻어오기
     String id=(String)session.getAttribute("id");
+    
     int snum=Integer.parseInt(request.getParameter("snum"));
-	StoreDto dto=StoreDao.getInstance().getData(snum);
-	application.setAttribute("snum",snum);
+    
+   StoreDto dto=StoreDao.getInstance().getData(snum);
+
+   application.setAttribute("snum",snum);
+
+     
     UserDao dao=UserDao.getInstance();   
+    
     //review 테이블에서 쓸 것
     List<ReviewDto> list2=ReviewDao.getInstance().getList();
     ReviewDto dto2=new ReviewDto();
@@ -46,6 +51,7 @@
   </div>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=43578d6ca94ca121ac810f9ca817dd36&libraries=services"></script>
+
 <script>
    // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
    var infowindow = new kakao.maps.InfoWindow({zIndex:1});
@@ -180,7 +186,9 @@ function displayMarker(place) {
                   <td>
                      <%=tmp2.getR_regdate() %><br/>
                         <%=tmp2.getR_content() %><br/>
-                        <img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>" onError="this.style.display='none'"/>
+                     <%if(tmp2.getR_imagePath() != null) { %>
+                        <img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>" />
+                     <%} %>
                   </td>
                   <%if(tmp2.getR_writer().equals(id)){ %>
                   <td>
