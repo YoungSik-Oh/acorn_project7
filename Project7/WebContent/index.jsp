@@ -38,7 +38,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
  <%
    //한 페이지에 나타낼 row 의 갯수
-   final int PAGE_ROW_COUNT=5;
+   final int PAGE_ROW_COUNT=9;
    //하단 디스플레이 페이지 갯수
    final int PAGE_DISPLAY_COUNT=5;
    
@@ -165,7 +165,7 @@
           <div class="card mb-4 shadow-sm bgBlack">
          	<img style="height : 225px;" src="${pageContext.request.contextPath}/images/fastfood.jpg">
           	<div class="info">
-          		<a href="bestfood.jsp"><h2>분식</h2></a>
+          		<a href="bestfood.jsp"><h2>패스트 푸드</h2></a>
           	</div>
           </div>
         </div>
@@ -173,7 +173,7 @@
           <div class="card mb-4 shadow-sm bgBlack">
           	<img style="height : 225px;" src="${pageContext.request.contextPath}/images/snack.jpg">
           	<div class="info">
-          		<a href="bestfood.jsp"><h2>패스트 푸드</h2></a>
+          		<a href="bestfood.jsp"><h2>분식</h2></a>
           	</div>
           </div>
         </div>

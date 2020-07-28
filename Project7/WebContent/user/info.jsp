@@ -18,19 +18,24 @@
 <style>
 /* 이미지를 작은 원형으로 만든다 */
 	#profileImage{
-		width: 50px;
-		height: 50px;
+		width: 100px;
+		height: 100px;
 		border: 1px solid #cecece;
 		border-radius: 50%;
 	}
+	
+	a{
+		text-decoration : none;
+	}
 </style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
 <div class="container">
 	<h1>개인정보 페이지</h1>
-	<table>
+	<table class="table table-striped">
 		<tr>
-			<th>프로필 이미지</th>
+			<th scope="col">프로필 이미지</th>
 			<%if(dto.getUserProfile()==null){ %>
 				<td><img id="profileImage" src="${pageContext.request.contextPath}/images/yellowbird.png"/></td>
 			<%} else { %>
@@ -38,36 +43,36 @@
 			<%} %>	
 		</tr>
 		<tr>
-			<th>이름</th>
+			<th scope="col">이름</th>
 			<td><%=dto.getUserName() %></td>
 		</tr>
 		<tr>
-			<th>아이디</th>
+			<th scope="col">아이디</th>
 			<td><%=dto.getUserId() %></td>
 		</tr>
 		<tr>
-			<th>비밀번호</th>
+			<th scope="col">비밀번호</th>
 			<td><a href="pwd_updateform.jsp">수정하기</a></td>
 		</tr>
 		<tr>
-			<th>성별</th>
+			<th scope="col">성별</th>
 			<td><%=dto.getUserGender() %></td>
 		</tr>
 		<tr>
-			<th>전화번호</th>
+			<th scope="col">전화번호</th>
 			<td><%=dto.getUserPhone() %></td>
 		</tr>
 		<tr>
-			<th>이메일</th>
+			<th scope="col">이메일</th>
 			<td><%=dto.getUserEmail() %></td>
 		</tr>
 		<tr>
-			<th>가입일</th>
+			<th scope="col">가입일</th>
 			<td><%=dto.getUserRegdate() %></td>
 		</tr>
 	</table>
-	<a href="updateform.jsp">개인정보 수정</a>
-	<a href="javascript:deleteConfirm()">탈퇴</a>
+	<button class="btn btn-outline-primary"><a href="updateform.jsp">개인정보 수정</a></button>
+	<button class="btn btn-outline-danger"><a href="javascript:deleteConfirm()">탈퇴</a></button>
 </div>
 <script>
 	function deleteConfirm(){
