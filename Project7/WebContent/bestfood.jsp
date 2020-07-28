@@ -42,7 +42,6 @@
    dto.setEndRowNum(endRowNum);
 
     List<StoreDto> list= StoreDao.getInstance().getList(dto);
-    
     %>
 <!DOCTYPE html>
 <html>

@@ -107,13 +107,12 @@ public class ReviewDao {
 				//실행할 sql 문 준비하기 
 				String sql = "INSERT INTO review"
 						+ " (r_num, r_writer, r_content, r_imagePath, r_regdate)"
-						+ " VALUES(?, ?, ?, ?, sysdate)";
+						+ " VALUES(review_seq.NEXTVAL, ?, ?, ?, sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				//? 에 바인딩 할 값이 있으면 바인딩한다.
-				pstmt.setInt(1, dto.getR_num());
-				pstmt.setString(2, dto.getR_writer());
-				pstmt.setString(3, dto.getR_content());
-				pstmt.setString(4, dto.getR_imagePath());
+				pstmt.setString(1, dto.getR_writer());
+				pstmt.setString(2, dto.getR_content());
+				pstmt.setString(3, dto.getR_imagePath());
 				//sql  문 수행하고 update or insert or delete 된 row 의 갯수 리턴받기 
 				flag = pstmt.executeUpdate();
 			} catch (Exception e) {

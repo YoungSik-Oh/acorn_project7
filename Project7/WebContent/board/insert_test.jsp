@@ -123,8 +123,8 @@
 <h1>알림</h1>
 	<%if(isSuccess) { %>
 	<p>
-		<strong><%=r_writer %></strong>님이 작성한 리뷰가 저장되었습니다. 여기서도 snum받아와야함
-		<a href="fooddetail.jsp">확인</a>
+		<strong><%=r_writer %></strong>님이 작성한 리뷰가 저장되었습니다.
+		<a href="fooddetail.jsp?snum=${snum }">확인</a>
 	</p>
 	<%}else { %>
 	<p>
