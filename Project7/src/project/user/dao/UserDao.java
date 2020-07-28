@@ -225,7 +225,7 @@ public class UserDao {
 			rs=pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기
 			if(rs.next()) {
-				//UserzDto 객체를 생성하고
+				//UserDto 객체를 생성하고
 				dto=new UserDto();
 				//select된 결과를 BoardDto객체에 담는다.
 				dto.setUserName(rs.getString("userName"));

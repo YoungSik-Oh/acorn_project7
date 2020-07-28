@@ -211,7 +211,7 @@ function displayMarker(place) {
 	<h6><figcaption class="figure-caption">식당 소개</figcaption></h6>
 	<p>어쩌구 저쩌구저쩌구저쩌구</p>
 	<hr style="clear:left" />
-	<h4>리뷰(<%=list.size() %>)</h4>
+	<h4>리뷰(<%=list2.size() %>)</h4>
 		<table class="table table-hover">
 			<tbody>
 			<%--여기가 찐 리뷰임 위에거는 자리채우기용 연습 --%>
