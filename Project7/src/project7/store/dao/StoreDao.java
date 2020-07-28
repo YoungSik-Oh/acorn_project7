@@ -62,7 +62,7 @@ public class StoreDao {
 		try {
 			conn= new DbcpBean().getConn();
 			String sql ="insert into store"
-					+ "	(s_num, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, udate, s_imgpath, contents)"
+					+ "	(snum, sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, udate, s_imgpath, contents)"
 					+ "	values(store_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,sysdate,?,?)";
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getSname());
@@ -101,7 +101,7 @@ public class StoreDao {
 			try {
 				conn = new DbcpBean().getConn();
 				String sql = "DELETE FROM store"
-						+ " WHERE s_num=?";
+						+ " WHERE snum=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, snum);
 				flag = pstmt.executeUpdate();
@@ -134,11 +134,11 @@ public class StoreDao {
 
 			String sql="SELECT *"
 					+ "	FROM"
-					+ " (SELECT result1.*, ROWNUM AS rnum"
+					+ " 	(SELECT result1.*, ROWNUM AS rnum"
 					+ "	FROM"
-					+ " (SELECT s_num, sname, smenu, contents, udate, s_imgpath "
-					+ " FROM store"
-					+ " ORDER BY s_num DESC) result1)"
+					+ " 		(SELECT snum, sname, smenu, contents, udate, s_imgpath "
+					+ " 		FROM store"
+					+ " 		ORDER BY snum DESC) result1)"
 					+ "	where rnum BETWEEN ? AND ?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getStartRowNum());
@@ -147,7 +147,7 @@ public class StoreDao {
 			while(rs.next()) {
 				//현재 커서가 위치한 곳의 글 정보를 읽어서 BoardDto객체에 담은 다음
 				StoreDto tdo=new StoreDto();
-				tdo.setSnum(rs.getInt("s_num"));
+				tdo.setSnum(rs.getInt("snum"));
 				tdo.setSname(rs.getString("sname"));
 				tdo.setSmenu(rs.getString("smenu"));
 				tdo.setContents(rs.getString("contents"));
@@ -213,7 +213,7 @@ public class StoreDao {
 		conn=new DbcpBean().getConn();
 		String sql="UPDATE store"
 			     +" SET sname=?, saddr=?, sphone=?, stmenu=?, sprice=?, stime=?, sbtime=?, slorder=?, srday=?, smenu=?, contents=?"
-			     +" WHERE s_num=?";
+			     +" WHERE snum=?";
 		pstmt=conn.prepareStatement(sql);
 		pstmt.setString(1, dto.getSname());
 		pstmt.setString(2, dto.getSaddr());
@@ -259,7 +259,7 @@ public class StoreDao {
 			conn=new DbcpBean().getConn();
 		String sql="select sname, saddr, sphone, stmenu, sprice, stime, sbtime, slorder, srday, smenu, contents,udate,s_imgpath "
 				+ "from store"
-				+ "	where s_num=?";
+				+ "	where snum=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, snum);
 			rs=pstmt.executeQuery();

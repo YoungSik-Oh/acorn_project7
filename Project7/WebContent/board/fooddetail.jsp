@@ -10,8 +10,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    //StoreDao 객체를 이용해서 글 목록 얻어오기
-    String id=(String)session.getAttribute("id");
     
     int snum=Integer.parseInt(request.getParameter("snum"));
 	StoreDto dto=StoreDao.getInstance().getData(snum);
@@ -24,6 +22,7 @@
     ReviewDto dto2=new ReviewDto();
     
 %>
+<%@include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -211,7 +210,8 @@ function displayMarker(place) {
 						<%if(dao.getData(tmp2.getR_writer()).getUserProfile()==null){ %>
 							<img id="profileImage" src="${pageContext.request.contextPath}/images/yellowbird.png"/>
 						<%}else{ %>
-							<%=dao.getData(tmp2.getR_writer()).getUserProfile() %>
+						<img id="profileImage" src="${pageContext.request.contextPath}<%=dao.getData(tmp2.getR_writer()).getUserProfile() %>"/>
+							
 						<%} %>
 						<br/>
 							<%=tmp2.getR_writer() %>
@@ -219,13 +219,13 @@ function displayMarker(place) {
 						<td>
 							<%=tmp2.getR_regdate() %><br/>
 								<%=tmp2.getR_content() %><br/>
-							<%if(tmp2.getR_imagePath() != null) { %>
-								<img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>" />
-							<%} %>
+							
+								<img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>"  onError="this.style.display='none'" />
+							
 						</td>
 						<%if(tmp2.getR_writer().equals(id)){ %>
 						<td>
-						<input type="hidden" name="snum"  value="<%=dto.getSnum()%>"/>
+						<input type="hidden" id="snum" name="snum"  value="<%=dto.getSnum()%>"/>
 						<a href="javascript:deleteConfirm(<%=tmp2.getR_num()%>)">삭제</a>
 						</td>
 						<%} %>

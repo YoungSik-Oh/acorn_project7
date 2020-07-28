@@ -6,5 +6,5 @@
 	int r_num=Integer.parseInt(request.getParameter("r_num"));
 	ReviewDao.getInstance().delete(r_num);
 	String cPath=request.getContextPath();
-	response.sendRedirect(cPath+"/bestfood.jsp");
+	response.sendRedirect(cPath+"/board/fooddetail.jsp?snum="+application.getAttribute("snum"));
 %>

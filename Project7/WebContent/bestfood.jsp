@@ -41,7 +41,6 @@
    StoreDto dto=new StoreDto();
    dto.setStartRowNum(startRowNum);
    dto.setEndRowNum(endRowNum);
-
     List<StoreDto> list= StoreDao.getInstance().getList(dto);
 
     %>
@@ -60,36 +59,10 @@
 </head>
 <%
    //id라는 키값으로 세션에 저장된 문자열이 있는지 읽어와 본다.
-   String id=(String)session.getAttribute("id");
+
 %>
 <body>
-<header>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container d-flex justify-content-between">
-      <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>우리 로고 넣기!!</strong>
-      </a>
-      <style>
-      	.space{
-      		margin-right : 15px;
-      	}
-      </style>
-      <ul class="login_info">
-      <%if(id!=null){ %> 
-      <li><a class="space" href="user/info.jsp"><%=id %>님 환영합니다.</a></li>
-      <li><a class="space" href="user/logout.jsp">로그아웃</a></li>
-      
-      <%}else{ %>
-          <li><a class="space" href="user/signup_form.jsp">회원가입</a></li>
-           <li><a class="space" href="user/loginform.jsp">로그인</a></li>
-           <li><a class="space" href="admin/admin_login_form.jsp">관리자 로그인</a></li>
-      <%} %>
-
-      </ul>
-    </div>
-  </div>
-</header>
+<%@include file="header.jsp" %>
 <!-- 슬라이드쇼 -->
 <div id="carousel" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -172,6 +145,7 @@
 </div>
 
       <hr />
+
 <%@include file="footer.jsp" %>
 </body>
 </html>

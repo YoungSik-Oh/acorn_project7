@@ -1,6 +1,5 @@
 CREATE TABLE store(
    s_num NUMBER PRIMARY KEY,
-   s_imgpath VARCHAR2(300), -- 글 등록 이미지
    sname VARCHAR2(20) NOT NULL,    --가게이름
    saddr VARCHAR2(100) NOT NULL,    --가게주소
    sphone VARCHAR2(50) NOT NULL,    --가게번호
@@ -13,6 +12,7 @@ CREATE TABLE store(
    contents CLOB NOT NULL,
    smenu VARCHAR2(20) NOT NULL, -- 가게 음식 메뉴
    udate DATE      --업데이트 날짜
+   s_imgpath VARCHAR2(300), -- 글 등록 이미지
 );
 
 CREATE SEQUENCE store_seq;
