@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
+
 </head>
 <%
 	int snum=Integer.parseInt(request.getParameter("snum"));
@@ -17,6 +18,7 @@
 <div class="container">
 <h3><%=dto.getSname() %><strong><span>4.6</span></strong></h3>
 	 <figcaption class="figure-caption">조회수</figcaption>
+		<a href="store_detail_modifyform.jsp?snum=<%=snum %>">수정하기</a>
 <table class="table table-borderless">
 		<tbody>
 			<tr>
@@ -55,11 +57,12 @@
 				<th>메뉴</th>
 				<td><%=dto.getSmenu() %></td>
 			</tr>
+			<tr>
+				<th>가게 소개</th>
+				<td><%=dto.getContents() %></td>
+			</tr>
 		</tbody>
 	</table>
-
-
-
 </div>
 </body>
 </html>

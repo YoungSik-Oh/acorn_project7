@@ -6,5 +6,6 @@ CREATE TABLE user_info(
 	userGender VARCHAR2(4)  NOT NULL,
 	userPhone VARCHAR2(15)  NOT NULL, 
 	userEmail VARCHAR2(20),
-	regdate Date
+	regdate Date,
+	userProfile VARCHAR2(100)
 );
