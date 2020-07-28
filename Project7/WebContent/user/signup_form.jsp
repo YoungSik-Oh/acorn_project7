@@ -30,7 +30,7 @@
 	
   	 	<h2 class="h_logo">로고 넣을 곳</h2>
 
-   <form action="${pageContext.request.contextPath}/user/signup.jsp" method="post" id="regForm">
+   <form action="${pageContext.request.contextPath}/user/signup.jsp" method="post" id="regForm" enctype=multipart/form-data>
   
       <div class="form-group col-md-4">
          <h5><label for="username">이름(필수)</label></h5>
@@ -69,6 +69,10 @@
          <h5><label for="useremail">본인 확인 이메일<span>(선택)</span></label></h5>
          <input type="text" class="form-control" id="useremail" name="useremail" placeholder="선택입력"/>
       </div>
+      <div class="form-group col-md-4">
+		<label for="image">프로필 이미지</label>
+		<input class="form-control-file" type="file" id="image" name="image"/>
+	  </div>
       <div class="form-group col-md-4">
       <button type="submit" class="btn btn-primary btn-lg">가입</button>
       <button type="reset" class="btn btn-secondary btn-lg">취소</button>

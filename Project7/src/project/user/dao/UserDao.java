@@ -27,8 +27,8 @@ public class UserDao {
 		try {
 			conn= new DbcpBean().getConn();
 			String sql ="insert into user_info"
-					+ " (userName, userId, userPw, userGender, userPhone, userEmail, regdate)"
-					+ "	values(?,?,?,?,?,?,sysdate)";
+					+ " (userName, userId, userPw, userGender, userPhone, userEmail, regdate, userprofile)"
+					+ "	values(?,?,?,?,?,?,sysdate,?)";
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getUserName());
 				pstmt.setString(2, dto.getUserId());
@@ -36,6 +36,7 @@ public class UserDao {
 				pstmt.setString(4, dto.getUserGender());
 				pstmt.setString(5, dto.getUserPhone());
 				pstmt.setString(6, dto.getUserEmail());
+				pstmt.setString(7, dto.getUserProfile());
 				flag=pstmt.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
