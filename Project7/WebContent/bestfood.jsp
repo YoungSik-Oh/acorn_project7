@@ -122,7 +122,7 @@
    <%for(StoreDto tmp:list){ %>
    <div class="card mb-3" style="max-width: 100%;">
      <div class="row no-gutters">
-       <div class="col-md-4"><img src="${pageContext.request.contextPath}<%=tmp.getS_imgpath() %>" class="card-img">
+       <div class="col-md-4"><img style="height:250px; width:300px;" src="${pageContext.request.contextPath}<%=tmp.getS_imgpath() %>" class="card-img">
        </div>
        <div class="col-md-8">
          <div class="card-body">
