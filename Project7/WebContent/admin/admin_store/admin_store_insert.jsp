@@ -39,6 +39,7 @@
 
 	    //WebContent 하위의 upload 폴더 절대 경로 얻어오기 
 	    String uploadPath = application.getRealPath("/upload");
+// 	    String uploadPath = application.getRealPath("D:/upload");
 	    //전송된 파라미터의 한글 인코딩 설정 
 	    upload.setHeaderEncoding("utf-8");
 	    

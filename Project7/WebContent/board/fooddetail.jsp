@@ -12,19 +12,14 @@
     <%
     //StoreDao 객체를 이용해서 글 목록 얻어오기
     String id=(String)session.getAttribute("id");
-    
     int snum=Integer.parseInt(request.getParameter("snum"));
-    
 	StoreDto dto=StoreDao.getInstance().getData(snum);
-
 	application.setAttribute("snum",snum);
 
     UserDao dao=UserDao.getInstance();	
-    
     //review 테이블에서 쓸 것
     List<ReviewDto> list2=ReviewDao.getInstance().getList();
     ReviewDto dto2=new ReviewDto();
-    
 %>
 <!DOCTYPE html>
 <html>
@@ -44,7 +39,7 @@
 <body>
 <div class="container">
   <div class="row">
-    <div class="col-sm-8 col-md-6" > <img style="height:300px; width:500px;" class="s_p"  %> </div>
+    <div class="col-sm-8 col-md-6" > <img src="${pageContext.request.contextPath }<%=dto.getS_imgpath() %>" style="height:300px; width:500px;" class="s_p"> </div>
     <div class="col-sm-4 col-md-6 ">
          <div class="s_p" id="map" style="height:300px; width:500px;"></div>
      </div>
@@ -170,7 +165,7 @@ function displayMarker(place) {
 	<h4>리뷰(<%=list2.size() %>)</h4>
 		<table class="table table-hover">
 			<tbody>
-				
+				 
 					<%for(ReviewDto tmp2:list2){%>
 					<tr>
 						<td>
@@ -197,6 +192,7 @@ function displayMarker(place) {
 						<%} %>
 					</tr>
 					<%} %>
+					
 			</tbody>
 		</table>
 </div>
@@ -208,7 +204,7 @@ function displayMarker(place) {
 		}
 	}
 </script>
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<hr/>
 <%@include file="../footer.jsp" %>
 </body>
 </html>
