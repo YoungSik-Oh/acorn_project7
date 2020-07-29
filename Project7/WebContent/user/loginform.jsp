@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="../header.jsp" %>
     <%
 	//url 파라미터가 넘어오는지 읽어와보기
 	String url=request.getParameter("url");
@@ -13,6 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/user/loginform.jsp</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
 	<div class="container">
@@ -22,13 +24,14 @@
 			<input type="hidden" name="url" value="<%=url %>"/>
 			<div class="form-group">
 				<label for="id">아이디</label>
-				<input type="text" name="id" id="id" />
+				<input class="form-control" type="text" name="id" id="id" />
 			</div>
 			<div class="form-group">
 				<label for="pwd">비밀번호</label>
-				<input type="password" name="pwd" id="pwd" />
+				<input class="form-control" type="password" name="pwd" id="pwd" />
 			</div>
-			<button type="submit">로그인</button>
+			<button class="btn  btn-outline-primary" type="submit">로그인</button>
+			<a class="btn btn-outline-danger" href="${pageContext.request.contextPath}/index.jsp">취소</a>
 		</form>
 	</div>
 </body>

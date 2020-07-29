@@ -9,9 +9,10 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="../header.jsp" %>
     <%
     //StoreDao 객체를 이용해서 글 목록 얻어오기
-    String id=(String)session.getAttribute("id");
+
     int snum=Integer.parseInt(request.getParameter("snum"));
 	StoreDto dto=StoreDao.getInstance().getData(snum);
 	application.setAttribute("snum",snum);
@@ -60,7 +61,7 @@
 	// 장소 검색 객체를 생성합니다
 	var ps = new kakao.maps.services.Places(); 
 	// 키워드로 장소를 검색합니다
-	ps.keywordSearch('대전광역시 서구 청사서로 14', placesSearchCB); 
+	ps.keywordSearch('강남역', placesSearchCB); 
 	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 	function placesSearchCB (data, status, pagination) {
 	    if (status === kakao.maps.services.Status.OK) {
