@@ -18,6 +18,7 @@
 		dto.setUserPw(pwd);
 		boolean isValid=UserDao.getInstance().isValid(dto);
 		//3. 유효한 정보이면 로그인 처리를 하고 응답
+		
 %>
 <!DOCTYPE html>
 <html>

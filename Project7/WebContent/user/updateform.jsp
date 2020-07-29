@@ -2,10 +2,10 @@
 <%@page import="project.user.dao.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="../header.jsp" %>
      <%
      	request.setCharacterEncoding("utf-8");
     	//세션에 저장된 아이디
-    	String id=(String)session.getAttribute("id");
     	//수정할 회원의 정보를 읽어온다
     	UserDto dto=UserDao.getInstance().getData(id);
     	

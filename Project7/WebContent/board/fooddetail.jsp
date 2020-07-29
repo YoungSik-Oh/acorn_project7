@@ -12,18 +12,14 @@
     <%
     //StoreDao 객체를 이용해서 글 목록 얻어오기
     String id=(String)session.getAttribute("id");
-    
     int snum=Integer.parseInt(request.getParameter("snum"));
-    
 	StoreDto dto=StoreDao.getInstance().getData(snum);
-	List<StoreDto> list=StoreDao.getInstance().getList(dto);
-  	
+	application.setAttribute("snum",snum);
+
     UserDao dao=UserDao.getInstance();	
-    
     //review 테이블에서 쓸 것
     List<ReviewDto> list2=ReviewDao.getInstance().getList();
     ReviewDto dto2=new ReviewDto();
-    
 %>
 <!DOCTYPE html>
 <html>
@@ -31,27 +27,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
+<style>
+	#profileImage{
+	width:50px;
+	height:50px;
+	border: 1px solid #cecece;
+	border-radius: 50%;
+	}
+</style>
 </head>
 <body>
-<div class="container-fluid" id="test">
-	<div class="row">
-		<div class="col">
-			<img class="s_p" src="../images/1-1.jpg"/>
-		</div>
-		<div class="col">
-			<img src="../images/1.jpg" class="s_p" />
-		</div>
-		<div class="col">
-			<img src="../images/1.jpg" class="s_p" />
-		</div>
-		<div class="col">
-			<img src="../images/1.jpg" class="s_p" />
-		</div>
-		<div class="col">
-			<!-- 맛집 위치를 나타내는 지도   -->
-			<div class="s_p" id="map"></div>
-		</div>
-	</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-md-6" > <img src="${pageContext.request.contextPath }<%=dto.getS_imgpath() %>" style="height:300px; width:500px;" class="s_p"> </div>
+    <div class="col-sm-4 col-md-6 ">
+         <div class="s_p" id="map" style="height:300px; width:500px;"></div>
+     </div>
+  </div>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=43578d6ca94ca121ac810f9ca817dd36&libraries=services"></script>
 <script>
@@ -102,11 +94,14 @@ function displayMarker(place) {
 <div class="container">
 	<div class="title_wrap">
 		<span>
-		 <a class="iconn" href="private/review_form.jsp?snum=<%=snum%>">
-			<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
- 		 		<path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
-  				<path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
-			</svg>
+
+		 <a class="iconn" href="private/review.jsp">
+				<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	 		 		<path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+	  				<path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+				</svg>
+			<input type="hidden" name="snum"  value="<%=dto.getSnum()%>"/>
+
 			<figcaption id="rcaption" class="figure-caption">리뷰쓰기</figcaption>
 		</a>
 				<h3><%=dto.getSname()%> <strong><span>4.6</span></strong></h3>
@@ -167,17 +162,17 @@ function displayMarker(place) {
 	<h6><figcaption class="figure-caption">식당 소개</figcaption></h6>
 	<p>어쩌구 저쩌구저쩌구저쩌구</p>
 	<hr style="clear:left" />
-	<h4>리뷰(<%=list.size() %>)</h4>
+	<h4>리뷰(<%=list2.size() %>)</h4>
 		<table class="table table-hover">
 			<tbody>
-				
+				 
 					<%for(ReviewDto tmp2:list2){%>
 					<tr>
 						<td>
 						<%if(dao.getData(tmp2.getR_writer()).getUserProfile()==null){ %>
 							<img id="profileImage" src="${pageContext.request.contextPath}/images/yellowbird.png"/>
 						<%}else{ %>
-							<%=dao.getData(tmp2.getR_writer()).getUserProfile() %>
+							<img id="profileImage" src="${pageContext.request.contextPath}<%=dao.getData(tmp2.getR_writer()).getUserProfile() %>"/>
 						<%} %>
 						<br/>
 							<%=tmp2.getR_writer() %>
@@ -185,17 +180,19 @@ function displayMarker(place) {
 						<td>
 							<%=tmp2.getR_regdate() %><br/>
 								<%=tmp2.getR_content() %><br/>
-							<%if(tmp2.getR_imagePath() != null) { %>
-								<img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>" />
-							<%} %>
+							
+								<img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>" onError="this.style.display='none'" />
+							
 						</td>
 						<%if(tmp2.getR_writer().equals(id)){ %>
 						<td>
+						<input type="hidden" name="snum"  value="<%=dto.getSnum()%>"/>
 						<a href="javascript:deleteConfirm(<%=tmp2.getR_num()%>)">삭제</a>
 						</td>
 						<%} %>
 					</tr>
 					<%} %>
+					
 			</tbody>
 		</table>
 </div>
@@ -203,11 +200,11 @@ function displayMarker(place) {
 	function deleteConfirm(r_num){
 		var isDelete=confirm("작성하신 리뷰를 삭제 하시겠습니까?");
 		if(isDelete){
-			
 			location.href="private/delete.jsp?r_num="+r_num;
 		}
 	}
 </script>
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<hr/>
+<%@include file="../footer.jsp" %>
 </body>
 </html>

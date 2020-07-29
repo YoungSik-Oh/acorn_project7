@@ -57,6 +57,12 @@ public class ReviewDto {
 	public void setR_regdate(String r_regdate) {
 		this.r_regdate = r_regdate;
 	}
+
+	@Override
+	public String toString() {
+		return "ReviewDto [r_num=" + r_num + ", r_writer=" + r_writer + ", r_content=" + r_content + ", r_imagePath="
+				+ r_imagePath + ", r_regdate=" + r_regdate + "]";
+	}
 	
 
 }

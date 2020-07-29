@@ -207,6 +207,7 @@ public class UserDao {
 	
 	//인자로 전달된 id에 해당하는 정보를 리턴하는 메소드
 	public UserDto getData(String userid) {
+		
 		//UserDto객체의 참조값을 담을 지역변수 만들기
 		UserDto dto=null;
 		//필요한 객체의 참조값을 담을 지역변수 만들기
