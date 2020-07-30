@@ -2,6 +2,7 @@
 <%@page import="project7.store.dto.StoreDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="../adminHeader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,5 +65,7 @@
 		</tbody>
 	</table>
 </div>
+<hr/>
+<%@include file="../../footer.jsp" %>
 </body>
 </html>

@@ -12,11 +12,9 @@
     <%@include file="../header.jsp" %>
     <%
     //StoreDao 객체를 이용해서 글 목록 얻어오기
-
     int snum=Integer.parseInt(request.getParameter("snum"));
 	StoreDto dto=StoreDao.getInstance().getData(snum);
 	application.setAttribute("snum",snum);
-
     UserDao dao=UserDao.getInstance();	
     //review 테이블에서 쓸 것
     List<ReviewDto> list2=ReviewDao.getInstance().getList();

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="../adminHeader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +54,7 @@
 	  </div>
 	  <div class="form-group">
 	    <label for="contents">가게 소개</label>
-	    <input type="text" class="form-control" id="contents" name="contents">`
+	    <input type="text" class="form-control" id="contents" name="contents">
 	  </div>
 	  <div class="form-group">
 		<label for="image">가게 이미지</label>
@@ -63,5 +64,7 @@
 	  <button type="reset" class="btn btn-danger" >입력 취소</button>
 	</form>
 </div>
+<hr/>
+<%@include file="../../footer.jsp" %>
 </body>
 </html>

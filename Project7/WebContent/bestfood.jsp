@@ -65,7 +65,7 @@
     <div class="container d-flex justify-content-between">
       <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand d-flex align-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>우리 로고 넣기!!</strong>
+        <strong>옥의티</strong>
       </a>
       <style>
       	.space{
@@ -115,16 +115,15 @@
   </a>
 </div><!-- 슬라이드쇼 종료 -->
 
-<div class="container">
-
+<div class="container" style="padding-top:30px;">
    <%for(StoreDto tmp:list){ %>
    <div class="card mb-3" style="max-width: 100%;">
      <div class="row no-gutters">
-       <div class="col-md-4"><img src="${pageContext.request.contextPath}<%=tmp.getS_imgpath() %>" class="card-img">
+       <div class="col-md-4"><img style="height : 250px; width : 300px;" src="${pageContext.request.contextPath}<%=tmp.getS_imgpath() %>" class="card-img">
        </div>
        <div class="col-md-8">
          <div class="card-body">
-           <h5 class="card-title"><a href="${pageContext.request.contextPath}/board/fooddetail.jsp?snum=<%=tmp.getSnum()%>"><%=tmp.getSname() %> </a></h5>
+           <h5 class="card-title"><a style="color : black" href="${pageContext.request.contextPath}/board/fooddetail.jsp?snum=<%=tmp.getSnum()%>"><%=tmp.getSname() %> </a></h5>
            <p class="card-text"><%=tmp.getContents() %></p>
            <p class="card-text"><small class="text-muted"><%=tmp.getUdate() %></small></p>
          </div>
@@ -167,8 +166,6 @@
       </ul>
    </div>
 </div>
-
-      <hr />
 <%@include file="footer.jsp" %>
 </body>
 </html>
