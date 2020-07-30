@@ -1,7 +1,7 @@
 -- 글 게시판
 CREATE TABLE board(
-	num NUMBER PRIMARY KEY ,
-	writer VARCHAR2(50)  NOT NULL,
+	num NUMBER PRIMRARY KEY , -- 게시판 번호
+	writer VARCHAR2(50)  NOT NULL, -- 
 	title VARCHAR2(100)  NOT NULL,
 	content CLOB  NOT NULL,
 	regdate DATE

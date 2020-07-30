@@ -9,16 +9,17 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%
-    //StoreDao 객체를 이용해서 글 목록 얻어오기
-    int snum=Integer.parseInt(request.getParameter("snum"));
-	StoreDto dto=StoreDao.getInstance().getData(snum);
-	application.setAttribute("snum",snum);
-	
     String id=(String)session.getAttribute("id");
+	
+    int snum=Integer.parseInt(request.getParameter("snum"));
+
     
-    UserDao dao=UserDao.getInstance();   
-    
+    	StoreDto dto=StoreDao.getInstance().getData(snum);
+
+    	application.setAttribute("snum",snum);
+  		UserDao dao=UserDao.getInstance();   
     //review 테이블에서 쓸 것
+    System.out.println("###############99");
     List<ReviewDto> list2=ReviewDao.getInstance().getList();
     ReviewDto dto2=new ReviewDto();
     
@@ -73,9 +74,38 @@
 </style>
 </head>
 <body>
+
+<header>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <strong>우리 로고 넣기!!</strong>
+      </a>
+      <style>
+      	.space{
+      		margin-right : 15px;	
+      	}
+      </style>
+      <ul class="login_info">
+      <%if(id!=null){ %> 
+      <li><a class="space" href="user/info.jsp"><%=id %>님 환영합니다.</a></li>
+      <li><a class="space" href="user/logout.jsp">로그아웃</a></li>
+      
+      <%}else{ %>
+          <li><a class="space" href="/user/signup_form.jsp">회원가입</a></li>
+           <li><a class="space" href="user/loginform.jsp">로그인</a></li>
+           <li><a class="space" href="admin/admin_login_form.jsp">관리자 로그인</a></li>
+      <%} %>
+
+      </ul>
+    </div>
+  </div>
+</header>
+
 <div class="container">
   <div class="row">
-    <div class="col-sm-8 col-md-6" > <img style="height:300px; width:500px;" class="s_p" > </div>
+    <div class="col-sm-8 col-md-6" > <img src="${pageContext.request.contextPath}<%=dto.getS_imgpath() %>" style="height:300px; width:500px;"  class="s_p" > </div>
     <div class="col-sm-4 col-md-6 ">
          <div class="s_p" id="map" style="height:300px; width:500px;"></div>
      </div>
@@ -127,7 +157,7 @@ function displayMarker(place) {
     });
 }
 </script>
-
+<%System.out.println("###################0"); %>
 <div class="container">
    <div class="title_wrap">
       <span>
@@ -184,6 +214,7 @@ function displayMarker(place) {
             <th>메뉴</th>
             <td>
                <ul class="list-group list-group-flush">
+               
                   <li class="list-group-item">Cras justo odio</li>
                     <li class="list-group-item">Dapibus ac facilisis in</li>
                     <li class="list-group-item">Morbi leo risus</li>
@@ -200,6 +231,7 @@ function displayMarker(place) {
    <p>어쩌구 저쩌구저쩌구저쩌구</p>
    <hr style="clear:left" />
    <h4>리뷰(<%=list2.size() %>)</h4>
+   <%System.out.println("###################1"); %>
       <table class="table table-hover">
          <tbody>
             
@@ -216,15 +248,12 @@ function displayMarker(place) {
                   </td>
                   <td>
                      <%=tmp2.getR_regdate() %><br/>
-                        <%=tmp2.getR_content() %><br/>
-                     <%if(tmp2.getR_imagePath() != null) { %>
-                        <img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>"  onError="this.style.display='none'" />
-							
-                     <%} %>
+                     <%=tmp2.getR_content() %><br/>
+                     <img style="width:120px; height:120px;" src="${pageContext.request.contextPath}<%=tmp2.getR_imagePath() %>"  onError="this.style.display='none'" />
                   </td>
                   <%if(tmp2.getR_writer().equals(id)){ %>
                   <td>
-                  <input type="hidden" id="snum" name="snum"  value="<%=dto.getSnum()%>"/>
+                  <input type="hidden" name="snum"  value="<%=dto.getSnum()%>"/>
                   <a href="javascript:deleteConfirm(<%=tmp2.getR_num()%>)">삭제</a>
                   </td>
                   <%} %>

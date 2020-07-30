@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
+  
    //한 페이지에 나타낼 row 의 갯수
    final int PAGE_ROW_COUNT=5;
    //하단 디스플레이 페이지 갯수
@@ -72,7 +73,7 @@
       </a>
       <style>
       	.space{
-      		margin-right : 15px;
+      		margin-right : 15px;	
       	}
       </style>
       <ul class="login_info">
@@ -81,7 +82,7 @@
       <li><a class="space" href="user/logout.jsp">로그아웃</a></li>
       
       <%}else{ %>
-          <li><a class="space" href="user/signup_form.jsp">회원가입</a></li>
+          <li><a class="space" href="/user/signup_form.jsp">회원가입</a></li>
            <li><a class="space" href="user/loginform.jsp">로그인</a></li>
            <li><a class="space" href="admin/admin_login_form.jsp">관리자 로그인</a></li>
       <%} %>
@@ -108,6 +109,7 @@
       <img class="slide-size" class="d-block w-100" src="${pageContext.request.contextPath}/images/container13.jpg" alt="Third slide">
     </div>
   </div>
+
   <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
@@ -118,7 +120,7 @@
   </a>
 </div><!-- 슬라이드쇼 종료 -->
 
-<div class="container">
+<div class="container" style="padding-top:20px;">
 
    <%for(StoreDto tmp:list){ %>
    <div class="card mb-3" style="max-width: 100%;">

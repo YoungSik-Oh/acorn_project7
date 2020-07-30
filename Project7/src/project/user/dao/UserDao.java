@@ -218,7 +218,7 @@ public class UserDao {
 			//실행할 sql 문 준비하기 
 			String sql = "SELECT username ,userpw, usergender, userphone, useremail, regdate, userprofile"
 					+ " FROM user_info"
-					+ " WHERE userid=?";
+					+ " WHERE userid=?";	
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩한다.
 			pstmt.setString(1, userid);
