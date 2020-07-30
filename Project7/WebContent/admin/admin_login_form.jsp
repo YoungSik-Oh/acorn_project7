@@ -1,46 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    	String adminName=request.getParameter("adminName");
-    %> 
+
+<%@include file="adminHeader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	body{
-		  align-items: center;
-	}
-</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
 <div class="container">
+	<h1>관리자 페이지</h1>
 	
-	<div class="card align-middle" style="width:20rem; border-radius:20px;">
-		<div class="card-title" style="margin-top:30px;">
-			<h2 class="card-title text-center" style="color:#113366;">관리자 로그인</h2>
-		</div>
-		<div class="card-body">
+	<form action="admin_login.jsp" method="post">
+		<div class="form-group">
+			<label for="adminName">관리자 이름</label>
+			<input class="form-control" type="text" name="adminName" id="adminName"/>
+		</div>	
+		<div class="form-group">
+			<label for="adminPw">관리자 비밀번호</label>
+			<input class="form-control" type="password" name="adminPw" id="adminPw" />
+		</div>		
+		<button class="btn btn-outline-primary" type="submit">로그인</button>
+		<a class="btn btn-outline-danger" href="${pageContext.request.contextPath}/index.jsp">취소</a>
 		
-      <form class="form-signin" action="admin_login.jsp" method="POST" >
-        <h5 class="form-signin-heading">로그인 정보를 입력하세요</h5>
-        
-	        <label for="adminName" class="sr-only">Your ID</label>
-	        <input type="text" id="adminName" name="adminName" class="form-control" placeholder="이름을 입력하세요" required autofocus><br />
-	        
-	        <label for="adminPw" class="sr-only">Password</label>
-	        <input type="password" id="adminPw" name="adminPw" class="form-control" placeholder="비밀번호를 입력하세요" required><br>
-
-	       	<button class="btn btn-lg btn-primary btn-block" type="submit">로 그 인</button><br />
-	       	<a class="btn btn-lg btn-primary btn-block" href="${pageContext.request.contextPath}/index.jsp">취소</a>
-      </form>
-      
-		</div>
-	</div>
-	
+	</form>
 </div>
-
+<div style="margin-bottom : 200px;"></div>
+<hr/>
+<%@include file="../footer.jsp" %>
 </body>
 </html>
