@@ -9,10 +9,11 @@
     
 	String adminName=(String)session.getAttribute("adminName");
 
-	  //MemberDao 객체의 참조값 얻어오기 
-	  	UserDao dao=UserDao.getInstance();
+	   
+		
 	  	//회원 목록 얻어오기
-	  	List<UserDto> list=dao.getList();
+	
+	  	 
 	  	
 	
 		//한 페이지에 나타낼 row 의 갯수
@@ -34,7 +35,7 @@
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 		
 		//전체 row 의 갯수를 읽어온다.
-		int totalRow=StoreDao.getInstance().getCount();
+		int totalRow=UserDao.getInstance().getCount();
 		//전체 페이지의 갯수 구하기
 		int totalPageCount=
 				(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
@@ -48,14 +49,11 @@
 			endPageNum=totalPageCount; //보정해준다. 
 		}		
 		// CafeDto 객체에 위에서 계산된 startRowNum 과 endRowNum 을 담는다.
-		StoreDto dto=new StoreDto();
+		UserDto dto=new UserDto();
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
 		
-		//1. DB 에서 글 목록을 얻어온다.
-		List<StoreDto> list2=StoreDao.getInstance().getList(dto);
-		//2. 글 목록을 응답한다.
-
+	  	List<UserDto> list=UserDao.getInstance().getList(dto);
 	
     %>
 <!DOCTYPE html>
@@ -118,13 +116,11 @@
 		<%} %>	
 		</tbody>
 	</table>
-	
-</div>
 	<div class="page-display">
 		<ul>
 			<%if(startPageNum != 1){ %>
 				<li>
-					<a href="list.jsp?pageNum=<%=startPageNum-1 %>">&laquo;</a>
+					<a href="admin_userList.jsp?pageNum=<%=startPageNum-1 %>">&laquo;</a>
 				</li>
 			<%}else{ %>
 				<li class="muted">
@@ -154,6 +150,9 @@
 		</ul>
 		<hr />
 	</div>
+	
+</div>
+	
 	<!-- Footer -->
 <footer class="page-footer font-small unique-color-dark">
   <div class="container text-center text-md-left mt-5">

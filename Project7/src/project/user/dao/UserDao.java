@@ -19,6 +19,38 @@ public class UserDao {
 		}
 		return dao;
 	}
+	// 페이징 처리 
+		public int getCount() {
+			int rowCount=0;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				conn = new DbcpBean().getConn();
+				String sql = "SELECT MAX(ROWNUM) AS count"
+						+ " FROM user_info";
+				pstmt = conn.prepareStatement(sql);
+				// ? 에 값 바인딩 
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					rowCount=rs.getInt("count");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (rs != null)
+						rs.close();
+					if (pstmt != null)
+						pstmt.close();
+					//connection pool 에 반납하기 
+					if (conn != null)
+						conn.close();
+				} catch (Exception e) {
+				}
+			}
+			return rowCount;
+		}
 	// 회원 가입
 	public boolean insert(UserDto dto) {
 		Connection conn=null;
@@ -53,27 +85,34 @@ public class UserDao {
 			}
 		}
 	//회원 목록 출력
-	public List<UserDto> getList(){
+	public List<UserDto> getList(UserDto dto){
 		List<UserDto> list=new ArrayList<>();
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			conn= new DbcpBean().getConn();
-			String sql="select * from user_info"
-					 + " order by regdate asc";
+			String sql="SELECT *"
+					+ "	FROM"
+					+ " (SELECT result1.*, ROWNUM AS rnum"
+					+ "	 FROM"
+					+ " (SELECT * FROM user_info"
+					+ "  ORDER BY regdate DESC) result1)"
+					+ "	 where rnum BETWEEN ? AND ?";
 				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, dto.getStartRowNum());
+				pstmt.setInt(2, dto.getEndRowNum());
 				rs=pstmt.executeQuery();
 				while(rs.next()) {
-					UserDto dto=new UserDto();
-					dto.setUserName(rs.getString("userName"));
-					dto.setUserId(rs.getString("userId"));
-					dto.setUserPw(rs.getString("userPw"));
-					dto.setUserGender(rs.getString("userGender"));
-					dto.setUserPhone(rs.getString("userPhone"));
-					dto.setUserEmail(rs.getString("userEmail"));
-					dto.setUserRegdate(rs.getString("Regdate"));
-					list.add(dto);
+					UserDto dto1=new UserDto();
+					dto1.setUserName(rs.getString("userName"));
+					dto1.setUserId(rs.getString("userId"));
+					dto1.setUserPw(rs.getString("userPw"));
+					dto1.setUserGender(rs.getString("userGender"));
+					dto1.setUserPhone(rs.getString("userPhone"));
+					dto1.setUserEmail(rs.getString("userEmail"));
+					dto1.setUserRegdate(rs.getString("Regdate"));
+					list.add(dto1);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -86,6 +125,7 @@ public class UserDao {
 			}
 		return list;
 	}
+	
 	//회원정보 수정
 	public boolean update(UserDto dto) {
 		Connection conn = null;
