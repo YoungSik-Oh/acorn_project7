@@ -23,7 +23,6 @@
 		      			</li>
 		      			<li class="nav-item">
 		       			    <a class="space" class="nav-link" href="${pageContext.request.contextPath}/user/loginform.jsp">로그인</a>
-		      			</li>
 		      			<li class="nav-item">
 		        			<a class="space" class="nav-link" href="${pageContext.request.contextPath}/user/signup_form.jsp">회원가입</a>
 		      			</li>
