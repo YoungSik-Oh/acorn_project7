@@ -34,5 +34,8 @@
 			<a class="btn btn-outline-danger" href="${pageContext.request.contextPath}/index.jsp">취소</a>
 		</form>
 	</div>
+	<div style="height : 200px;"></div>
+	<hr/>
+	<%@include file="../footer.jsp" %>
 </body>
 </html>

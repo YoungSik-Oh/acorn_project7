@@ -115,7 +115,7 @@
   </a>
 </div><!-- 슬라이드쇼 종료 -->
 
-<div class="container">
+<div class="container" style="padding-top:30px;">
    <%for(StoreDto tmp:list){ %>
    <div class="card mb-3" style="max-width: 100%;">
      <div class="row no-gutters">

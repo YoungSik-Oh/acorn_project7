@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-bottom : 30px;">
 	<h1>개인정보 페이지</h1>
 	<table class="table table-striped">
 		<tr>
@@ -84,5 +84,7 @@
 		}
 	}
 </script>
+<hr/>
+<%@include file="../footer.jsp" %>
 </body>
 </html>

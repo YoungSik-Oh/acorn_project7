@@ -3,6 +3,11 @@
     <%
     	String id = (String)session.getAttribute("id");
     %>
+<style>
+	.space{
+		margin-right : 15px;
+	}
+</style>
 <header>
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">

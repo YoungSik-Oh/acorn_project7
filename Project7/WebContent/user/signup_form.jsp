@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@include file="../header.jsp" %>
 <!DOCTYPE html>
 <style>
  	.h_logo {
@@ -28,7 +29,7 @@
 <div class="body-center">
 	<div class="container">
 	
-  	 	<h2 class="h_logo">로고 넣을 곳</h2>
+  	 	<h2 class="h_logo">회원 가입</h2>
 
    <form action="${pageContext.request.contextPath}/user/signup.jsp" method="post" id="regForm" enctype=multipart/form-data>
   

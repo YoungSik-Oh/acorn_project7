@@ -9,11 +9,16 @@ public class UserDto {
 	private String userEmail;
 	private String userRegdate;
 	private String userProfile;
+	private int StartRowNum;
+	private int EndRowNum;
+	private int prevNum;
+	private int nextNum;
 	public UserDto() {}
 
+	
+
 	public UserDto(String userName, String userId, String userPw, String userGender, String userPhone, String userEmail,
-			String userRegdate) {
-		super();
+			String userRegdate, String userProfile, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		this.userName = userName;
 		this.userId = userId;
 		this.userPw = userPw;
@@ -22,7 +27,13 @@ public class UserDto {
 		this.userEmail = userEmail;
 		this.userRegdate = userRegdate;
 		this.userProfile = userProfile;
+		StartRowNum = startRowNum;
+		EndRowNum = endRowNum;
+		this.prevNum = prevNum;
+		this.nextNum = nextNum;
 	}
+
+
 
 	public String getUserName() {
 		return userName;
@@ -84,6 +95,38 @@ public class UserDto {
 	}
 	public void setUserProfile(String userProfile) {
 		this.userProfile = userProfile;
+	}
+
+	public int getStartRowNum() {
+		return StartRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		StartRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return EndRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		EndRowNum = endRowNum;
+	}
+
+	public int getPrevNum() {
+		return prevNum;
+	}
+
+	public void setPrevNum(int prevNum) {
+		this.prevNum = prevNum;
+	}
+
+	public int getNextNum() {
+		return nextNum;
+	}
+
+	public void setNextNum(int nextNum) {
+		this.nextNum = nextNum;
 	}
 	
 	

@@ -79,6 +79,7 @@
 <%
 	//id라는 키값으로 세션에 저장된 문자열이 있는지 읽어와 본다.
 	String id=(String)session.getAttribute("id");
+	String adminName=(String)session.getAttribute("adminName");
 %>
 <body>
  <header>
@@ -97,10 +98,16 @@
   			
   	  		<div class="collapse navbar-collapse" id="navbarNav">
 	    		<ul class="navbar-nav">
-		      		<%if(id == null){ %>
-		      			<li class="nav-item">
+	    			<%if(adminName == null){ %>
+	    				<li class="nav-item">
 		        			<a class="space" class="nav-link" href="admin/admin_login_form.jsp">관리자 로그인 <span class="sr-only"></span></a>
 		      			</li>
+	    			<%} else{%>
+	    				<li class="nav-item">
+		        			<a class="space" class="nav-link" href="admin/admin_index.jsp">관리자 페이지 <span class="sr-only"></span></a>
+		      			</li>
+	    			<%} %>
+		      		<%if(id == null){ %>
 		      			<li class="nav-item">
 		       			    <a class="space" class="nav-link" href="user/loginform.jsp">로그인</a>
 		      			</li>
@@ -128,7 +135,7 @@
   
   </section>
 
-  <h1 class="Head">내 맘대로 정하는 메뉴</h1>
+  <h1 class="Head">이미지를 클릭하세요</h1>
 
   <div class="album py-5 bg-light">
     <div class="container">
@@ -185,7 +192,7 @@
        </div>
       </div>
      </div>
-      <h1 class="Head">관리자가 추천해주는 믿고 보는 맛집!</h1>
+      <h1 class="Head">맛집 리스트</h1>
 	  
       <div class="album py-5 bg-light">
       <div class="container">
