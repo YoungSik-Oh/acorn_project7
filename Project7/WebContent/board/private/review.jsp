@@ -1,7 +1,9 @@
 <%@page import="project7.store.dto.StoreDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../header.jsp" %>
+    <%
+    String id=(String)session.getAttribute("id");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,14 +27,11 @@
 	</div>
 	
 		<label for="image">사진 추가</label><br />
-		<input style="margin-bottom : 15px;" type="file" name="image" id="image"  accept=".jpg, .jpeg, .png, .JPG, .JPEG"/><br />
+		<input type="file" name="image" id="image"  accept=".jpg, .jpeg, .png, .JPG, .JPEG"/><br />
 
-		<input class="btn btn-outline-primary" type="submit" value="등록"/>
-		<input class="btn btn-outline-danger" type="reset" value="취소"/>	
+		<input type="submit" value="등록"/>
+		<input type="reset" value="취소"/>	
 	</form>
 </div>
-<div style="height : 100px;"></div>
-<hr/>
-<%@include file="../../footer.jsp" %>
 </body>
 </html>

@@ -148,7 +148,7 @@
 	    	dto.setSlorder(slorder);
 	    	dto.setSrday(srday);
 	    	dto.setSmenu(smenu);
-	    	dto.setS_imgpath(imagePath);
+			dto.setS_imgpath(imagePath);
 			dto.setContents(contents);
 			   
 	        //db에 저장하기

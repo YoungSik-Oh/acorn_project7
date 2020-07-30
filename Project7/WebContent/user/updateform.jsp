@@ -32,7 +32,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
-	<div class="container" style="margin-bottom : 30px;">
+	<div class="container">
 	<h1>회원정보 수정</h1>
 	<form action="update.jsp" method="post">
 		<%if(dto.getUserProfile()==null){ %>
@@ -96,8 +96,8 @@
 		//회원정보 수정폼 전송될 때 같이 전송 되도록한다.
 		$("#profile").val(data.imageSrc); //input type="hidden"의 value 값
 	});
+	
+	
 </script>
-<hr/>
-<%@include file="../footer.jsp" %>
 </body>
 </html>

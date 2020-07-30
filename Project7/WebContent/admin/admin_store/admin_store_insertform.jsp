@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../adminHeader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +63,5 @@
 	  <button type="reset" class="btn btn-danger" >입력 취소</button>
 	</form>
 </div>
-<hr/>
-<%@include file="../../footer.jsp" %>
 </body>
 </html>
