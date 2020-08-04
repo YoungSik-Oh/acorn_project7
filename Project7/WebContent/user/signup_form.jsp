@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@include file="../header.jsp" %>
 <!DOCTYPE html>
 <style>
  	.h_logo {
@@ -13,7 +14,9 @@
     -webkit-background-size: 240px auto;
     background-size: 240px auto;
 }
-
+	.body-center {
+	
+	}
 </style>
 <html>
 <head>
@@ -23,10 +26,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
-
-<div class="container" >
+<div class="body-center">
+	<div class="container">
 	
-  	 	<h2 class="h_logo">회원가입</h2>
+  	 	<h2 class="h_logo">회원 가입</h2>
 
    <form action="${pageContext.request.contextPath}/user/signup.jsp" method="post" id="regForm" enctype=multipart/form-data>
   
@@ -76,9 +79,6 @@
       <button type="reset" class="btn btn-secondary btn-lg">취소</button>
       </div>
    </form>
-</div>
-
-</body>
 <script>
    //비밀번호 확인에서 벗어나면 실행되는 함수
     $('#pwd2').focusout(function () {
@@ -139,4 +139,7 @@
       }
    });
 </script>
+	</div>
+</div>
+</body>
 </html>

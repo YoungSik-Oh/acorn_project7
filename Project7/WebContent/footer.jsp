@@ -37,7 +37,7 @@
   </div><!-- Footer Links -->
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="${pageContext.request.contextPath}/index.jsp/"> Acorn Semi_project 7 </a>
+    <a href="${pageContext.request.contextPath}/index.jsp"> Acorn Semi_project 7 </a>
   </div>
   <!-- Copyright -->
 

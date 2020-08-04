@@ -51,6 +51,7 @@ public class UserDao {
 			}
 			return rowCount;
 		}
+	
 	// 회원 가입
 	public boolean insert(UserDto dto) {
 		Connection conn=null;
@@ -84,48 +85,87 @@ public class UserDao {
 				return false;
 			}
 		}
-	//회원 목록 출력
-	public List<UserDto> getList(UserDto dto){
-		List<UserDto> list=new ArrayList<>();
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		try {
-			conn= new DbcpBean().getConn();
-			String sql="SELECT *"
-					+ "	FROM"
-					+ " (SELECT result1.*, ROWNUM AS rnum"
-					+ "	 FROM"
-					+ " (SELECT * FROM user_info"
-					+ "  ORDER BY regdate DESC) result1)"
-					+ "	 where rnum BETWEEN ? AND ?";
-				pstmt=conn.prepareStatement(sql);
-				pstmt.setInt(1, dto.getStartRowNum());
-				pstmt.setInt(2, dto.getEndRowNum());
-				rs=pstmt.executeQuery();
-				while(rs.next()) {
-					UserDto dto1=new UserDto();
-					dto1.setUserName(rs.getString("userName"));
-					dto1.setUserId(rs.getString("userId"));
-					dto1.setUserPw(rs.getString("userPw"));
-					dto1.setUserGender(rs.getString("userGender"));
-					dto1.setUserPhone(rs.getString("userPhone"));
-					dto1.setUserEmail(rs.getString("userEmail"));
-					dto1.setUserRegdate(rs.getString("Regdate"));
-					list.add(dto1);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				try {
-					if(rs!=null)rs.close();
-					if(pstmt!=null)pstmt.close();
-					if(conn!=null)conn.close();
-				}catch(Exception e) {}
-			}
-		return list;
-	}
+//	//회원 목록 출력
+//	public List<UserDto> getList(){
+//		List<UserDto> list=new ArrayList<>();
+//		Connection conn=null;
+//		PreparedStatement pstmt=null;
+//		ResultSet rs=null;
+//		try {
+//			conn= new DbcpBean().getConn();
+//			
+//			String sql="select * from user_info"
+//					 + " order by regdate asc";
+//				pstmt=conn.prepareStatement(sql);
+//				rs=pstmt.executeQuery();
+//				while(rs.next()) {
+//					UserDto dto=new UserDto();
+//					dto.setUserName(rs.getString("userName"));
+//					dto.setUserId(rs.getString("userId"));
+//					dto.setUserPw(rs.getString("userPw"));
+//					dto.setUserGender(rs.getString("userGender"));
+//					dto.setUserPhone(rs.getString("userPhone"));
+//					dto.setUserEmail(rs.getString("userEmail"));
+//					dto.setUserRegdate(rs.getString("Regdate"));
+//					list.add(dto);
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}finally {
+//				try {
+//					if(rs!=null)rs.close();
+//					if(pstmt!=null)pstmt.close();
+//					if(conn!=null)conn.close();
+//				}catch(Exception e) {}
+//			}
+//		return list;
+//	}
+//	
+//	//페이징
 	
+	//회원 목록 출력
+		public List<UserDto> getList(UserDto dto){
+			List<UserDto> list=new ArrayList<>();
+			Connection conn=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			try {
+				conn= new DbcpBean().getConn();
+				String sql="SELECT *"
+						+ " FROM "
+						+ " (SELECT result1.* ,ROWNUM rnum"
+						+ " FROM "
+						+ " (SELECT userName, userId, userPw, userGender, userPhone, userEmail, Regdate"
+						+ " FROM user_info"
+						+ " ORDER BY userName DESC) result1)"
+						+ " WHERE rnum BETWEEN ? AND ?";
+				
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setInt(1, dto.getStartRowNum());
+					pstmt.setInt(2, dto.getEndRowNum());
+					rs=pstmt.executeQuery();
+					while(rs.next()) {
+						UserDto tmp=new UserDto();
+						tmp.setUserName(rs.getString("userName"));
+						tmp.setUserId(rs.getString("userId"));
+						tmp.setUserPw(rs.getString("userPw"));
+						tmp.setUserGender(rs.getString("userGender"));
+						tmp.setUserPhone(rs.getString("userPhone"));
+						tmp.setUserEmail(rs.getString("userEmail"));
+						tmp.setUserRegdate(rs.getString("Regdate"));
+						list.add(tmp);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					try {
+						if(rs!=null)rs.close();
+						if(pstmt!=null)pstmt.close();
+						if(conn!=null)conn.close();
+					}catch(Exception e) {}
+				}
+			return list;
+		}
 	//회원정보 수정
 	public boolean update(UserDto dto) {
 		Connection conn = null;
@@ -247,6 +287,7 @@ public class UserDao {
 	
 	//인자로 전달된 id에 해당하는 정보를 리턴하는 메소드
 	public UserDto getData(String userid) {
+		
 		//UserDto객체의 참조값을 담을 지역변수 만들기
 		UserDto dto=null;
 		//필요한 객체의 참조값을 담을 지역변수 만들기
@@ -258,7 +299,7 @@ public class UserDao {
 			//실행할 sql 문 준비하기 
 			String sql = "SELECT username ,userpw, usergender, userphone, useremail, regdate, userprofile"
 					+ " FROM user_info"
-					+ " WHERE userid=?";	
+					+ " WHERE userid=?";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩한다.
 			pstmt.setString(1, userid);
@@ -278,7 +319,7 @@ public class UserDao {
 				dto.setUserRegdate(rs.getString("Regdate"));
 				dto.setUserProfile(rs.getString("userProfile"));
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {

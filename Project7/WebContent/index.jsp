@@ -79,13 +79,15 @@
 <%
 	//id라는 키값으로 세션에 저장된 문자열이 있는지 읽어와 본다.
 	String id=(String)session.getAttribute("id");
+	String adminName=(String)session.getAttribute("adminName");
 %>
 <body>
  <header>
-  <div class="navbar navbar-dark shadow-sm">
+  <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
-      <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand d-flex align-items-center">
-      <img src="${pageContext.request.contextPath}/images/logo.png"/>
+      <a href="index.jsp" class="navbar-brand d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <strong>야요기어떄</strong>
       </a>
       
       <div class="row">
@@ -96,10 +98,16 @@
   			
   	  		<div class="collapse navbar-collapse" id="navbarNav">
 	    		<ul class="navbar-nav">
-		      		<%if(id == null){ %>
-		      			<li class="nav-item">
+	    			<%if(adminName == null){ %>
+	    				<li class="nav-item">
 		        			<a class="space" class="nav-link" href="admin/admin_login_form.jsp">관리자 로그인 <span class="sr-only"></span></a>
 		      			</li>
+	    			<%} else{%>
+	    				<li class="nav-item">
+		        			<a class="space" class="nav-link" href="admin/admin_index.jsp">관리자 페이지 <span class="sr-only"></span></a>
+		      			</li>
+	    			<%} %>
+		      		<%if(id == null){ %>
 		      			<li class="nav-item">
 		       			    <a class="space" class="nav-link" href="user/loginform.jsp">로그인</a>
 		      			</li>
@@ -124,13 +132,10 @@
 
 <main role="main">
   <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="mainSearch">검색창 들어갈 자리</h1>
-      <p class="searchBar"></p>
-    </div>
+  
   </section>
 
-  <h1 class="Head">내 맘대로 정하는 메뉴</h1>
+  <h1 class="Head">이미지를 클릭하세요</h1>
 
   <div class="album py-5 bg-light">
     <div class="container">
@@ -187,7 +192,7 @@
        </div>
       </div>
      </div>
-      <h1 class="Head">관리자가 추천해주는 믿고 보는 맛집!</h1>
+      <h1 class="Head">맛집 리스트</h1>
 	  
       <div class="album py-5 bg-light">
       <div class="container">
@@ -207,7 +212,7 @@
          	    </div>
             </div>
       	
-      	<%} %> 
+      	<%} %>
       
       </div>
     </div>
@@ -237,7 +242,7 @@
         <p><a href="#!">조민석</a></p>
         <p><a href="#!">오영식</a></p>
       </div><!-- Grid column -->
-      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">  <!-- Grid column -->
+      <div class="col-md-4 col-lg-\3 col-xl-3 mx-auto mb-md-0 mb-4">  <!-- Grid column -->
         <!-- Links -->
         <h6 class="text-uppercase font-weight-bold">(주) 요기어때</h6>
         
@@ -251,7 +256,9 @@
   <div class="footer-copyright text-center py-3">© 2020 Copyright: <!-- Copyright -->
     <a href="${pageContext.request.contextPath}/index.jsp/"> Acorn Semi_project 7 </a>
   </div> <!-- Copyright -->
-</footer><!-- Footer -->
+</footer><!-- Footer -->'
+
+
 
 <script>
  $('.bgBlack').hover(function() {
@@ -266,15 +273,7 @@
 	    $(info).css("display","none");
 	});
  </script>
-
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
-
-
-
 </body>
 </html>

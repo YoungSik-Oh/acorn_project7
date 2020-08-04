@@ -7,5 +7,10 @@
 	ReviewDao.getInstance().delete(r_num);
 	
 	String cPath=request.getContextPath();
+	
+// 	int snum = (int)application.getAttribute("snum");
+	
+	
+	
 	response.sendRedirect(cPath+"/board/fooddetail.jsp?snum="+application.getAttribute("snum"));
 %>

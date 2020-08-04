@@ -1,4 +1,7 @@
 
+	ul{
+		list-style-type: none;
+	}
 	.page-display ul li{
 		float: left;
 		list-style-type: none;

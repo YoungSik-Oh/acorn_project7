@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-  
    //한 페이지에 나타낼 row 의 갯수
    final int PAGE_ROW_COUNT=5;
    //하단 디스플레이 페이지 갯수
@@ -41,10 +40,7 @@
    StoreDto dto=new StoreDto();
    dto.setStartRowNum(startRowNum);
    dto.setEndRowNum(endRowNum);
-
     List<StoreDto> list= StoreDao.getInstance().getList(dto);
-    
-
     %>
 <!DOCTYPE html>
 <html>
@@ -69,11 +65,11 @@
     <div class="container d-flex justify-content-between">
       <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand d-flex align-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>우리 로고 넣기!!</strong>
+        <strong>옥의티</strong>
       </a>
       <style>
       	.space{
-      		margin-right : 15px;	
+      		margin-right : 15px;
       	}
       </style>
       <ul class="login_info">
@@ -82,7 +78,7 @@
       <li><a class="space" href="user/logout.jsp">로그아웃</a></li>
       
       <%}else{ %>
-          <li><a class="space" href="/user/signup_form.jsp">회원가입</a></li>
+          <li><a class="space" href="user/signup_form.jsp">회원가입</a></li>
            <li><a class="space" href="user/loginform.jsp">로그인</a></li>
            <li><a class="space" href="admin/admin_login_form.jsp">관리자 로그인</a></li>
       <%} %>
@@ -100,16 +96,15 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="slide-size" class="d-block w-100 "  src="${pageContext.request.contextPath}/images/container10.png" alt="First slide">
+      <img class="slide-size" class="d-block w-100 "  src="${pageContext.request.contextPath}/images/container5.jpg" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img  class="slide-size" class="d-block w-100 " src="${pageContext.request.contextPath}/images/index_mainC.jpg" alt="Second slide">
+      <img  class="slide-size" class="d-block w-100 " src="${pageContext.request.contextPath}/images/container2.jpg" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="slide-size" class="d-block w-100" src="${pageContext.request.contextPath}/images/container13.jpg" alt="Third slide">
+      <img class="slide-size" class="d-block w-100" src="${pageContext.request.contextPath}/images/food3.jpg" alt="Third slide">
     </div>
   </div>
-
   <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
@@ -120,16 +115,15 @@
   </a>
 </div><!-- 슬라이드쇼 종료 -->
 
-<div class="container" style="padding-top:20px;">
-
+<div class="container" style="padding-top:30px;">
    <%for(StoreDto tmp:list){ %>
    <div class="card mb-3" style="max-width: 100%;">
      <div class="row no-gutters">
-       <div class="col-md-4"><img style="height:250px; width:300px;" src="${pageContext.request.contextPath}<%=tmp.getS_imgpath() %>" class="card-img">
+       <div class="col-md-4"><img style="height : 250px; width : 300px;" src="${pageContext.request.contextPath}<%=tmp.getS_imgpath() %>" class="card-img">
        </div>
        <div class="col-md-8">
          <div class="card-body">
-           <h5 class="card-title"><a href="${pageContext.request.contextPath}/board/fooddetail.jsp?snum=<%=tmp.getSnum()%>"><%=tmp.getSname() %> </a></h5>
+           <h5 class="card-title"><a style="color : black" href="${pageContext.request.contextPath}/board/fooddetail.jsp?snum=<%=tmp.getSnum()%>"><%=tmp.getSname() %> </a></h5>
            <p class="card-text"><%=tmp.getContents() %></p>
            <p class="card-text"><small class="text-muted"><%=tmp.getUdate() %></small></p>
          </div>
@@ -172,8 +166,6 @@
       </ul>
    </div>
 </div>
-
-      <hr />
 <%@include file="footer.jsp" %>
 </body>
 </html>

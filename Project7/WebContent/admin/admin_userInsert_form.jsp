@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="adminHeader.jsp" %>
     <%
     request.setCharacterEncoding("utf-8");
     %>
@@ -9,35 +10,36 @@
 <meta charset="UTF-8">
 <title>/user/signup_form.jsp</title>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
 
 <div class="container">
-   <h1>admin_userInsert_form.jsp</h1>
+   <h1>관리자 페이지에서 회원 추가하기</h1>
    <form action="${pageContext.request.contextPath}/admin/admin_userInsert.jsp" method="post" id="regForm">
       <div class="form-group">
          <h3><label for="username">이름(필수)</label></h3>
-         <input type="text" name="username" id="username" required/>
+         <input class="form-control" type="text" name="username" id="username" required/>
       
          <h3><label for="userid">아이디(필수)</label></h3>
-         <input type="text" name="userid" id="userid" required />
+         <input class="form-control" type="text" name="userid" id="userid" required />
          <button id="checkBtn">중복확인</button><br />
          <span id="checkResult"></span>
 
       </div>
       <div class="form-group">
          <h3><label for="userpw">비밀번호</label></h3>
-         <input type="password" class="userpw" name="userpw" id="userpw"/>
+         <input type="password" class="userpw form-control" name="userpw" id="userpw"/>
       </div>
       <div class="form-group">
          <h3><label for="userpw2">비밀번호 확인</label></h3>
-         <input type="password" class="pw" name="userpw2" id="userpw2"/><br />
+         <input type="password" class="pw form-control" name="userpw2" id="userpw2"/><br />
          <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
           <span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
       </div>
       <div class="form-group">
          <h3><label for="userphone">전화번호(필수)</label></h3>
-         <input type="text" name="userphone" id="userphone" required/>
+         <input class="form-control" type="text" name="userphone" id="userphone" required/>
 
       </div>
       <div class="form-group">
@@ -50,10 +52,10 @@
       </div>
       <div class="form-group">
          <h3><label for="useremail">본인 확인 이메일<span>(선택)</span></label></h3>
-         <input type="text" id="useremail" name="useremail" placeholder="선택입력"/>
+         <input class="form-control" type="text" id="useremail" name="useremail" placeholder="선택입력"/>
       </div>
-      <button type="submit">회원 추가 </button>
-      <button type="reset">취소</button>
+      <button class="btn btn-outline-primary" type="submit">회원 추가 </button>
+      <button class="btn btn-outline-danger" type="reset">취소</button>
    </form>
 <script>
    //비밀번호 확인에서 벗어나면 실행되는 함수
@@ -117,5 +119,6 @@
    });
 </script>
 </div>
+<%@include file="../footer.jsp" %>
 </body>
 </html>

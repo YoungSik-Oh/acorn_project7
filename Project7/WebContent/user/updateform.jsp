@@ -2,10 +2,10 @@
 <%@page import="project.user.dao.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="../header.jsp" %>
      <%
      	request.setCharacterEncoding("utf-8");
     	//세션에 저장된 아이디
-    	String id=(String)session.getAttribute("id");
     	//수정할 회원의 정보를 읽어온다
     	UserDto dto=UserDao.getInstance().getData(id);
     	
@@ -32,7 +32,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="margin-bottom : 30px;">
 	<h1>회원정보 수정</h1>
 	<form action="update.jsp" method="post">
 		<%if(dto.getUserProfile()==null){ %>
@@ -96,8 +96,8 @@
 		//회원정보 수정폼 전송될 때 같이 전송 되도록한다.
 		$("#profile").val(data.imageSrc); //input type="hidden"의 value 값
 	});
-	
-	
 </script>
+<hr/>
+<%@include file="../footer.jsp" %>
 </body>
 </html>

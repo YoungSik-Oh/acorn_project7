@@ -13,7 +13,7 @@ public class UserDto {
 	private int EndRowNum;
 	private int prevNum;
 	private int nextNum;
-	
+
 	public UserDto() {}
 
 	public UserDto(String userName, String userId, String userPw, String userGender, String userPhone, String userEmail,

@@ -3,13 +3,15 @@
 <%@page import="project.user.dto.UserDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="../header.jsp" %>
     <%
     request.setCharacterEncoding("utf-8");
-    String id=(String)session.getAttribute("id");
+   
     //로그인된 개인 정보를 읽어온다.
     UserDto dto=new UserDto();
     dto=UserDao.getInstance().getData(id);
     %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +33,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-bottom : 30px;">
 	<h1>개인정보 페이지</h1>
 	<table class="table table-striped">
 		<tr>
@@ -82,5 +84,7 @@
 		}
 	}
 </script>
+<hr/>
+<%@include file="../footer.jsp" %>
 </body>
 </html>
