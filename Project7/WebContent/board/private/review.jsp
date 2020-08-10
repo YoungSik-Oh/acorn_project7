@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>/board/insertform.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 </head>
 <body>
 

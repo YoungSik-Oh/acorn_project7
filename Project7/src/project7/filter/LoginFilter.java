@@ -1,6 +1,7 @@
 package project7.filter;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -37,9 +38,22 @@ public class LoginFilter implements Filter {
 			chain.doFilter(request, response);
 		}else {//로그인이 안된 상태 
 			//로그인 폼으로 강제 리다일렉트 응답을 준다.
+			
+			
+			
+			String url = req.getRequestURI();
+			String query = req.getQueryString();
+			String encodeUrl = null;
+			
+			if(query == null) {
+				encodeUrl = URLEncoder.encode(url);
+			}else {
+				encodeUrl = URLEncoder.encode(url+"?"+query);
+			}
+			
 			HttpServletResponse res=(HttpServletResponse)response;
 			String cPath=req.getContextPath();
-			res.sendRedirect(cPath+"/user/loginform.jsp");
+			res.sendRedirect(cPath+"/user/loginform.jsp?url="+encodeUrl);	
 		}
 	}
 

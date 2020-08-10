@@ -31,6 +31,7 @@
 	}
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 </head>
 <body>
 <div class="container">
@@ -73,8 +74,8 @@
 			<td><%=dto.getUserRegdate() %></td>
 		</tr>
 	</table>
-	<button class="btn btn-outline-primary"><a href="updateform.jsp">개인정보 수정</a></button>
-	<button class="btn btn-outline-danger"><a href="javascript:deleteConfirm()">탈퇴</a></button>
+	<a class="btn btn-outline-primary" href="updateform.jsp">개인정보 수정</a>
+	<a class="btn btn-outline-danger" href="javascript:deleteConfirm()">탈퇴</a>
 </div>
 <script>
 	function deleteConfirm(){

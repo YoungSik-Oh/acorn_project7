@@ -19,7 +19,7 @@
 <div class="container">
 <h3><%=dto.getSname() %><strong><span>4.6</span></strong></h3>
 	 <figcaption class="figure-caption">조회수</figcaption>
-		<a href="store_detail_modifyform.jsp?snum=<%=snum %>">수정하기</a>
+		<a class="btn btn-outline-info" href="store_detail_modifyform.jsp?snum=<%=snum %>">수정하기</a>
 <table class="table table-borderless">
 		<tbody>
 			<tr>

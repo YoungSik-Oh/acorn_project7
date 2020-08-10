@@ -88,3 +88,8 @@
 	.space{
 		margin-right : 15px;
 	}
+	
+	ul li a{
+		color : white;
+		text-decoration : none;
+	}
